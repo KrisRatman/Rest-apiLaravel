@@ -40,6 +40,7 @@ class ListTasksRequest extends FormRequest
             'filter.search' => ['sometimes', 'string', 'max:100'],
             'per_page' => ['sometimes', 'integer', 'between:1,100'],
             'page' => ['sometimes', 'integer', 'min:1'],
+            'cursor' => ['sometimes', 'string', 'max:1000'],
         ];
     }
 }

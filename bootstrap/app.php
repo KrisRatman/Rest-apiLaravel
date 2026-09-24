@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\MarkDeprecatedVersion;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Общий лимит запросов на всю группу api (лимитер 'api' в AppServiceProvider).
         $middleware->throttleApi();
+
+        $middleware->alias([
+            'deprecated' => MarkDeprecatedVersion::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         // Все ошибки API отдаются JSON-ом вида {"message": "...", "errors": {...}},

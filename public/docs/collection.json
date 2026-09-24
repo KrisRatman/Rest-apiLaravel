@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Task Manager API \u2014 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f",
-        "_postman_id": "4292474b-7093-4581-b9e9-f0916222b20e",
+        "_postman_id": "a5a7df69-e76c-43f1-a603-67eb1fb57e15",
         "description": "REST API \u0434\u043b\u044f \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u0437\u0430\u0434\u0430\u0447: \u043a\u043e\u043c\u0430\u043d\u0434\u044b \u0441 \u0440\u043e\u043b\u044f\u043c\u0438, \u043f\u0440\u043e\u0435\u043a\u0442\u044b, \u0437\u0430\u0434\u0430\u0447\u0438, \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0438 \u0438 \u043c\u0435\u0442\u043a\u0438.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -178,7 +178,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":5,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"created_at\":\"2026-09-24T07:26:41.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":5,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -213,7 +213,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":5,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"created_at\":\"2026-09-24T07:26:41.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":5,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -996,7 +996,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":5,\"team_id\":4,\"name\":\"Nemo odit\",\"description\":null,\"status\":\"active\",\"created_by\":6,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"},{\"id\":5,\"team_id\":4,\"name\":\"Nemo odit\",\"description\":null,\"status\":\"active\",\"created_by\":6,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -1039,7 +1039,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1079,7 +1079,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         },
                         {
@@ -1128,7 +1128,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1177,7 +1177,7 @@
         },
         {
             "name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-            "description": "\u0417\u0430\u0434\u0430\u0447\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u0430. \u0421\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c, \u043c\u0435\u043d\u044f\u0442\u044c \u0438 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043c\u043e\u0436\u0435\u0442 \u043b\u044e\u0431\u043e\u0439 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a \u043a\u043e\u043c\u0430\u043d\u0434\u044b; \u0443\u0434\u0430\u043b\u044f\u0442\u044c \u2014 \u0430\u0432\u0442\u043e\u0440 \u0437\u0430\u0434\u0430\u0447\u0438, \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u0438 \u0430\u0434\u043c\u0438\u043d\u044b.",
+            "description": "\u0417\u0430\u0434\u0430\u0447\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u0430. \u0421\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c, \u043c\u0435\u043d\u044f\u0442\u044c \u0438 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043c\u043e\u0436\u0435\u0442 \u043b\u044e\u0431\u043e\u0439 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a \u043a\u043e\u043c\u0430\u043d\u0434\u044b; \u0443\u0434\u0430\u043b\u044f\u0442\u044c \u2014 \u0430\u0432\u0442\u043e\u0440 \u0437\u0430\u0434\u0430\u0447\u0438, \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u0438 \u0430\u0434\u043c\u0438\u043d\u044b.\n\n**\u0423\u0441\u0442\u0430\u0440\u0435\u043b\u043e:** \u044d\u0442\u0438 \u044d\u043d\u0434\u043f\u043e\u0438\u043d\u0442\u044b \u0438 \u00ab\u041c\u043e\u0438 \u0437\u0430\u0434\u0430\u0447\u0438\u00bb \u0437\u0430\u043c\u0435\u043d\u0435\u043d\u044b \u0432\u0435\u0440\u0441\u0438\u0435\u0439 v2 (\u0441\u043c. \u00ab\u0417\u0430\u0434\u0430\u0447\u0438 v2\u00bb) \u0438 \u043e\u0442\u0434\u0430\u044e\u0442 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0438 `Deprecation`, `Sunset` \u0438 `Link`.",
             "item": [
                 {
                     "name": "\u041c\u043e\u0438 \u0437\u0430\u0434\u0430\u0447\u0438",
@@ -1273,7 +1273,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Vito Bradtke\",\"email\":\"skylar.kuvalis@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"laboriosam\",\"color\":\"#1f79c5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Odit doloribus repellat officiis\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Matt Boehm\",\"email\":\"carolina.balistreri@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"rem\",\"color\":\"#0f0867\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Vito Bradtke\",\"email\":\"skylar.kuvalis@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"laboriosam\",\"color\":\"#1f79c5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Odit doloribus repellat officiis\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Matt Boehm\",\"email\":\"carolina.balistreri@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"rem\",\"color\":\"#0f0867\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -1380,7 +1380,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Dr. Alan Green\",\"email\":\"herbert83@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"recusandae\",\"color\":\"#ba14a2\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Ratione iure impedit molestiae\",\"description\":\"Esse sint aut molestiae sunt suscipit doloribus fugiat. Aut deserunt et error neque recusandae et.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Prof. Juvenal O'Kon\",\"email\":\"herman.andrew@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"in\",\"color\":\"#1e7f9d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Dr. Alan Green\",\"email\":\"herbert83@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"recusandae\",\"color\":\"#ba14a2\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Ratione iure impedit molestiae\",\"description\":\"Esse sint aut molestiae sunt suscipit doloribus fugiat. Aut deserunt et error neque recusandae et.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Prof. Juvenal O'Kon\",\"email\":\"herman.andrew@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"in\",\"color\":\"#1e7f9d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         },
                         {
@@ -1429,7 +1429,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"balistreri.josiane@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"neque\",\"color\":\"#c420d2\"}],\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"balistreri.josiane@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"neque\",\"color\":\"#c420d2\"}],\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         },
                         {
@@ -1475,7 +1475,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Nelson Little\",\"email\":\"anderson.herbert@example.com\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"et\",\"color\":\"#3b76f5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Nelson Little\",\"email\":\"anderson.herbert@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"et\",\"color\":\"#3b76f5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1518,7 +1518,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Prof. Carson Emard\",\"email\":\"lward@example.com\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"excepturi\",\"color\":\"#c8ef42\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Prof. Carson Emard\",\"email\":\"lward@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"excepturi\",\"color\":\"#c8ef42\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1553,6 +1553,408 @@
                         ],
                         "body": null,
                         "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": null,
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\":\"This action is unauthorized.\"}",
+                            "name": "\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a \u043f\u044b\u0442\u0430\u0435\u0442\u0441\u044f \u0443\u0434\u0430\u043b\u0438\u0442\u044c \u0447\u0443\u0436\u0443\u044e \u0437\u0430\u0434\u0430\u0447\u0443"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "\u0417\u0430\u0434\u0430\u0447\u0438 v2",
+            "description": "\u0417\u0430\u0434\u0430\u0447\u0438 \u0432 API v2: \u043a\u0443\u0440\u0441\u043e\u0440\u043d\u0430\u044f \u043f\u0430\u0433\u0438\u043d\u0430\u0446\u0438\u044f, \u0441\u0442\u0430\u0442\u0443\u0441 \u0438 \u043f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442 \u043e\u0431\u044a\u0435\u043a\u0442\u0430\u043c\u0438 `{value, label}`, \u0432\u043b\u043e\u0436\u0435\u043d\u043d\u044b\u0439 \u0430\u0432\u0442\u043e\u0440 `creator`. \u0422\u0435\u043b\u0430 \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432 \u0438 \u043f\u0440\u0430\u0432\u0430 \u2014 \u0442\u0435 \u0436\u0435, \u0447\u0442\u043e \u0432 v1.",
+            "item": [
+                {
+                    "name": "\u041c\u043e\u0438 \u0437\u0430\u0434\u0430\u0447\u0438",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/me\/tasks",
+                            "query": [
+                                {
+                                    "key": "filter[status]",
+                                    "value": "todo,in_progress",
+                                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0438\u043b\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter[priority]",
+                                    "value": "",
+                                    "description": "\u041f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442 \u0438\u043b\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[project_id]",
+                                    "value": "",
+                                    "description": "ID \u043f\u0440\u043e\u0435\u043a\u0442\u0430.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[label]",
+                                    "value": "",
+                                    "description": "ID \u043c\u0435\u0442\u043a\u0438 \u0438\u043b\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[overdue]",
+                                    "value": "",
+                                    "description": "`1` \u2014 \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u043e\u0441\u0440\u043e\u0447\u0435\u043d\u043d\u044b\u0435.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[due_from]",
+                                    "value": "",
+                                    "description": "\u0421\u0440\u043e\u043a \u043d\u0435 \u0440\u0430\u043d\u044c\u0448\u0435 \u0434\u0430\u0442\u044b, `Y-m-d`.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[due_to]",
+                                    "value": "",
+                                    "description": "\u0421\u0440\u043e\u043a \u043d\u0435 \u043f\u043e\u0437\u0436\u0435 \u0434\u0430\u0442\u044b, `Y-m-d`.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[search]",
+                                    "value": "",
+                                    "description": "\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0443 \u0438 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "due_date",
+                                    "description": "\u041a\u0430\u043a \u0443 \u0437\u0430\u0434\u0430\u0447 \u043f\u0440\u043e\u0435\u043a\u0442\u0430. `due_date` \u2014 \u0431\u043b\u0438\u0436\u0430\u0439\u0448\u0438\u0435 \u0441\u0440\u043e\u043a\u0438 \u0441\u0432\u0435\u0440\u0445\u0443, \u0437\u0430\u0434\u0430\u0447\u0438 \u0431\u0435\u0437 \u0441\u0440\u043e\u043a\u0430 \u0432 \u043a\u043e\u043d\u0446\u0435.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "15",
+                                    "description": "\u0420\u0430\u0437\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b, 1\u2013100.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "cursor",
+                                    "value": "",
+                                    "description": "\u041a\u0443\u0440\u0441\u043e\u0440 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0439 \u0438\u043b\u0438 \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b \u0438\u0437 `meta`.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v2\/me\/tasks?filter%5Bstatus%5D=todo%2Cin_progress&filter%5Bpriority%5D=&filter%5Bproject_id%5D=&filter%5Blabel%5D=&filter%5Boverdue%5D=&filter%5Bdue_from%5D=&filter%5Bdue_to%5D=&filter%5Bsearch%5D=&sort=due_date&per_page=15&cursor="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u0417\u0430\u0434\u0430\u0447\u0438 \u0438\u0437 \u0432\u0441\u0435\u0445 \u043a\u043e\u043c\u0430\u043d\u0434, \u0433\u0434\u0435 \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c \u2014 \u0442\u0435\u043a\u0443\u0449\u0438\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c. \u041a\u0443\u0440\u0441\u043e\u0440\u043d\u0430\u044f \u043f\u0430\u0433\u0438\u043d\u0430\u0446\u0438\u044f \u043f\u043e\u0434\u0445\u043e\u0434\u0438\u0442 \u0434\u043b\u044f \u0431\u0435\u0441\u043a\u043e\u043d\u0435\u0447\u043d\u043e\u0439 \u043b\u0435\u043d\u0442\u044b \u0432 \u043c\u043e\u0431\u0438\u043b\u044c\u043d\u043e\u043c \u043a\u043b\u0438\u0435\u043d\u0442\u0435."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":{\"value\":\"todo\",\"label\":\"To do\"},\"priority\":{\"value\":\"medium\",\"label\":\"Medium\"},\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Mr. Murl Cruickshank Jr.\",\"email\":\"zachery.fadel@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator\":{\"id\":7,\"name\":\"Mona Lemke\",\"email\":\"tobin24@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"corporis\",\"color\":\"#be2a24\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Repellendus ut eaque alias\",\"description\":null,\"status\":{\"value\":\"todo\",\"label\":\"To do\"},\"priority\":{\"value\":\"medium\",\"label\":\"Medium\"},\"due_date\":\"2026-10-04\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":11,\"name\":\"Mateo Wilderman\",\"email\":\"skyla.fahey@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator\":{\"id\":12,\"name\":\"Prof. Loyce Waelchi Jr.\",\"email\":\"dorris.klocko@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"qui\",\"color\":\"#411107\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}],\"links\":{\"first\":null,\"last\":null,\"prev\":null,\"next\":null},\"meta\":{\"path\":\"\\\/\",\"per_page\":15,\"next_cursor\":null,\"prev_cursor\":null}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0417\u0430\u0434\u0430\u0447\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u0430",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/projects\/:project_id\/tasks",
+                            "query": [
+                                {
+                                    "key": "filter[status]",
+                                    "value": "todo,in_progress",
+                                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0438\u043b\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e: `todo`, `in_progress`, `review`, `done`.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter[priority]",
+                                    "value": "",
+                                    "description": "\u041f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442 \u0438\u043b\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e: `low`, `medium`, `high`, `urgent`.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[assignee_id]",
+                                    "value": "",
+                                    "description": "ID \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044f.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[label]",
+                                    "value": "",
+                                    "description": "ID \u043c\u0435\u0442\u043a\u0438 \u0438\u043b\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[overdue]",
+                                    "value": "",
+                                    "description": "`1` \u2014 \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u043e\u0441\u0440\u043e\u0447\u0435\u043d\u043d\u044b\u0435 \u043d\u0435\u0437\u0430\u0432\u0435\u0440\u0448\u0451\u043d\u043d\u044b\u0435 \u0437\u0430\u0434\u0430\u0447\u0438.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[due_from]",
+                                    "value": "",
+                                    "description": "\u0421\u0440\u043e\u043a \u043d\u0435 \u0440\u0430\u043d\u044c\u0448\u0435 \u0434\u0430\u0442\u044b, `Y-m-d`.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[due_to]",
+                                    "value": "",
+                                    "description": "\u0421\u0440\u043e\u043a \u043d\u0435 \u043f\u043e\u0437\u0436\u0435 \u0434\u0430\u0442\u044b, `Y-m-d`.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filter[search]",
+                                    "value": "",
+                                    "description": "\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0443 \u0438 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044e, \u0434\u043e 100 \u0441\u0438\u043c\u0432\u043e\u043b\u043e\u0432.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "-priority,due_date",
+                                    "description": "\u041f\u043e\u043b\u044f: `created_at`, `due_date`, `priority`, `title`. \u041c\u0438\u043d\u0443\u0441 \u2014 \u043f\u043e \u0443\u0431\u044b\u0432\u0430\u043d\u0438\u044e, \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u2014 \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e. \u041f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e `-created_at`. \u041f\u0440\u0438 \u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0435 \u043f\u043e `due_date` \u0437\u0430\u0434\u0430\u0447\u0438 \u0431\u0435\u0437 \u0441\u0440\u043e\u043a\u0430 \u0438\u0434\u0443\u0442 \u0432 \u043a\u043e\u043d\u0446\u0435.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "15",
+                                    "description": "\u0420\u0430\u0437\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b, 1\u2013100. \u041f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e 15.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "cursor",
+                                    "value": "",
+                                    "description": "\u041a\u0443\u0440\u0441\u043e\u0440 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0439 \u0438\u043b\u0438 \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b \u0438\u0437 `meta`.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v2\/projects\/:project_id\/tasks?filter%5Bstatus%5D=todo%2Cin_progress&filter%5Bpriority%5D=&filter%5Bassignee_id%5D=&filter%5Blabel%5D=&filter%5Boverdue%5D=&filter%5Bdue_from%5D=&filter%5Bdue_to%5D=&filter%5Bsearch%5D=&sort=-priority%2Cdue_date&per_page=15&cursor=",
+                            "variable": [
+                                {
+                                    "id": "project_id",
+                                    "key": "project_id",
+                                    "value": 1,
+                                    "description": "The ID of the project."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u041a\u0443\u0440\u0441\u043e\u0440\u043d\u0430\u044f \u043f\u0430\u0433\u0438\u043d\u0430\u0446\u0438\u044f: \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u2014 \u043f\u043e \u0441\u0441\u044b\u043b\u043a\u0435 `links.next` \u0438\u043b\u0438 \u0441 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u043c `cursor` \u0438\u0437 `meta.next_cursor`. \u041e\u0431\u0449\u0435\u0433\u043e \u0447\u0438\u0441\u043b\u0430 \u0437\u0430\u0434\u0430\u0447 \u0432 \u043e\u0442\u0432\u0435\u0442\u0435 \u043d\u0435\u0442, \u0437\u0430\u0442\u043e \u043f\u0440\u0438 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u0438 \u043d\u043e\u0432\u044b\u0445 \u0437\u0430\u0434\u0430\u0447 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b \u043d\u0435 \u0441\u044a\u0435\u0437\u0436\u0430\u044e\u0442. \u0424\u0438\u043b\u044c\u0442\u0440\u044b \u2014 \u043a\u0430\u043a \u0432 v1."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":{\"value\":\"todo\",\"label\":\"To do\"},\"priority\":{\"value\":\"medium\",\"label\":\"Medium\"},\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Alexa Hamill DDS\",\"email\":\"walker26@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator\":{\"id\":7,\"name\":\"Noemy Klocko\",\"email\":\"tressa41@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"est\",\"color\":\"#126a3d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Ratione dolores sed rem\",\"description\":\"Deserunt sint quis in quod. Aspernatur consectetur id a consectetur assumenda eaque neque.\",\"status\":{\"value\":\"todo\",\"label\":\"To do\"},\"priority\":{\"value\":\"medium\",\"label\":\"Medium\"},\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":11,\"name\":\"Eugene Huels\",\"email\":\"kenna.ortiz@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator\":{\"id\":12,\"name\":\"Antoinette Farrell II\",\"email\":\"lelah01@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"amet\",\"color\":\"#2c34fc\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}],\"links\":{\"first\":null,\"last\":null,\"prev\":null,\"next\":null},\"meta\":{\"path\":\"\\\/\",\"per_page\":15,\"next_cursor\":null,\"prev_cursor\":null}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\"message\":\"Requested sort(s) `colour` is not allowed. Allowed sort(s) are `created_at, title, due_date, priority`.\"}",
+                            "name": "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0435 \u043f\u043e\u043b\u0435 \u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0438"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"The cursor does not match the requested sort. Request the first page again.\",\"errors\":{\"cursor\":[\"The cursor does not match the requested sort. Request the first page again.\"]}}",
+                            "name": "\u041a\u0443\u0440\u0441\u043e\u0440 \u043e\u0442 \u0434\u0440\u0443\u0433\u043e\u0439 \u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0438"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0437\u0430\u0434\u0430\u0447\u0443",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/projects\/:project_id\/tasks",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/projects\/:project_id\/tasks",
+                            "variable": [
+                                {
+                                    "id": "project_id",
+                                    "key": "project_id",
+                                    "value": 1,
+                                    "description": "The ID of the project."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"\u0421\u0432\u0435\u0440\u0441\u0442\u0430\u0442\u044c \u044d\u043a\u0440\u0430\u043d \u043a\u043e\u0440\u0437\u0438\u043d\u044b\",\"description\":\"\u041f\u043e \u043c\u0430\u043a\u0435\u0442\u0443 \u0438\u0437 Figma, \u0441 \u043f\u0443\u0441\u0442\u044b\u043c \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435\u043c\",\"status\":\"in_progress\",\"priority\":\"high\",\"assignee_id\":2,\"due_date\":\"2026-10-15\",\"label_ids\":[1]}"
+                        },
+                        "description": "\u0422\u0435\u043b\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u2014 \u043a\u0430\u043a \u0432 v1. \u0412 \u0430\u0440\u0445\u0438\u0432\u043d\u044b\u0439 \u043f\u0440\u043e\u0435\u043a\u0442 \u0437\u0430\u0434\u0430\u0447\u0438 \u043d\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u044f\u044e\u0442\u0441\u044f (403)."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Sint velit suscipit id\",\"description\":null,\"status\":{\"value\":\"todo\",\"label\":\"To do\"},\"priority\":{\"value\":\"medium\",\"label\":\"Medium\"},\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Sigmund Rowe\",\"email\":\"igaylord@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator\":{\"id\":7,\"name\":\"Miss Aniya Mante\",\"email\":\"grant80@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"voluptatum\",\"color\":\"#bb5911\"}],\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"The assignee must be a member of the team.\",\"errors\":{\"assignee_id\":[\"The assignee must be a member of the team.\"]}}",
+                            "name": "\u0418\u0441\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c \u043d\u0435 \u0438\u0437 \u043a\u043e\u043c\u0430\u043d\u0434\u044b"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0417\u0430\u0434\u0430\u0447\u0430",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/tasks\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/tasks\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the task."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":{\"value\":\"todo\",\"label\":\"To do\"},\"priority\":{\"value\":\"medium\",\"label\":\"Medium\"},\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Fae Bernhard Sr.\",\"email\":\"fae.corwin@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator\":{\"id\":7,\"name\":\"Mr. Thaddeus Glover IV\",\"email\":\"simeon.willms@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"doloribus\",\"color\":\"#64aa9d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0437\u0430\u0434\u0430\u0447\u0443",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/tasks\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/tasks\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the task."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"\u0421\u0432\u0435\u0440\u0441\u0442\u0430\u0442\u044c \u044d\u043a\u0440\u0430\u043d \u043a\u043e\u0440\u0437\u0438\u043d\u044b\",\"description\":\"\u041f\u043e \u043c\u0430\u043a\u0435\u0442\u0443 \u0438\u0437 Figma, \u0441 \u043f\u0443\u0441\u0442\u044b\u043c \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435\u043c\",\"status\":\"in_progress\",\"priority\":\"high\",\"assignee_id\":2,\"due_date\":\"2026-10-15\",\"label_ids\":[1]}"
+                        },
+                        "description": "\u0427\u0430\u0441\u0442\u0438\u0447\u043d\u043e\u0435 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435, \u0442\u0435\u043b\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u2014 \u043a\u0430\u043a \u0432 v1."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":{\"value\":\"todo\",\"label\":\"To do\"},\"priority\":{\"value\":\"medium\",\"label\":\"Medium\"},\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Dr. Alan Green\",\"email\":\"michelle.cassin@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"creator\":{\"id\":7,\"name\":\"Dr. Mona Lemke\",\"email\":\"nkreiger@example.com\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"iure\",\"color\":\"#fa8b37\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0437\u0430\u0434\u0430\u0447\u0443",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/tasks\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/tasks\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the task."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u0423\u0434\u0430\u043b\u044f\u0442\u044c \u043c\u043e\u0436\u0435\u0442 \u0430\u0432\u0442\u043e\u0440 \u0437\u0430\u0434\u0430\u0447\u0438, \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u0438 \u0430\u0434\u043c\u0438\u043d\u044b \u043a\u043e\u043c\u0430\u043d\u0434\u044b."
                     },
                     "response": [
                         {
@@ -1617,7 +2019,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":3,\"task_id\":14,\"body\":\"Adipisci quidem nostrum qui commodi incidunt iure.\",\"author\":{\"id\":6,\"name\":\"Kirstin Nitzsche V\",\"email\":\"torp.florence@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":4,\"task_id\":15,\"body\":\"Odio veritatis excepturi doloribus delectus fugit qui repudiandae.\",\"author\":{\"id\":8,\"name\":\"Kayden Robel\",\"email\":\"bcorwin@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":30,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":3,\"task_id\":14,\"body\":\"Adipisci quidem nostrum qui commodi incidunt iure.\",\"author\":{\"id\":6,\"name\":\"Kirstin Nitzsche V\",\"email\":\"torp.florence@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"},{\"id\":4,\"task_id\":15,\"body\":\"Odio veritatis excepturi doloribus delectus fugit qui repudiandae.\",\"author\":{\"id\":8,\"name\":\"Kayden Robel\",\"email\":\"bcorwin@example.net\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":30,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -1660,7 +2062,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Prof. Annabelle Kshlerin\",\"email\":\"micaela88@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Prof. Annabelle Kshlerin\",\"email\":\"micaela88@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1703,7 +2105,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"pagac.skylar@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"pagac.skylar@example.org\",\"created_at\":\"2026-09-24T11:44:08.000000Z\"},\"created_at\":\"2026-09-24T11:44:08.000000Z\",\"updated_at\":\"2026-09-24T11:44:08.000000Z\"}}",
                             "name": ""
                         },
                         {

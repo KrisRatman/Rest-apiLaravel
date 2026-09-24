@@ -20,10 +20,56 @@ use Spatie\QueryBuilder\QueryBuilder;
 class TaskListQuery
 {
     /**
+     * Выборка для постраничного списка (API v1) и выгрузки CSV.
+     *
      * @param  Builder<Task>|Relation<Task, *, *>  $subject
      * @return QueryBuilder<Task>
      */
     public static function for(BuilderContract $subject, Request $request): QueryBuilder
+    {
+        return self::filtered($subject, $request)
+            ->allowedSorts(
+                'created_at',
+                'due_date',
+                'title',
+                AllowedSort::custom('priority', new PrioritySort),
+            )
+            ->defaultSort('-created_at')
+            ->orderByDesc('id')
+            ->with(['assignee', 'labels'])
+            ->withCount('comments');
+    }
+
+    /**
+     * Выборка для курсорной пагинации (API v2).
+     *
+     * Курсор умеет продолжать выдачу только по обычным колонкам без NULL,
+     * поэтому важность и срок сортируются по вычисляемым колонкам
+     * priority_weight и due_date_sort. Задачи без срока идут после задач со сроком.
+     *
+     * @param  Builder<Task>|Relation<Task, *, *>  $subject
+     * @return QueryBuilder<Task>
+     */
+    public static function forCursor(BuilderContract $subject, Request $request): QueryBuilder
+    {
+        return self::filtered($subject, $request)
+            ->allowedSorts(
+                'created_at',
+                'title',
+                AllowedSort::field('due_date', 'due_date_sort'),
+                AllowedSort::field('priority', 'priority_weight'),
+            )
+            ->defaultSort('-created_at')
+            ->orderByDesc('id')
+            ->with(['assignee', 'creator', 'labels'])
+            ->withCount('comments');
+    }
+
+    /**
+     * @param  Builder<Task>|Relation<Task, *, *>  $subject
+     * @return QueryBuilder<Task>
+     */
+    private static function filtered(BuilderContract $subject, Request $request): QueryBuilder
     {
         return QueryBuilder::for($subject, $request)
             ->allowedFilters(
@@ -43,16 +89,6 @@ class TaskListQuery
                         ->where('title', 'like', '%'.implode(',', (array) $value).'%')
                         ->orWhere('description', 'like', '%'.implode(',', (array) $value).'%'),
                 )),
-            )
-            ->allowedSorts(
-                'created_at',
-                'due_date',
-                'title',
-                AllowedSort::custom('priority', new PrioritySort),
-            )
-            ->defaultSort('-created_at')
-            ->orderByDesc('id')
-            ->with(['assignee', 'labels'])
-            ->withCount('comments');
+            );
     }
 }

@@ -21,7 +21,10 @@ tags:
     description: 'Проекты команды. Смотреть может любой участник, создавать, менять и удалять — владелец и админы.'
   -
     name: Задачи
-    description: 'Задачи проекта. Создавать, менять и комментировать может любой участник команды; удалять — автор задачи, владелец и админы.'
+    description: "Задачи проекта. Создавать, менять и комментировать может любой участник команды; удалять — автор задачи, владелец и админы.\n\n**Устарело:** эти эндпоинты и «Мои задачи» заменены версией v2 (см. «Задачи v2») и отдают заголовки `Deprecation`, `Sunset` и `Link`."
+  -
+    name: 'Задачи v2'
+    description: 'Задачи в API v2: курсорная пагинация, статус и приоритет объектами `{value, label}`, вложенный автор `creator`. Тела запросов и права — те же, что в v1.'
   -
     name: Комментарии
     description: 'Обсуждение задачи. Писать может любой участник команды, править — только автор, удалять — автор, владелец и админы.'
@@ -284,7 +287,7 @@ paths:
                     id: 5
                     name: 'Morgan Hirthe'
                     email: dare.emelie@example.com
-                    created_at: '2026-09-24T07:26:41.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -300,7 +303,7 @@ paths:
                         example: dare.emelie@example.com
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:41.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
       tags:
         - Профиль
     patch:
@@ -320,7 +323,7 @@ paths:
                     id: 5
                     name: 'Ms. Audra Crooks II'
                     email: gulgowski.asia@example.com
-                    created_at: '2026-09-24T07:26:41.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -336,7 +339,7 @@ paths:
                         example: gulgowski.asia@example.com
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:41.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
       tags:
         - Профиль
       requestBody:
@@ -1650,8 +1653,8 @@ paths:
                       description: 'Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.'
                       status: active
                       created_by: 5
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                     -
                       id: 5
                       team_id: 4
@@ -1659,8 +1662,8 @@ paths:
                       description: null
                       status: active
                       created_by: 6
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -1701,8 +1704,8 @@ paths:
                         description: 'Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.'
                         status: active
                         created_by: 5
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                       -
                         id: 5
                         team_id: 4
@@ -1710,8 +1713,8 @@ paths:
                         description: null
                         status: active
                         created_by: 6
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                     items:
                       type: object
                       properties:
@@ -1735,10 +1738,10 @@ paths:
                           example: 5
                         created_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                   links:
                     type: object
                     properties:
@@ -1837,8 +1840,8 @@ paths:
                     description: 'Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.'
                     status: active
                     created_by: 5
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -1863,10 +1866,10 @@ paths:
                         example: 5
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
       tags:
         - Проекты
       requestBody:
@@ -1917,8 +1920,8 @@ paths:
                     description: 'Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.'
                     status: active
                     created_by: 5
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -1943,10 +1946,10 @@ paths:
                         example: 5
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
         404:
           description: 'Проекта нет или он в чужой команде'
           content:
@@ -1981,8 +1984,8 @@ paths:
                     description: 'Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.'
                     status: active
                     created_by: 5
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -2007,10 +2010,10 @@ paths:
                         example: 5
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
       tags:
         - Проекты
       requestBody:
@@ -2199,7 +2202,7 @@ paths:
                         id: 6
                         name: 'Vito Bradtke'
                         email: skylar.kuvalis@example.net
-                        created_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -2208,8 +2211,8 @@ paths:
                           name: laboriosam
                           color: '#1f79c5'
                       comments_count: 1
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                     -
                       id: 15
                       project_id: 5
@@ -2224,7 +2227,7 @@ paths:
                         id: 10
                         name: 'Matt Boehm'
                         email: carolina.balistreri@example.net
-                        created_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -2233,8 +2236,8 @@ paths:
                           name: rem
                           color: '#0f0867'
                       comments_count: 1
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -2282,7 +2285,7 @@ paths:
                           id: 6
                           name: 'Vito Bradtke'
                           email: skylar.kuvalis@example.net
-                          created_at: '2026-09-24T07:26:42.000000Z'
+                          created_at: '2026-09-24T11:44:08.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -2291,8 +2294,8 @@ paths:
                             name: laboriosam
                             color: '#1f79c5'
                         comments_count: 1
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                       -
                         id: 15
                         project_id: 5
@@ -2307,7 +2310,7 @@ paths:
                           id: 10
                           name: 'Matt Boehm'
                           email: carolina.balistreri@example.net
-                          created_at: '2026-09-24T07:26:42.000000Z'
+                          created_at: '2026-09-24T11:44:08.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -2316,8 +2319,8 @@ paths:
                             name: rem
                             color: '#0f0867'
                         comments_count: 1
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                     items:
                       type: object
                       properties:
@@ -2364,7 +2367,7 @@ paths:
                               example: skylar.kuvalis@example.net
                             created_at:
                               type: string
-                              example: '2026-09-24T07:26:42.000000Z'
+                              example: '2026-09-24T11:44:08.000000Z'
                         creator_id:
                           type: string
                           example: null
@@ -2397,10 +2400,10 @@ paths:
                           example: 1
                         created_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                   links:
                     type: object
                     properties:
@@ -2618,7 +2621,7 @@ paths:
                         id: 6
                         name: 'Dr. Alan Green'
                         email: herbert83@example.org
-                        created_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -2627,8 +2630,8 @@ paths:
                           name: recusandae
                           color: '#ba14a2'
                       comments_count: 1
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                     -
                       id: 15
                       project_id: 5
@@ -2643,7 +2646,7 @@ paths:
                         id: 10
                         name: "Prof. Juvenal O'Kon"
                         email: herman.andrew@example.net
-                        created_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -2652,8 +2655,8 @@ paths:
                           name: in
                           color: '#1e7f9d'
                       comments_count: 1
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -2701,7 +2704,7 @@ paths:
                           id: 6
                           name: 'Dr. Alan Green'
                           email: herbert83@example.org
-                          created_at: '2026-09-24T07:26:42.000000Z'
+                          created_at: '2026-09-24T11:44:08.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -2710,8 +2713,8 @@ paths:
                             name: recusandae
                             color: '#ba14a2'
                         comments_count: 1
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                       -
                         id: 15
                         project_id: 5
@@ -2726,7 +2729,7 @@ paths:
                           id: 10
                           name: "Prof. Juvenal O'Kon"
                           email: herman.andrew@example.net
-                          created_at: '2026-09-24T07:26:42.000000Z'
+                          created_at: '2026-09-24T11:44:08.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -2735,8 +2738,8 @@ paths:
                             name: in
                             color: '#1e7f9d'
                         comments_count: 1
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                     items:
                       type: object
                       properties:
@@ -2783,7 +2786,7 @@ paths:
                               example: herbert83@example.org
                             created_at:
                               type: string
-                              example: '2026-09-24T07:26:42.000000Z'
+                              example: '2026-09-24T11:44:08.000000Z'
                         creator_id:
                           type: string
                           example: null
@@ -2816,10 +2819,10 @@ paths:
                           example: 1
                         created_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                   links:
                     type: object
                     properties:
@@ -2937,7 +2940,7 @@ paths:
                       id: 6
                       name: 'Cynthia Fahey'
                       email: balistreri.josiane@example.net
-                      created_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
                     creator_id: null
                     labels:
                       -
@@ -2945,8 +2948,8 @@ paths:
                         team_id: 4
                         name: neque
                         color: '#c420d2'
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -2994,7 +2997,7 @@ paths:
                             example: balistreri.josiane@example.net
                           created_at:
                             type: string
-                            example: '2026-09-24T07:26:42.000000Z'
+                            example: '2026-09-24T11:44:08.000000Z'
                       creator_id:
                         type: string
                         example: null
@@ -3024,10 +3027,10 @@ paths:
                               example: '#c420d2'
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
         422:
           description: 'Исполнитель не из команды'
           content:
@@ -3144,7 +3147,7 @@ paths:
                       id: 6
                       name: 'Nelson Little'
                       email: anderson.herbert@example.com
-                      created_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
                     creator_id: null
                     labels:
                       -
@@ -3153,8 +3156,8 @@ paths:
                         name: et
                         color: '#3b76f5'
                     comments_count: 1
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -3202,7 +3205,7 @@ paths:
                             example: anderson.herbert@example.com
                           created_at:
                             type: string
-                            example: '2026-09-24T07:26:42.000000Z'
+                            example: '2026-09-24T11:44:08.000000Z'
                       creator_id:
                         type: string
                         example: null
@@ -3235,10 +3238,10 @@ paths:
                         example: 1
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
       tags:
         - Задачи
     put:
@@ -3268,7 +3271,7 @@ paths:
                       id: 6
                       name: 'Prof. Carson Emard'
                       email: lward@example.com
-                      created_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
                     creator_id: null
                     labels:
                       -
@@ -3277,8 +3280,8 @@ paths:
                         name: excepturi
                         color: '#c8ef42'
                     comments_count: 1
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -3326,7 +3329,7 @@ paths:
                             example: lward@example.com
                           created_at:
                             type: string
-                            example: '2026-09-24T07:26:42.000000Z'
+                            example: '2026-09-24T11:44:08.000000Z'
                       creator_id:
                         type: string
                         example: null
@@ -3359,10 +3362,10 @@ paths:
                         example: 1
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
       tags:
         - Задачи
       requestBody:
@@ -3452,6 +3455,1508 @@ paths:
         required: true
         schema:
           type: integer
+  /api/v2/me/tasks:
+    get:
+      summary: 'Мои задачи'
+      operationId: ''
+      description: 'Задачи из всех команд, где исполнитель — текущий пользователь. Курсорная пагинация подходит для бесконечной ленты в мобильном клиенте.'
+      parameters:
+        -
+          in: query
+          name: 'filter[status]'
+          description: 'Статус или несколько через запятую.'
+          example: 'todo,in_progress'
+          required: false
+          schema:
+            type: string
+            description: 'Статус или несколько через запятую.'
+            example: 'todo,in_progress'
+        -
+          in: query
+          name: 'filter[priority]'
+          description: 'Приоритет или несколько через запятую.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Приоритет или несколько через запятую.'
+            example: null
+        -
+          in: query
+          name: 'filter[project_id]'
+          description: 'ID проекта.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'ID проекта.'
+            example: null
+        -
+          in: query
+          name: 'filter[label]'
+          description: 'ID метки или несколько через запятую.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'ID метки или несколько через запятую.'
+            example: null
+        -
+          in: query
+          name: 'filter[overdue]'
+          description: '`1` — только просроченные.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: '`1` — только просроченные.'
+            example: null
+        -
+          in: query
+          name: 'filter[due_from]'
+          description: 'Срок не раньше даты, `Y-m-d`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Срок не раньше даты, `Y-m-d`.'
+            example: null
+        -
+          in: query
+          name: 'filter[due_to]'
+          description: 'Срок не позже даты, `Y-m-d`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Срок не позже даты, `Y-m-d`.'
+            example: null
+        -
+          in: query
+          name: 'filter[search]'
+          description: 'Поиск по заголовку и описанию.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Поиск по заголовку и описанию.'
+            example: null
+        -
+          in: query
+          name: sort
+          description: 'Как у задач проекта. `due_date` — ближайшие сроки сверху, задачи без срока в конце.'
+          example: due_date
+          required: false
+          schema:
+            type: string
+            description: 'Как у задач проекта. `due_date` — ближайшие сроки сверху, задачи без срока в конце.'
+            example: due_date
+        -
+          in: query
+          name: per_page
+          description: 'Размер страницы, 1–100.'
+          example: 15
+          required: false
+          schema:
+            type: integer
+            description: 'Размер страницы, 1–100.'
+            example: 15
+        -
+          in: query
+          name: cursor
+          description: 'Курсор следующей или предыдущей страницы из `meta`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Курсор следующей или предыдущей страницы из `meta`.'
+            example: null
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 14
+                      project_id: 4
+                      title: 'Aut adipisci quidem nostrum'
+                      description: null
+                      status:
+                        value: todo
+                        label: 'To do'
+                      priority:
+                        value: medium
+                        label: Medium
+                      due_date: '2026-10-09'
+                      is_overdue: false
+                      completed_at: null
+                      assignee:
+                        id: 6
+                        name: 'Mr. Murl Cruickshank Jr.'
+                        email: zachery.fadel@example.com
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      creator:
+                        id: 7
+                        name: 'Mona Lemke'
+                        email: tobin24@example.org
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      labels:
+                        -
+                          id: 5
+                          team_id: 4
+                          name: corporis
+                          color: '#be2a24'
+                      comments_count: 1
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
+                    -
+                      id: 15
+                      project_id: 5
+                      title: 'Repellendus ut eaque alias'
+                      description: null
+                      status:
+                        value: todo
+                        label: 'To do'
+                      priority:
+                        value: medium
+                        label: Medium
+                      due_date: '2026-10-04'
+                      is_overdue: false
+                      completed_at: null
+                      assignee:
+                        id: 11
+                        name: 'Mateo Wilderman'
+                        email: skyla.fahey@example.com
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      creator:
+                        id: 12
+                        name: 'Prof. Loyce Waelchi Jr.'
+                        email: dorris.klocko@example.net
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      labels:
+                        -
+                          id: 6
+                          team_id: 6
+                          name: qui
+                          color: '#411107'
+                      comments_count: 1
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
+                  links:
+                    first: null
+                    last: null
+                    prev: null
+                    next: null
+                  meta:
+                    path: /
+                    per_page: 15
+                    next_cursor: null
+                    prev_cursor: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 14
+                        project_id: 4
+                        title: 'Aut adipisci quidem nostrum'
+                        description: null
+                        status:
+                          value: todo
+                          label: 'To do'
+                        priority:
+                          value: medium
+                          label: Medium
+                        due_date: '2026-10-09'
+                        is_overdue: false
+                        completed_at: null
+                        assignee:
+                          id: 6
+                          name: 'Mr. Murl Cruickshank Jr.'
+                          email: zachery.fadel@example.com
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        creator:
+                          id: 7
+                          name: 'Mona Lemke'
+                          email: tobin24@example.org
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        labels:
+                          -
+                            id: 5
+                            team_id: 4
+                            name: corporis
+                            color: '#be2a24'
+                        comments_count: 1
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
+                      -
+                        id: 15
+                        project_id: 5
+                        title: 'Repellendus ut eaque alias'
+                        description: null
+                        status:
+                          value: todo
+                          label: 'To do'
+                        priority:
+                          value: medium
+                          label: Medium
+                        due_date: '2026-10-04'
+                        is_overdue: false
+                        completed_at: null
+                        assignee:
+                          id: 11
+                          name: 'Mateo Wilderman'
+                          email: skyla.fahey@example.com
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        creator:
+                          id: 12
+                          name: 'Prof. Loyce Waelchi Jr.'
+                          email: dorris.klocko@example.net
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        labels:
+                          -
+                            id: 6
+                            team_id: 6
+                            name: qui
+                            color: '#411107'
+                        comments_count: 1
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 14
+                        project_id:
+                          type: integer
+                          example: 4
+                        title:
+                          type: string
+                          example: 'Aut adipisci quidem nostrum'
+                        description:
+                          type: string
+                          example: null
+                          nullable: true
+                        status:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              example: todo
+                            label:
+                              type: string
+                              example: 'To do'
+                        priority:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              example: medium
+                            label:
+                              type: string
+                              example: Medium
+                        due_date:
+                          type: string
+                          example: '2026-10-09'
+                        is_overdue:
+                          type: boolean
+                          example: false
+                        completed_at:
+                          type: string
+                          example: null
+                          nullable: true
+                        assignee:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 6
+                            name:
+                              type: string
+                              example: 'Mr. Murl Cruickshank Jr.'
+                            email:
+                              type: string
+                              example: zachery.fadel@example.com
+                            created_at:
+                              type: string
+                              example: '2026-09-24T11:44:08.000000Z'
+                        creator:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 7
+                            name:
+                              type: string
+                              example: 'Mona Lemke'
+                            email:
+                              type: string
+                              example: tobin24@example.org
+                            created_at:
+                              type: string
+                              example: '2026-09-24T11:44:08.000000Z'
+                        labels:
+                          type: array
+                          example:
+                            -
+                              id: 5
+                              team_id: 4
+                              name: corporis
+                              color: '#be2a24'
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 5
+                              team_id:
+                                type: integer
+                                example: 4
+                              name:
+                                type: string
+                                example: corporis
+                              color:
+                                type: string
+                                example: '#be2a24'
+                        comments_count:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2026-09-24T11:44:08.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2026-09-24T11:44:08.000000Z'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: null
+                        nullable: true
+                      last:
+                        type: string
+                        example: null
+                        nullable: true
+                      prev:
+                        type: string
+                        example: null
+                        nullable: true
+                      next:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                        example: /
+                      per_page:
+                        type: integer
+                        example: 15
+                      next_cursor:
+                        type: string
+                        example: null
+                        nullable: true
+                      prev_cursor:
+                        type: string
+                        example: null
+                        nullable: true
+      tags:
+        - 'Задачи v2'
+  '/api/v2/projects/{project_id}/tasks':
+    get:
+      summary: 'Задачи проекта'
+      operationId: ''
+      description: 'Курсорная пагинация: следующая страница — по ссылке `links.next` или с параметром `cursor` из `meta.next_cursor`. Общего числа задач в ответе нет, зато при добавлении новых задач страницы не съезжают. Фильтры — как в v1.'
+      parameters:
+        -
+          in: query
+          name: 'filter[status]'
+          description: 'Статус или несколько через запятую: `todo`, `in_progress`, `review`, `done`.'
+          example: 'todo,in_progress'
+          required: false
+          schema:
+            type: string
+            description: 'Статус или несколько через запятую: `todo`, `in_progress`, `review`, `done`.'
+            example: 'todo,in_progress'
+        -
+          in: query
+          name: 'filter[priority]'
+          description: 'Приоритет или несколько через запятую: `low`, `medium`, `high`, `urgent`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Приоритет или несколько через запятую: `low`, `medium`, `high`, `urgent`.'
+            example: null
+        -
+          in: query
+          name: 'filter[assignee_id]'
+          description: 'ID исполнителя.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'ID исполнителя.'
+            example: null
+        -
+          in: query
+          name: 'filter[label]'
+          description: 'ID метки или несколько через запятую.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'ID метки или несколько через запятую.'
+            example: null
+        -
+          in: query
+          name: 'filter[overdue]'
+          description: '`1` — только просроченные незавершённые задачи.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: '`1` — только просроченные незавершённые задачи.'
+            example: null
+        -
+          in: query
+          name: 'filter[due_from]'
+          description: 'Срок не раньше даты, `Y-m-d`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Срок не раньше даты, `Y-m-d`.'
+            example: null
+        -
+          in: query
+          name: 'filter[due_to]'
+          description: 'Срок не позже даты, `Y-m-d`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Срок не позже даты, `Y-m-d`.'
+            example: null
+        -
+          in: query
+          name: 'filter[search]'
+          description: 'Поиск по заголовку и описанию, до 100 символов.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Поиск по заголовку и описанию, до 100 символов.'
+            example: null
+        -
+          in: query
+          name: sort
+          description: 'Поля: `created_at`, `due_date`, `priority`, `title`. Минус — по убыванию, несколько — через запятую. По умолчанию `-created_at`. При сортировке по `due_date` задачи без срока идут в конце.'
+          example: '-priority,due_date'
+          required: false
+          schema:
+            type: string
+            description: 'Поля: `created_at`, `due_date`, `priority`, `title`. Минус — по убыванию, несколько — через запятую. По умолчанию `-created_at`. При сортировке по `due_date` задачи без срока идут в конце.'
+            example: '-priority,due_date'
+        -
+          in: query
+          name: per_page
+          description: 'Размер страницы, 1–100. По умолчанию 15.'
+          example: 15
+          required: false
+          schema:
+            type: integer
+            description: 'Размер страницы, 1–100. По умолчанию 15.'
+            example: 15
+        -
+          in: query
+          name: cursor
+          description: 'Курсор следующей или предыдущей страницы из `meta`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Курсор следующей или предыдущей страницы из `meta`.'
+            example: null
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 14
+                      project_id: 4
+                      title: 'Aut adipisci quidem nostrum'
+                      description: null
+                      status:
+                        value: todo
+                        label: 'To do'
+                      priority:
+                        value: medium
+                        label: Medium
+                      due_date: '2026-10-09'
+                      is_overdue: false
+                      completed_at: null
+                      assignee:
+                        id: 6
+                        name: 'Alexa Hamill DDS'
+                        email: walker26@example.com
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      creator:
+                        id: 7
+                        name: 'Noemy Klocko'
+                        email: tressa41@example.com
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      labels:
+                        -
+                          id: 5
+                          team_id: 4
+                          name: est
+                          color: '#126a3d'
+                      comments_count: 1
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
+                    -
+                      id: 15
+                      project_id: 5
+                      title: 'Ratione dolores sed rem'
+                      description: 'Deserunt sint quis in quod. Aspernatur consectetur id a consectetur assumenda eaque neque.'
+                      status:
+                        value: todo
+                        label: 'To do'
+                      priority:
+                        value: medium
+                        label: Medium
+                      due_date: null
+                      is_overdue: false
+                      completed_at: null
+                      assignee:
+                        id: 11
+                        name: 'Eugene Huels'
+                        email: kenna.ortiz@example.org
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      creator:
+                        id: 12
+                        name: 'Antoinette Farrell II'
+                        email: lelah01@example.org
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      labels:
+                        -
+                          id: 6
+                          team_id: 6
+                          name: amet
+                          color: '#2c34fc'
+                      comments_count: 1
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
+                  links:
+                    first: null
+                    last: null
+                    prev: null
+                    next: null
+                  meta:
+                    path: /
+                    per_page: 15
+                    next_cursor: null
+                    prev_cursor: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 14
+                        project_id: 4
+                        title: 'Aut adipisci quidem nostrum'
+                        description: null
+                        status:
+                          value: todo
+                          label: 'To do'
+                        priority:
+                          value: medium
+                          label: Medium
+                        due_date: '2026-10-09'
+                        is_overdue: false
+                        completed_at: null
+                        assignee:
+                          id: 6
+                          name: 'Alexa Hamill DDS'
+                          email: walker26@example.com
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        creator:
+                          id: 7
+                          name: 'Noemy Klocko'
+                          email: tressa41@example.com
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        labels:
+                          -
+                            id: 5
+                            team_id: 4
+                            name: est
+                            color: '#126a3d'
+                        comments_count: 1
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
+                      -
+                        id: 15
+                        project_id: 5
+                        title: 'Ratione dolores sed rem'
+                        description: 'Deserunt sint quis in quod. Aspernatur consectetur id a consectetur assumenda eaque neque.'
+                        status:
+                          value: todo
+                          label: 'To do'
+                        priority:
+                          value: medium
+                          label: Medium
+                        due_date: null
+                        is_overdue: false
+                        completed_at: null
+                        assignee:
+                          id: 11
+                          name: 'Eugene Huels'
+                          email: kenna.ortiz@example.org
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        creator:
+                          id: 12
+                          name: 'Antoinette Farrell II'
+                          email: lelah01@example.org
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        labels:
+                          -
+                            id: 6
+                            team_id: 6
+                            name: amet
+                            color: '#2c34fc'
+                        comments_count: 1
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 14
+                        project_id:
+                          type: integer
+                          example: 4
+                        title:
+                          type: string
+                          example: 'Aut adipisci quidem nostrum'
+                        description:
+                          type: string
+                          example: null
+                          nullable: true
+                        status:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              example: todo
+                            label:
+                              type: string
+                              example: 'To do'
+                        priority:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              example: medium
+                            label:
+                              type: string
+                              example: Medium
+                        due_date:
+                          type: string
+                          example: '2026-10-09'
+                        is_overdue:
+                          type: boolean
+                          example: false
+                        completed_at:
+                          type: string
+                          example: null
+                          nullable: true
+                        assignee:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 6
+                            name:
+                              type: string
+                              example: 'Alexa Hamill DDS'
+                            email:
+                              type: string
+                              example: walker26@example.com
+                            created_at:
+                              type: string
+                              example: '2026-09-24T11:44:08.000000Z'
+                        creator:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 7
+                            name:
+                              type: string
+                              example: 'Noemy Klocko'
+                            email:
+                              type: string
+                              example: tressa41@example.com
+                            created_at:
+                              type: string
+                              example: '2026-09-24T11:44:08.000000Z'
+                        labels:
+                          type: array
+                          example:
+                            -
+                              id: 5
+                              team_id: 4
+                              name: est
+                              color: '#126a3d'
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 5
+                              team_id:
+                                type: integer
+                                example: 4
+                              name:
+                                type: string
+                                example: est
+                              color:
+                                type: string
+                                example: '#126a3d'
+                        comments_count:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2026-09-24T11:44:08.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2026-09-24T11:44:08.000000Z'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: null
+                        nullable: true
+                      last:
+                        type: string
+                        example: null
+                        nullable: true
+                      prev:
+                        type: string
+                        example: null
+                        nullable: true
+                      next:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                        example: /
+                      per_page:
+                        type: integer
+                        example: 15
+                      next_cursor:
+                        type: string
+                        example: null
+                        nullable: true
+                      prev_cursor:
+                        type: string
+                        example: null
+                        nullable: true
+        400:
+          description: 'Неизвестное поле сортировки'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Requested sort(s) `colour` is not allowed. Allowed sort(s) are `created_at, title, due_date, priority`.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Requested sort(s) `colour` is not allowed. Allowed sort(s) are `created_at, title, due_date, priority`.'
+        422:
+          description: 'Курсор от другой сортировки'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The cursor does not match the requested sort. Request the first page again.'
+                  errors:
+                    cursor:
+                      - 'The cursor does not match the requested sort. Request the first page again.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The cursor does not match the requested sort. Request the first page again.'
+                  errors:
+                    type: object
+                    properties:
+                      cursor:
+                        type: array
+                        example:
+                          - 'The cursor does not match the requested sort. Request the first page again.'
+                        items:
+                          type: string
+      tags:
+        - 'Задачи v2'
+    post:
+      summary: 'Создать задачу'
+      operationId: ''
+      description: 'Тело запроса — как в v1. В архивный проект задачи не добавляются (403).'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 14
+                    project_id: 4
+                    title: 'Sint velit suscipit id'
+                    description: null
+                    status:
+                      value: todo
+                      label: 'To do'
+                    priority:
+                      value: medium
+                      label: Medium
+                    due_date: null
+                    is_overdue: false
+                    completed_at: null
+                    assignee:
+                      id: 6
+                      name: 'Sigmund Rowe'
+                      email: igaylord@example.net
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    creator:
+                      id: 7
+                      name: 'Miss Aniya Mante'
+                      email: grant80@example.org
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    labels:
+                      -
+                        id: 5
+                        team_id: 4
+                        name: voluptatum
+                        color: '#bb5911'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 14
+                      project_id:
+                        type: integer
+                        example: 4
+                      title:
+                        type: string
+                        example: 'Sint velit suscipit id'
+                      description:
+                        type: string
+                        example: null
+                        nullable: true
+                      status:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: todo
+                          label:
+                            type: string
+                            example: 'To do'
+                      priority:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: medium
+                          label:
+                            type: string
+                            example: Medium
+                      due_date:
+                        type: string
+                        example: null
+                        nullable: true
+                      is_overdue:
+                        type: boolean
+                        example: false
+                      completed_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      assignee:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 6
+                          name:
+                            type: string
+                            example: 'Sigmund Rowe'
+                          email:
+                            type: string
+                            example: igaylord@example.net
+                          created_at:
+                            type: string
+                            example: '2026-09-24T11:44:08.000000Z'
+                      creator:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 7
+                          name:
+                            type: string
+                            example: 'Miss Aniya Mante'
+                          email:
+                            type: string
+                            example: grant80@example.org
+                          created_at:
+                            type: string
+                            example: '2026-09-24T11:44:08.000000Z'
+                      labels:
+                        type: array
+                        example:
+                          -
+                            id: 5
+                            team_id: 4
+                            name: voluptatum
+                            color: '#bb5911'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 5
+                            team_id:
+                              type: integer
+                              example: 4
+                            name:
+                              type: string
+                              example: voluptatum
+                            color:
+                              type: string
+                              example: '#bb5911'
+                      created_at:
+                        type: string
+                        example: '2026-09-24T11:44:08.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-09-24T11:44:08.000000Z'
+        422:
+          description: 'Исполнитель не из команды'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The assignee must be a member of the team.'
+                  errors:
+                    assignee_id:
+                      - 'The assignee must be a member of the team.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The assignee must be a member of the team.'
+                  errors:
+                    type: object
+                    properties:
+                      assignee_id:
+                        type: array
+                        example:
+                          - 'The assignee must be a member of the team.'
+                        items:
+                          type: string
+      tags:
+        - 'Задачи v2'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Заголовок задачи. Must not be greater than 255 characters.'
+                  example: 'Сверстать экран корзины'
+                description:
+                  type: string
+                  description: 'Подробное описание. Must not be greater than 10000 characters.'
+                  example: 'По макету из Figma, с пустым состоянием'
+                  nullable: true
+                status:
+                  type: string
+                  description: 'Статус: `todo`, `in_progress`, `review`, `done`. При переходе в `done` проставляется `completed_at`.'
+                  example: in_progress
+                  enum:
+                    - todo
+                    - in_progress
+                    - review
+                    - done
+                priority:
+                  type: string
+                  description: 'Приоритет: `low`, `medium`, `high`, `urgent`.'
+                  example: high
+                  enum:
+                    - low
+                    - medium
+                    - high
+                    - urgent
+                assignee_id:
+                  type: integer
+                  description: 'ID исполнителя — участника команды. `null` снимает исполнителя. Must match an existing stored value.'
+                  example: 2
+                  nullable: true
+                due_date:
+                  type: string
+                  description: 'Срок в формате `Y-m-d`. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2026-10-15'
+                  nullable: true
+                label_ids:
+                  type: array
+                  description: 'ID метки. Must match an existing stored value.'
+                  example:
+                    - 1
+                  items:
+                    type: integer
+              required:
+                - title
+    parameters:
+      -
+        in: path
+        name: project_id
+        description: 'The ID of the project.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v2/tasks/{id}':
+    get:
+      summary: Задача
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 14
+                    project_id: 4
+                    title: 'Aut adipisci quidem nostrum'
+                    description: null
+                    status:
+                      value: todo
+                      label: 'To do'
+                    priority:
+                      value: medium
+                      label: Medium
+                    due_date: '2026-10-09'
+                    is_overdue: false
+                    completed_at: null
+                    assignee:
+                      id: 6
+                      name: 'Fae Bernhard Sr.'
+                      email: fae.corwin@example.net
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    creator:
+                      id: 7
+                      name: 'Mr. Thaddeus Glover IV'
+                      email: simeon.willms@example.net
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    labels:
+                      -
+                        id: 5
+                        team_id: 4
+                        name: doloribus
+                        color: '#64aa9d'
+                    comments_count: 1
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 14
+                      project_id:
+                        type: integer
+                        example: 4
+                      title:
+                        type: string
+                        example: 'Aut adipisci quidem nostrum'
+                      description:
+                        type: string
+                        example: null
+                        nullable: true
+                      status:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: todo
+                          label:
+                            type: string
+                            example: 'To do'
+                      priority:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: medium
+                          label:
+                            type: string
+                            example: Medium
+                      due_date:
+                        type: string
+                        example: '2026-10-09'
+                      is_overdue:
+                        type: boolean
+                        example: false
+                      completed_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      assignee:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 6
+                          name:
+                            type: string
+                            example: 'Fae Bernhard Sr.'
+                          email:
+                            type: string
+                            example: fae.corwin@example.net
+                          created_at:
+                            type: string
+                            example: '2026-09-24T11:44:08.000000Z'
+                      creator:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 7
+                          name:
+                            type: string
+                            example: 'Mr. Thaddeus Glover IV'
+                          email:
+                            type: string
+                            example: simeon.willms@example.net
+                          created_at:
+                            type: string
+                            example: '2026-09-24T11:44:08.000000Z'
+                      labels:
+                        type: array
+                        example:
+                          -
+                            id: 5
+                            team_id: 4
+                            name: doloribus
+                            color: '#64aa9d'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 5
+                            team_id:
+                              type: integer
+                              example: 4
+                            name:
+                              type: string
+                              example: doloribus
+                            color:
+                              type: string
+                              example: '#64aa9d'
+                      comments_count:
+                        type: integer
+                        example: 1
+                      created_at:
+                        type: string
+                        example: '2026-09-24T11:44:08.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-09-24T11:44:08.000000Z'
+      tags:
+        - 'Задачи v2'
+    put:
+      summary: 'Изменить задачу'
+      operationId: ''
+      description: 'Частичное обновление, тело запроса — как в v1.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 14
+                    project_id: 4
+                    title: 'Architecto eius et animi'
+                    description: 'Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.'
+                    status:
+                      value: todo
+                      label: 'To do'
+                    priority:
+                      value: medium
+                      label: Medium
+                    due_date: null
+                    is_overdue: false
+                    completed_at: null
+                    assignee:
+                      id: 6
+                      name: 'Dr. Alan Green'
+                      email: michelle.cassin@example.com
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    creator:
+                      id: 7
+                      name: 'Dr. Mona Lemke'
+                      email: nkreiger@example.com
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    labels:
+                      -
+                        id: 5
+                        team_id: 4
+                        name: iure
+                        color: '#fa8b37'
+                    comments_count: 1
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 14
+                      project_id:
+                        type: integer
+                        example: 4
+                      title:
+                        type: string
+                        example: 'Architecto eius et animi'
+                      description:
+                        type: string
+                        example: 'Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.'
+                      status:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: todo
+                          label:
+                            type: string
+                            example: 'To do'
+                      priority:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: medium
+                          label:
+                            type: string
+                            example: Medium
+                      due_date:
+                        type: string
+                        example: null
+                        nullable: true
+                      is_overdue:
+                        type: boolean
+                        example: false
+                      completed_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      assignee:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 6
+                          name:
+                            type: string
+                            example: 'Dr. Alan Green'
+                          email:
+                            type: string
+                            example: michelle.cassin@example.com
+                          created_at:
+                            type: string
+                            example: '2026-09-24T11:44:08.000000Z'
+                      creator:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 7
+                          name:
+                            type: string
+                            example: 'Dr. Mona Lemke'
+                          email:
+                            type: string
+                            example: nkreiger@example.com
+                          created_at:
+                            type: string
+                            example: '2026-09-24T11:44:08.000000Z'
+                      labels:
+                        type: array
+                        example:
+                          -
+                            id: 5
+                            team_id: 4
+                            name: iure
+                            color: '#fa8b37'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 5
+                            team_id:
+                              type: integer
+                              example: 4
+                            name:
+                              type: string
+                              example: iure
+                            color:
+                              type: string
+                              example: '#fa8b37'
+                      comments_count:
+                        type: integer
+                        example: 1
+                      created_at:
+                        type: string
+                        example: '2026-09-24T11:44:08.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-09-24T11:44:08.000000Z'
+      tags:
+        - 'Задачи v2'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Заголовок задачи. Must not be greater than 255 characters.'
+                  example: 'Сверстать экран корзины'
+                description:
+                  type: string
+                  description: 'Подробное описание. Must not be greater than 10000 characters.'
+                  example: 'По макету из Figma, с пустым состоянием'
+                  nullable: true
+                status:
+                  type: string
+                  description: 'Статус: `todo`, `in_progress`, `review`, `done`. При переходе в `done` проставляется `completed_at`.'
+                  example: in_progress
+                  enum:
+                    - todo
+                    - in_progress
+                    - review
+                    - done
+                priority:
+                  type: string
+                  description: 'Приоритет: `low`, `medium`, `high`, `urgent`.'
+                  example: high
+                  enum:
+                    - low
+                    - medium
+                    - high
+                    - urgent
+                assignee_id:
+                  type: integer
+                  description: 'ID исполнителя — участника команды. `null` снимает исполнителя. Must match an existing stored value.'
+                  example: 2
+                  nullable: true
+                due_date:
+                  type: string
+                  description: 'Срок в формате `Y-m-d`. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2026-10-15'
+                  nullable: true
+                label_ids:
+                  type: array
+                  description: 'ID метки. Must match an existing stored value.'
+                  example:
+                    - 1
+                  items:
+                    type: integer
+    delete:
+      summary: 'Удалить задачу'
+      operationId: ''
+      description: 'Удалять может автор задачи, владелец и админы команды.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                nullable: true
+        403:
+          description: 'Участник пытается удалить чужую задачу'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+      tags:
+        - 'Задачи v2'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the task.'
+        example: 1
+        required: true
+        schema:
+          type: integer
   '/api/v1/tasks/{task_id}/comments':
     get:
       summary: 'Комментарии задачи'
@@ -3485,9 +4990,9 @@ paths:
                         id: 6
                         name: 'Kirstin Nitzsche V'
                         email: torp.florence@example.org
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                     -
                       id: 4
                       task_id: 15
@@ -3496,9 +5001,9 @@ paths:
                         id: 8
                         name: 'Kayden Robel'
                         email: bcorwin@example.net
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                      updated_at: '2026-09-24T07:26:42.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                      updated_at: '2026-09-24T11:44:08.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -3540,9 +5045,9 @@ paths:
                           id: 6
                           name: 'Kirstin Nitzsche V'
                           email: torp.florence@example.org
-                          created_at: '2026-09-24T07:26:42.000000Z'
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                       -
                         id: 4
                         task_id: 15
@@ -3551,9 +5056,9 @@ paths:
                           id: 8
                           name: 'Kayden Robel'
                           email: bcorwin@example.net
-                          created_at: '2026-09-24T07:26:42.000000Z'
-                        created_at: '2026-09-24T07:26:42.000000Z'
-                        updated_at: '2026-09-24T07:26:42.000000Z'
+                          created_at: '2026-09-24T11:44:08.000000Z'
+                        created_at: '2026-09-24T11:44:08.000000Z'
+                        updated_at: '2026-09-24T11:44:08.000000Z'
                     items:
                       type: object
                       properties:
@@ -3580,13 +5085,13 @@ paths:
                               example: torp.florence@example.org
                             created_at:
                               type: string
-                              example: '2026-09-24T07:26:42.000000Z'
+                              example: '2026-09-24T11:44:08.000000Z'
                         created_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T07:26:42.000000Z'
+                          example: '2026-09-24T11:44:08.000000Z'
                   links:
                     type: object
                     properties:
@@ -3686,9 +5191,9 @@ paths:
                       id: 6
                       name: 'Prof. Annabelle Kshlerin'
                       email: micaela88@example.org
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -3716,13 +5221,13 @@ paths:
                             example: micaela88@example.org
                           created_at:
                             type: string
-                            example: '2026-09-24T07:26:42.000000Z'
+                            example: '2026-09-24T11:44:08.000000Z'
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
       tags:
         - Комментарии
       requestBody:
@@ -3769,9 +5274,9 @@ paths:
                       id: 6
                       name: 'Cynthia Fahey'
                       email: pagac.skylar@example.org
-                      created_at: '2026-09-24T07:26:42.000000Z'
-                    created_at: '2026-09-24T07:26:42.000000Z'
-                    updated_at: '2026-09-24T07:26:42.000000Z'
+                      created_at: '2026-09-24T11:44:08.000000Z'
+                    created_at: '2026-09-24T11:44:08.000000Z'
+                    updated_at: '2026-09-24T11:44:08.000000Z'
                 properties:
                   data:
                     type: object
@@ -3799,13 +5304,13 @@ paths:
                             example: pagac.skylar@example.org
                           created_at:
                             type: string
-                            example: '2026-09-24T07:26:42.000000Z'
+                            example: '2026-09-24T11:44:08.000000Z'
                       created_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T07:26:42.000000Z'
+                        example: '2026-09-24T11:44:08.000000Z'
         403:
           description: 'Чужой комментарий'
           content:

@@ -207,6 +207,31 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-zadaci-v2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="zadaci-v2">
+                    <a href="#zadaci-v2">Задачи v2</a>
+                </li>
+                                    <ul id="tocify-subheader-zadaci-v2" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="zadaci-v2-GETapi-v2-me-tasks">
+                                <a href="#zadaci-v2-GETapi-v2-me-tasks">Мои задачи</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="zadaci-v2-GETapi-v2-projects--project_id--tasks">
+                                <a href="#zadaci-v2-GETapi-v2-projects--project_id--tasks">Задачи проекта</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="zadaci-v2-POSTapi-v2-projects--project_id--tasks">
+                                <a href="#zadaci-v2-POSTapi-v2-projects--project_id--tasks">Создать задачу</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="zadaci-v2-GETapi-v2-tasks--id-">
+                                <a href="#zadaci-v2-GETapi-v2-tasks--id-">Задача</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="zadaci-v2-PUTapi-v2-tasks--id-">
+                                <a href="#zadaci-v2-PUTapi-v2-tasks--id-">Изменить задачу</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="zadaci-v2-DELETEapi-v2-tasks--id-">
+                                <a href="#zadaci-v2-DELETEapi-v2-tasks--id-">Удалить задачу</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-kommentarii" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="kommentarii">
                     <a href="#kommentarii">Комментарии</a>
@@ -289,7 +314,7 @@
 
 ## Формат ответов
 
-Успешный ответ оборачивается в `data`. Списки постраничные: рядом лежат `links` и `meta` (`current_page`, `last_page`, `per_page`, `total`).
+Успешный ответ оборачивается в `data`. Списки постраничные: рядом лежат `links` и `meta` (`current_page`, `last_page`, `per_page`, `total`). Списки задач в v2 — курсорные: `meta` содержит `next_cursor` и `prev_cursor`.
 
 Ошибки всегда имеют одинаковую форму:
 
@@ -307,6 +332,25 @@
 | 409 | Файл выгрузки ещё не готов |
 | 422 | Ошибка валидации, поле `errors` содержит детали |
 | 429 | Превышен лимит запросов |
+
+## Версии API
+
+Версия — часть адреса: `/api/v1/...`, `/api/v2/...`.
+
+| Версия | Что входит |
+|---|---|
+| v1 | Все ресурсы: авторизация, профиль, команды, проекты, задачи, комментарии, метки, экспорт |
+| v2 | Только задачи: курсорная пагинация, статус и приоритет объектами `{"value": "todo", "label": "To do"}`, автор задачи объектом `creator` вместо `creator_id` |
+
+v2 содержит только ресурсы с несовместимыми изменениями. Всё остальное клиент v2 по-прежнему берёт из v1. Тела запросов и права доступа в обеих версиях одинаковые.
+
+Эндпоинты задач в v1 устарели и в каждом ответе сообщают об этом заголовками:
+
+| Заголовок | Пример | Смысл |
+|---|---|---|
+| `Deprecation` | `@1790208000` | С какой даты версия устарела (Unix-время, RFC 9745) |
+| `Sunset` | `Wed, 31 Mar 2027 00:00:00 GMT` | Когда её планируется отключить (RFC 8594) |
+| `Link` | `&lt;https://.../api/v2/tasks/7&gt;; rel="successor-version"` | Тот же ресурс в v2 |
 
 ## Роли в команде
 
@@ -939,7 +983,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Morgan Hirthe&quot;,
         &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:41.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1089,7 +1133,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
         &quot;email&quot;: &quot;gulgowski.asia@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:41.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4151,8 +4195,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 5,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
         {
             &quot;id&quot;: 5,
@@ -4161,8 +4205,8 @@ fetch(url, {
             &quot;description&quot;: null,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 6,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -4389,8 +4433,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4571,8 +4615,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4747,8 +4791,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5042,6 +5086,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <h1 id="zadaci">Задачи</h1>
 
     <p>Задачи проекта. Создавать, менять и комментировать может любой участник команды; удалять — автор задачи, владелец и админы.</p>
+<p><strong>Устарело:</strong> эти эндпоинты и «Мои задачи» заменены версией v2 (см. «Задачи v2») и отдают заголовки <code>Deprecation</code>, <code>Sunset</code> и <code>Link</code>.</p>
 
                                 <h2 id="zadaci-GETapi-v1-me-tasks">Мои задачи</h2>
 
@@ -5113,7 +5158,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Vito Bradtke&quot;,
                 &quot;email&quot;: &quot;skylar.kuvalis@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5125,8 +5170,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -5142,7 +5187,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Matt Boehm&quot;,
                 &quot;email&quot;: &quot;carolina.balistreri@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5154,8 +5199,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5495,7 +5540,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Dr. Alan Green&quot;,
                 &quot;email&quot;: &quot;herbert83@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5507,8 +5552,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -5524,7 +5569,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Prof. Juvenal O&#039;Kon&quot;,
                 &quot;email&quot;: &quot;herman.andrew@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5536,8 +5581,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5912,7 +5957,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;balistreri.josiane@example.net&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -5923,8 +5968,8 @@ fetch(url, {
                 &quot;color&quot;: &quot;#c420d2&quot;
             }
         ],
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6192,7 +6237,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Nelson Little&quot;,
             &quot;email&quot;: &quot;anderson.herbert@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -6204,8 +6249,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6392,7 +6437,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Carson Emard&quot;,
             &quot;email&quot;: &quot;lward@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -6404,8 +6449,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6757,6 +6802,1766 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                <h1 id="zadaci-v2">Задачи v2</h1>
+
+    <p>Задачи в API v2: курсорная пагинация, статус и приоритет объектами <code>{value, label}</code>, вложенный автор <code>creator</code>. Тела запросов и права — те же, что в v1.</p>
+
+                                <h2 id="zadaci-v2-GETapi-v2-me-tasks">Мои задачи</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Задачи из всех команд, где исполнитель — текущий пользователь. Курсорная пагинация подходит для бесконечной ленты в мобильном клиенте.</p>
+
+<span id="example-requests-GETapi-v2-me-tasks">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v2/me/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=due_date&amp;per_page=15" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v2/me/tasks"
+);
+
+const params = {
+    "filter[status]": "todo,in_progress",
+    "sort": "due_date",
+    "per_page": "15",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-me-tasks">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 14,
+            &quot;project_id&quot;: 4,
+            &quot;title&quot;: &quot;Aut adipisci quidem nostrum&quot;,
+            &quot;description&quot;: null,
+            &quot;status&quot;: {
+                &quot;value&quot;: &quot;todo&quot;,
+                &quot;label&quot;: &quot;To do&quot;
+            },
+            &quot;priority&quot;: {
+                &quot;value&quot;: &quot;medium&quot;,
+                &quot;label&quot;: &quot;Medium&quot;
+            },
+            &quot;due_date&quot;: &quot;2026-10-09&quot;,
+            &quot;is_overdue&quot;: false,
+            &quot;completed_at&quot;: null,
+            &quot;assignee&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Mr. Murl Cruickshank Jr.&quot;,
+                &quot;email&quot;: &quot;zachery.fadel@example.com&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;creator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Mona Lemke&quot;,
+                &quot;email&quot;: &quot;tobin24@example.org&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;labels&quot;: [
+                {
+                    &quot;id&quot;: 5,
+                    &quot;team_id&quot;: 4,
+                    &quot;name&quot;: &quot;corporis&quot;,
+                    &quot;color&quot;: &quot;#be2a24&quot;
+                }
+            ],
+            &quot;comments_count&quot;: 1,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;project_id&quot;: 5,
+            &quot;title&quot;: &quot;Repellendus ut eaque alias&quot;,
+            &quot;description&quot;: null,
+            &quot;status&quot;: {
+                &quot;value&quot;: &quot;todo&quot;,
+                &quot;label&quot;: &quot;To do&quot;
+            },
+            &quot;priority&quot;: {
+                &quot;value&quot;: &quot;medium&quot;,
+                &quot;label&quot;: &quot;Medium&quot;
+            },
+            &quot;due_date&quot;: &quot;2026-10-04&quot;,
+            &quot;is_overdue&quot;: false,
+            &quot;completed_at&quot;: null,
+            &quot;assignee&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Mateo Wilderman&quot;,
+                &quot;email&quot;: &quot;skyla.fahey@example.com&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;creator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Prof. Loyce Waelchi Jr.&quot;,
+                &quot;email&quot;: &quot;dorris.klocko@example.net&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;labels&quot;: [
+                {
+                    &quot;id&quot;: 6,
+                    &quot;team_id&quot;: 6,
+                    &quot;name&quot;: &quot;qui&quot;,
+                    &quot;color&quot;: &quot;#411107&quot;
+                }
+            ],
+            &quot;comments_count&quot;: 1,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: null,
+        &quot;last&quot;: null,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;path&quot;: &quot;/&quot;,
+        &quot;per_page&quot;: 15,
+        &quot;next_cursor&quot;: null,
+        &quot;prev_cursor&quot;: null
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v2-me-tasks" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-me-tasks"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-me-tasks"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-me-tasks" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-me-tasks">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v2-me-tasks" data-method="GET"
+      data-path="api/v2/me/tasks"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-me-tasks', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-me-tasks"
+                    onclick="tryItOut('GETapi-v2-me-tasks');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-me-tasks"
+                    onclick="cancelTryOut('GETapi-v2-me-tasks');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-me-tasks"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/me/tasks</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-me-tasks"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v2-me-tasks"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v2-me-tasks"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[status]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[status]"                data-endpoint="GETapi-v2-me-tasks"
+               value="todo,in_progress"
+               data-component="query">
+    <br>
+<p>Статус или несколько через запятую. Example: <code>todo,in_progress</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[priority]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[priority]"                data-endpoint="GETapi-v2-me-tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Приоритет или несколько через запятую.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[project_id]</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="filter[project_id]"                data-endpoint="GETapi-v2-me-tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>ID проекта.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[label]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[label]"                data-endpoint="GETapi-v2-me-tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>ID метки или несколько через запятую.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[overdue]</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="GETapi-v2-me-tasks" style="display: none">
+            <input type="radio" name="filter[overdue]"
+                   value="1"
+                   data-endpoint="GETapi-v2-me-tasks"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-v2-me-tasks" style="display: none">
+            <input type="radio" name="filter[overdue]"
+                   value="0"
+                   data-endpoint="GETapi-v2-me-tasks"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p><code>1</code> — только просроченные.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[due_from]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[due_from]"                data-endpoint="GETapi-v2-me-tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Срок не раньше даты, <code>Y-m-d</code>.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[due_to]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[due_to]"                data-endpoint="GETapi-v2-me-tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Срок не позже даты, <code>Y-m-d</code>.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[search]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[search]"                data-endpoint="GETapi-v2-me-tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Поиск по заголовку и описанию.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sort</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sort"                data-endpoint="GETapi-v2-me-tasks"
+               value="due_date"
+               data-component="query">
+    <br>
+<p>Как у задач проекта. <code>due_date</code> — ближайшие сроки сверху, задачи без срока в конце. Example: <code>due_date</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-v2-me-tasks"
+               value="15"
+               data-component="query">
+    <br>
+<p>Размер страницы, 1–100. Example: <code>15</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>cursor</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="cursor"                data-endpoint="GETapi-v2-me-tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Курсор следующей или предыдущей страницы из <code>meta</code>.</p>
+            </div>
+                </form>
+
+                    <h2 id="zadaci-v2-GETapi-v2-projects--project_id--tasks">Задачи проекта</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Курсорная пагинация: следующая страница — по ссылке <code>links.next</code> или с параметром <code>cursor</code> из <code>meta.next_cursor</code>. Общего числа задач в ответе нет, зато при добавлении новых задач страницы не съезжают. Фильтры — как в v1.</p>
+
+<span id="example-requests-GETapi-v2-projects--project_id--tasks">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v2/projects/1/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=-priority%2Cdue_date&amp;per_page=15" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v2/projects/1/tasks"
+);
+
+const params = {
+    "filter[status]": "todo,in_progress",
+    "sort": "-priority,due_date",
+    "per_page": "15",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-projects--project_id--tasks">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 14,
+            &quot;project_id&quot;: 4,
+            &quot;title&quot;: &quot;Aut adipisci quidem nostrum&quot;,
+            &quot;description&quot;: null,
+            &quot;status&quot;: {
+                &quot;value&quot;: &quot;todo&quot;,
+                &quot;label&quot;: &quot;To do&quot;
+            },
+            &quot;priority&quot;: {
+                &quot;value&quot;: &quot;medium&quot;,
+                &quot;label&quot;: &quot;Medium&quot;
+            },
+            &quot;due_date&quot;: &quot;2026-10-09&quot;,
+            &quot;is_overdue&quot;: false,
+            &quot;completed_at&quot;: null,
+            &quot;assignee&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Alexa Hamill DDS&quot;,
+                &quot;email&quot;: &quot;walker26@example.com&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;creator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Noemy Klocko&quot;,
+                &quot;email&quot;: &quot;tressa41@example.com&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;labels&quot;: [
+                {
+                    &quot;id&quot;: 5,
+                    &quot;team_id&quot;: 4,
+                    &quot;name&quot;: &quot;est&quot;,
+                    &quot;color&quot;: &quot;#126a3d&quot;
+                }
+            ],
+            &quot;comments_count&quot;: 1,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;project_id&quot;: 5,
+            &quot;title&quot;: &quot;Ratione dolores sed rem&quot;,
+            &quot;description&quot;: &quot;Deserunt sint quis in quod. Aspernatur consectetur id a consectetur assumenda eaque neque.&quot;,
+            &quot;status&quot;: {
+                &quot;value&quot;: &quot;todo&quot;,
+                &quot;label&quot;: &quot;To do&quot;
+            },
+            &quot;priority&quot;: {
+                &quot;value&quot;: &quot;medium&quot;,
+                &quot;label&quot;: &quot;Medium&quot;
+            },
+            &quot;due_date&quot;: null,
+            &quot;is_overdue&quot;: false,
+            &quot;completed_at&quot;: null,
+            &quot;assignee&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Eugene Huels&quot;,
+                &quot;email&quot;: &quot;kenna.ortiz@example.org&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;creator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Antoinette Farrell II&quot;,
+                &quot;email&quot;: &quot;lelah01@example.org&quot;,
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            },
+            &quot;labels&quot;: [
+                {
+                    &quot;id&quot;: 6,
+                    &quot;team_id&quot;: 6,
+                    &quot;name&quot;: &quot;amet&quot;,
+                    &quot;color&quot;: &quot;#2c34fc&quot;
+                }
+            ],
+            &quot;comments_count&quot;: 1,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: null,
+        &quot;last&quot;: null,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;path&quot;: &quot;/&quot;,
+        &quot;per_page&quot;: 15,
+        &quot;next_cursor&quot;: null,
+        &quot;prev_cursor&quot;: null
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400, Неизвестное поле сортировки):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Requested sort(s) `colour` is not allowed. Allowed sort(s) are `created_at, title, due_date, priority`.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Курсор от другой сортировки):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The cursor does not match the requested sort. Request the first page again.&quot;,
+    &quot;errors&quot;: {
+        &quot;cursor&quot;: [
+            &quot;The cursor does not match the requested sort. Request the first page again.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v2-projects--project_id--tasks" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-projects--project_id--tasks"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-projects--project_id--tasks"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-projects--project_id--tasks" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-projects--project_id--tasks">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v2-projects--project_id--tasks" data-method="GET"
+      data-path="api/v2/projects/{project_id}/tasks"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-projects--project_id--tasks', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-projects--project_id--tasks"
+                    onclick="tryItOut('GETapi-v2-projects--project_id--tasks');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-projects--project_id--tasks"
+                    onclick="cancelTryOut('GETapi-v2-projects--project_id--tasks');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-projects--project_id--tasks"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/projects/{project_id}/tasks</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>project_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="project_id"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the project. Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[status]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[status]"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value="todo,in_progress"
+               data-component="query">
+    <br>
+<p>Статус или несколько через запятую: <code>todo</code>, <code>in_progress</code>, <code>review</code>, <code>done</code>. Example: <code>todo,in_progress</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[priority]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[priority]"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Приоритет или несколько через запятую: <code>low</code>, <code>medium</code>, <code>high</code>, <code>urgent</code>.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[assignee_id]</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="filter[assignee_id]"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>ID исполнителя.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[label]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[label]"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>ID метки или несколько через запятую.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[overdue]</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="GETapi-v2-projects--project_id--tasks" style="display: none">
+            <input type="radio" name="filter[overdue]"
+                   value="1"
+                   data-endpoint="GETapi-v2-projects--project_id--tasks"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-v2-projects--project_id--tasks" style="display: none">
+            <input type="radio" name="filter[overdue]"
+                   value="0"
+                   data-endpoint="GETapi-v2-projects--project_id--tasks"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p><code>1</code> — только просроченные незавершённые задачи.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[due_from]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[due_from]"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Срок не раньше даты, <code>Y-m-d</code>.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[due_to]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[due_to]"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Срок не позже даты, <code>Y-m-d</code>.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filter[search]</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter[search]"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Поиск по заголовку и описанию, до 100 символов.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sort</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sort"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value="-priority,due_date"
+               data-component="query">
+    <br>
+<p>Поля: <code>created_at</code>, <code>due_date</code>, <code>priority</code>, <code>title</code>. Минус — по убыванию, несколько — через запятую. По умолчанию <code>-created_at</code>. При сортировке по <code>due_date</code> задачи без срока идут в конце. Example: <code>-priority,due_date</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value="15"
+               data-component="query">
+    <br>
+<p>Размер страницы, 1–100. По умолчанию 15. Example: <code>15</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>cursor</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="cursor"                data-endpoint="GETapi-v2-projects--project_id--tasks"
+               value=""
+               data-component="query">
+    <br>
+<p>Курсор следующей или предыдущей страницы из <code>meta</code>.</p>
+            </div>
+                </form>
+
+                    <h2 id="zadaci-v2-POSTapi-v2-projects--project_id--tasks">Создать задачу</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Тело запроса — как в v1. В архивный проект задачи не добавляются (403).</p>
+
+<span id="example-requests-POSTapi-v2-projects--project_id--tasks">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v2/projects/1/tasks" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"title\": \"Сверстать экран корзины\",
+    \"description\": \"По макету из Figma, с пустым состоянием\",
+    \"status\": \"in_progress\",
+    \"priority\": \"high\",
+    \"assignee_id\": 2,
+    \"due_date\": \"2026-10-15\",
+    \"label_ids\": [
+        1
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v2/projects/1/tasks"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "Сверстать экран корзины",
+    "description": "По макету из Figma, с пустым состоянием",
+    "status": "in_progress",
+    "priority": "high",
+    "assignee_id": 2,
+    "due_date": "2026-10-15",
+    "label_ids": [
+        1
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v2-projects--project_id--tasks">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 14,
+        &quot;project_id&quot;: 4,
+        &quot;title&quot;: &quot;Sint velit suscipit id&quot;,
+        &quot;description&quot;: null,
+        &quot;status&quot;: {
+            &quot;value&quot;: &quot;todo&quot;,
+            &quot;label&quot;: &quot;To do&quot;
+        },
+        &quot;priority&quot;: {
+            &quot;value&quot;: &quot;medium&quot;,
+            &quot;label&quot;: &quot;Medium&quot;
+        },
+        &quot;due_date&quot;: null,
+        &quot;is_overdue&quot;: false,
+        &quot;completed_at&quot;: null,
+        &quot;assignee&quot;: {
+            &quot;id&quot;: 6,
+            &quot;name&quot;: &quot;Sigmund Rowe&quot;,
+            &quot;email&quot;: &quot;igaylord@example.net&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        &quot;creator&quot;: {
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;Miss Aniya Mante&quot;,
+            &quot;email&quot;: &quot;grant80@example.org&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        &quot;labels&quot;: [
+            {
+                &quot;id&quot;: 5,
+                &quot;team_id&quot;: 4,
+                &quot;name&quot;: &quot;voluptatum&quot;,
+                &quot;color&quot;: &quot;#bb5911&quot;
+            }
+        ],
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Исполнитель не из команды):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The assignee must be a member of the team.&quot;,
+    &quot;errors&quot;: {
+        &quot;assignee_id&quot;: [
+            &quot;The assignee must be a member of the team.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v2-projects--project_id--tasks" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v2-projects--project_id--tasks"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v2-projects--project_id--tasks"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v2-projects--project_id--tasks" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v2-projects--project_id--tasks">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v2-projects--project_id--tasks" data-method="POST"
+      data-path="api/v2/projects/{project_id}/tasks"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v2-projects--project_id--tasks', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v2-projects--project_id--tasks"
+                    onclick="tryItOut('POSTapi-v2-projects--project_id--tasks');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v2-projects--project_id--tasks"
+                    onclick="cancelTryOut('POSTapi-v2-projects--project_id--tasks');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v2-projects--project_id--tasks"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v2/projects/{project_id}/tasks</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>project_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="project_id"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the project. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="Сверстать экран корзины"
+               data-component="body">
+    <br>
+<p>Заголовок задачи. Must not be greater than 255 characters. Example: <code>Сверстать экран корзины</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="По макету из Figma, с пустым состоянием"
+               data-component="body">
+    <br>
+<p>Подробное описание. Must not be greater than 10000 characters. Example: <code>По макету из Figma, с пустым состоянием</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="in_progress"
+               data-component="body">
+    <br>
+<p>Статус: <code>todo</code>, <code>in_progress</code>, <code>review</code>, <code>done</code>. При переходе в <code>done</code> проставляется <code>completed_at</code>. Example: <code>in_progress</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>todo</code></li> <li><code>in_progress</code></li> <li><code>review</code></li> <li><code>done</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>priority</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="priority"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="high"
+               data-component="body">
+    <br>
+<p>Приоритет: <code>low</code>, <code>medium</code>, <code>high</code>, <code>urgent</code>. Example: <code>high</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>low</code></li> <li><code>medium</code></li> <li><code>high</code></li> <li><code>urgent</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>assignee_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="assignee_id"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="2"
+               data-component="body">
+    <br>
+<p>ID исполнителя — участника команды. <code>null</code> снимает исполнителя. Must match an existing stored value. Example: <code>2</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>due_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="due_date"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               value="2026-10-15"
+               data-component="body">
+    <br>
+<p>Срок в формате <code>Y-m-d</code>. Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-10-15</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label_ids</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="label_ids[0]"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="label_ids[1]"                data-endpoint="POSTapi-v2-projects--project_id--tasks"
+               data-component="body">
+    <br>
+<p>ID метки. Must match an existing stored value.</p>
+        </div>
+        </form>
+
+                    <h2 id="zadaci-v2-GETapi-v2-tasks--id-">Задача</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v2-tasks--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v2/tasks/1" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v2/tasks/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-tasks--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 14,
+        &quot;project_id&quot;: 4,
+        &quot;title&quot;: &quot;Aut adipisci quidem nostrum&quot;,
+        &quot;description&quot;: null,
+        &quot;status&quot;: {
+            &quot;value&quot;: &quot;todo&quot;,
+            &quot;label&quot;: &quot;To do&quot;
+        },
+        &quot;priority&quot;: {
+            &quot;value&quot;: &quot;medium&quot;,
+            &quot;label&quot;: &quot;Medium&quot;
+        },
+        &quot;due_date&quot;: &quot;2026-10-09&quot;,
+        &quot;is_overdue&quot;: false,
+        &quot;completed_at&quot;: null,
+        &quot;assignee&quot;: {
+            &quot;id&quot;: 6,
+            &quot;name&quot;: &quot;Fae Bernhard Sr.&quot;,
+            &quot;email&quot;: &quot;fae.corwin@example.net&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        &quot;creator&quot;: {
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;Mr. Thaddeus Glover IV&quot;,
+            &quot;email&quot;: &quot;simeon.willms@example.net&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        &quot;labels&quot;: [
+            {
+                &quot;id&quot;: 5,
+                &quot;team_id&quot;: 4,
+                &quot;name&quot;: &quot;doloribus&quot;,
+                &quot;color&quot;: &quot;#64aa9d&quot;
+            }
+        ],
+        &quot;comments_count&quot;: 1,
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v2-tasks--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-tasks--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-tasks--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-tasks--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-tasks--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v2-tasks--id-" data-method="GET"
+      data-path="api/v2/tasks/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-tasks--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-tasks--id-"
+                    onclick="tryItOut('GETapi-v2-tasks--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-tasks--id-"
+                    onclick="cancelTryOut('GETapi-v2-tasks--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-tasks--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/tasks/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-tasks--id-"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v2-tasks--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v2-tasks--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-v2-tasks--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the task. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="zadaci-v2-PUTapi-v2-tasks--id-">Изменить задачу</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Частичное обновление, тело запроса — как в v1.</p>
+
+<span id="example-requests-PUTapi-v2-tasks--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/v2/tasks/1" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"title\": \"Сверстать экран корзины\",
+    \"description\": \"По макету из Figma, с пустым состоянием\",
+    \"status\": \"in_progress\",
+    \"priority\": \"high\",
+    \"assignee_id\": 2,
+    \"due_date\": \"2026-10-15\",
+    \"label_ids\": [
+        1
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v2/tasks/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "Сверстать экран корзины",
+    "description": "По макету из Figma, с пустым состоянием",
+    "status": "in_progress",
+    "priority": "high",
+    "assignee_id": 2,
+    "due_date": "2026-10-15",
+    "label_ids": [
+        1
+    ]
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v2-tasks--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 14,
+        &quot;project_id&quot;: 4,
+        &quot;title&quot;: &quot;Architecto eius et animi&quot;,
+        &quot;description&quot;: &quot;Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.&quot;,
+        &quot;status&quot;: {
+            &quot;value&quot;: &quot;todo&quot;,
+            &quot;label&quot;: &quot;To do&quot;
+        },
+        &quot;priority&quot;: {
+            &quot;value&quot;: &quot;medium&quot;,
+            &quot;label&quot;: &quot;Medium&quot;
+        },
+        &quot;due_date&quot;: null,
+        &quot;is_overdue&quot;: false,
+        &quot;completed_at&quot;: null,
+        &quot;assignee&quot;: {
+            &quot;id&quot;: 6,
+            &quot;name&quot;: &quot;Dr. Alan Green&quot;,
+            &quot;email&quot;: &quot;michelle.cassin@example.com&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        &quot;creator&quot;: {
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;Dr. Mona Lemke&quot;,
+            &quot;email&quot;: &quot;nkreiger@example.com&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        },
+        &quot;labels&quot;: [
+            {
+                &quot;id&quot;: 5,
+                &quot;team_id&quot;: 4,
+                &quot;name&quot;: &quot;iure&quot;,
+                &quot;color&quot;: &quot;#fa8b37&quot;
+            }
+        ],
+        &quot;comments_count&quot;: 1,
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v2-tasks--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v2-tasks--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v2-tasks--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v2-tasks--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v2-tasks--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v2-tasks--id-" data-method="PUT"
+      data-path="api/v2/tasks/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v2-tasks--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v2-tasks--id-"
+                    onclick="tryItOut('PUTapi-v2-tasks--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v2-tasks--id-"
+                    onclick="cancelTryOut('PUTapi-v2-tasks--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v2-tasks--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v2/tasks/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v2/tasks/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v2-tasks--id-"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the task. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="Сверстать экран корзины"
+               data-component="body">
+    <br>
+<p>Заголовок задачи. Must not be greater than 255 characters. Example: <code>Сверстать экран корзины</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="По макету из Figma, с пустым состоянием"
+               data-component="body">
+    <br>
+<p>Подробное описание. Must not be greater than 10000 characters. Example: <code>По макету из Figma, с пустым состоянием</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="in_progress"
+               data-component="body">
+    <br>
+<p>Статус: <code>todo</code>, <code>in_progress</code>, <code>review</code>, <code>done</code>. При переходе в <code>done</code> проставляется <code>completed_at</code>. Example: <code>in_progress</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>todo</code></li> <li><code>in_progress</code></li> <li><code>review</code></li> <li><code>done</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>priority</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="priority"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="high"
+               data-component="body">
+    <br>
+<p>Приоритет: <code>low</code>, <code>medium</code>, <code>high</code>, <code>urgent</code>. Example: <code>high</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>low</code></li> <li><code>medium</code></li> <li><code>high</code></li> <li><code>urgent</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>assignee_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="assignee_id"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="2"
+               data-component="body">
+    <br>
+<p>ID исполнителя — участника команды. <code>null</code> снимает исполнителя. Must match an existing stored value. Example: <code>2</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>due_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="due_date"                data-endpoint="PUTapi-v2-tasks--id-"
+               value="2026-10-15"
+               data-component="body">
+    <br>
+<p>Срок в формате <code>Y-m-d</code>. Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-10-15</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label_ids</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="label_ids[0]"                data-endpoint="PUTapi-v2-tasks--id-"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="label_ids[1]"                data-endpoint="PUTapi-v2-tasks--id-"
+               data-component="body">
+    <br>
+<p>ID метки. Must match an existing stored value.</p>
+        </div>
+        </form>
+
+                    <h2 id="zadaci-v2-DELETEapi-v2-tasks--id-">Удалить задачу</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Удалять может автор задачи, владелец и админы команды.</p>
+
+<span id="example-requests-DELETEapi-v2-tasks--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/v2/tasks/1" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v2/tasks/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v2-tasks--id-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <pre>
+<code>Empty response</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Участник пытается удалить чужую задачу):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v2-tasks--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v2-tasks--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v2-tasks--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v2-tasks--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v2-tasks--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v2-tasks--id-" data-method="DELETE"
+      data-path="api/v2/tasks/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v2-tasks--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v2-tasks--id-"
+                    onclick="tryItOut('DELETEapi-v2-tasks--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v2-tasks--id-"
+                    onclick="cancelTryOut('DELETEapi-v2-tasks--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v2-tasks--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v2/tasks/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v2-tasks--id-"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v2-tasks--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v2-tasks--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-v2-tasks--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the task. Example: <code>1</code></p>
+            </div>
+                    </form>
+
                 <h1 id="kommentarii">Комментарии</h1>
 
     <p>Обсуждение задачи. Писать может любой участник команды, править — только автор, удалять — автор, владелец и админы.</p>
@@ -6822,10 +8627,10 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Kirstin Nitzsche V&quot;,
                 &quot;email&quot;: &quot;torp.florence@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
         {
             &quot;id&quot;: 4,
@@ -6835,10 +8640,10 @@ fetch(url, {
                 &quot;id&quot;: 8,
                 &quot;name&quot;: &quot;Kayden Robel&quot;,
                 &quot;email&quot;: &quot;bcorwin@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -7052,10 +8857,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Annabelle Kshlerin&quot;,
             &quot;email&quot;: &quot;micaela88@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
@@ -7233,10 +9038,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;pagac.skylar@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
     }
 }</code>
  </pre>
