@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Страницы входа у API нет: гостю отвечаем 401 JSON, а не редиректом на route('login').
         $middleware->redirectGuestsTo(fn () => null);
+
+        // Общий лимит запросов на всю группу api (лимитер 'api' в AppServiceProvider).
+        $middleware->throttleApi();
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         // Все ошибки API отдаются JSON-ом вида {"message": "...", "errors": {...}},

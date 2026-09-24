@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\InvitationAcceptanceController;
 use App\Http\Controllers\Api\V1\LabelController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\ProjectController;
+use App\Http\Controllers\Api\V1\ProjectStatsController;
 use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\Api\V1\TeamController;
 use App\Http\Controllers\Api\V1\TeamInvitationController;
@@ -50,7 +51,10 @@ Route::prefix('v1')->name('v1.')->group(function () {
         Route::post('invitations/accept', [InvitationAcceptanceController::class, 'store'])->name('invitations.accept');
 
         Route::get('me/exports', [ExportController::class, 'index'])->name('me.exports');
-        Route::post('projects/{project}/exports', [ExportController::class, 'store'])->name('projects.exports.store');
+        Route::post('projects/{project}/exports', [ExportController::class, 'store'])
+            ->middleware('throttle:exports')
+            ->name('projects.exports.store');
+        Route::get('projects/{project}/stats', [ProjectStatsController::class, 'show'])->name('projects.stats');
         Route::get('exports/{export}', [ExportController::class, 'show'])->name('exports.show');
         Route::get('exports/{export}/download', [ExportController::class, 'download'])->name('exports.download');
 

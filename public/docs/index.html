@@ -162,7 +162,10 @@
                     <a href="#proekty">Проекты</a>
                 </li>
                                     <ul id="tocify-subheader-proekty" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="proekty-GETapi-v1-teams--team_id--projects">
+                                                    <li class="tocify-item level-2" data-unique="proekty-GETapi-v1-projects--project_id--stats">
+                                <a href="#proekty-GETapi-v1-projects--project_id--stats">Статистика проекта</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="proekty-GETapi-v1-teams--team_id--projects">
                                 <a href="#proekty-GETapi-v1-teams--team_id--projects">Проекты команды</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="proekty-POSTapi-v1-teams--team_id--projects">
@@ -314,6 +317,23 @@
 | Удалять задачи | любые | любые | только свои |
 | Управлять проектами, метками, участниками | ✅ | ✅ | ❌ |
 | Удалить команду, передать владение | ✅ | ❌ | ❌ |
+
+## Лимиты запросов
+
+| Что | Лимит в минуту | Считается по |
+|---|---|---|
+| Все эндпоинты, с токеном | 120 | пользователю |
+| Публичные эндпоинты (вход, регистрация) | 30 | IP |
+| Вход | 5 | email + IP |
+| Регистрация | 10 | IP |
+| Приглашения | 20 | пользователю |
+| Запуск выгрузки | 5 | пользователю |
+
+В каждом ответе есть заголовки `X-RateLimit-Limit` и `X-RateLimit-Remaining`, при превышении — `429` и `Retry-After` (секунды до сброса).
+
+## Кэш
+
+Роли в командах и статистика проектов кэшируются в Redis. Кэш сбрасывается сразу при изменении данных, поэтому ответы всегда актуальны.
 
 &lt;aside&gt;Справа — примеры запросов на bash и JavaScript. Для быстрого старта войдите демо-пользователем &lt;code&gt;demo@example.com&lt;/code&gt; / &lt;code&gt;password&lt;/code&gt; через &lt;code&gt;POST /api/v1/auth/login&lt;/code&gt;.&lt;/aside&gt;</code></pre>
 
@@ -919,7 +939,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Morgan Hirthe&quot;,
         &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:41.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1069,7 +1089,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
         &quot;email&quot;: &quot;gulgowski.asia@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:41.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3887,7 +3907,190 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     <p>Проекты команды. Смотреть может любой участник, создавать, менять и удалять — владелец и админы.</p>
 
-                                <h2 id="proekty-GETapi-v1-teams--team_id--projects">Проекты команды</h2>
+                                <h2 id="proekty-GETapi-v1-projects--project_id--stats">Статистика проекта</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Сводка для дашборда: задачи по статусам, открытые по приоритетам и исполнителям, просроченные, закрытые за 7 дней. Ответ кэшируется в Redis и сбрасывается при любом изменении задач проекта; <code>generated_at</code> — время расчёта.</p>
+
+<span id="example-requests-GETapi-v1-projects--project_id--stats">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/projects/1/stats" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/projects/1/stats"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-projects--project_id--stats">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;total&quot;: 8,
+        &quot;open&quot;: 7,
+        &quot;overdue&quot;: 2,
+        &quot;completed_last_7_days&quot;: 1,
+        &quot;by_status&quot;: {
+            &quot;todo&quot;: 4,
+            &quot;in_progress&quot;: 2,
+            &quot;review&quot;: 1,
+            &quot;done&quot;: 1
+        },
+        &quot;open_by_priority&quot;: {
+            &quot;low&quot;: 2,
+            &quot;medium&quot;: 2,
+            &quot;high&quot;: 1,
+            &quot;urgent&quot;: 2
+        },
+        &quot;open_by_assignee&quot;: [
+            {
+                &quot;user_id&quot;: 1,
+                &quot;name&quot;: &quot;Demo User&quot;,
+                &quot;open&quot;: 2
+            },
+            {
+                &quot;user_id&quot;: 3,
+                &quot;name&quot;: &quot;Maria Sokolova&quot;,
+                &quot;open&quot;: 2
+            },
+            {
+                &quot;user_id&quot;: null,
+                &quot;name&quot;: null,
+                &quot;open&quot;: 1
+            }
+        ],
+        &quot;generated_at&quot;: &quot;2026-09-24T10:00:00+00:00&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-projects--project_id--stats" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-projects--project_id--stats"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-projects--project_id--stats"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-projects--project_id--stats" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-projects--project_id--stats">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-projects--project_id--stats" data-method="GET"
+      data-path="api/v1/projects/{project_id}/stats"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-projects--project_id--stats', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-projects--project_id--stats"
+                    onclick="tryItOut('GETapi-v1-projects--project_id--stats');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-projects--project_id--stats"
+                    onclick="cancelTryOut('GETapi-v1-projects--project_id--stats');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-projects--project_id--stats"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/projects/{project_id}/stats</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-projects--project_id--stats"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-projects--project_id--stats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-projects--project_id--stats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>project_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="project_id"                data-endpoint="GETapi-v1-projects--project_id--stats"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the project. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="proekty-GETapi-v1-teams--team_id--projects">Проекты команды</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3948,8 +4151,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 5,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
         {
             &quot;id&quot;: 5,
@@ -3958,8 +4161,8 @@ fetch(url, {
             &quot;description&quot;: null,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 6,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -4186,8 +4389,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4368,8 +4571,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4544,8 +4747,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4910,7 +5113,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Vito Bradtke&quot;,
                 &quot;email&quot;: &quot;skylar.kuvalis@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -4922,8 +5125,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -4939,7 +5142,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Matt Boehm&quot;,
                 &quot;email&quot;: &quot;carolina.balistreri@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -4951,8 +5154,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5292,7 +5495,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Dr. Alan Green&quot;,
                 &quot;email&quot;: &quot;herbert83@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5304,8 +5507,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -5321,7 +5524,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Prof. Juvenal O&#039;Kon&quot;,
                 &quot;email&quot;: &quot;herman.andrew@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5333,8 +5536,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5709,7 +5912,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;balistreri.josiane@example.net&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -5720,8 +5923,8 @@ fetch(url, {
                 &quot;color&quot;: &quot;#c420d2&quot;
             }
         ],
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5989,7 +6192,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Nelson Little&quot;,
             &quot;email&quot;: &quot;anderson.herbert@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -6001,8 +6204,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6189,7 +6392,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Carson Emard&quot;,
             &quot;email&quot;: &quot;lward@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -6201,8 +6404,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6619,10 +6822,10 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Kirstin Nitzsche V&quot;,
                 &quot;email&quot;: &quot;torp.florence@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
         {
             &quot;id&quot;: 4,
@@ -6632,10 +6835,10 @@ fetch(url, {
                 &quot;id&quot;: 8,
                 &quot;name&quot;: &quot;Kayden Robel&quot;,
                 &quot;email&quot;: &quot;bcorwin@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -6849,10 +7052,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Annabelle Kshlerin&quot;,
             &quot;email&quot;: &quot;micaela88@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>
@@ -7030,10 +7233,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;pagac.skylar@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:26:42.000000Z&quot;
     }
 }</code>
  </pre>

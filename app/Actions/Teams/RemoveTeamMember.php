@@ -5,6 +5,7 @@ namespace App\Actions\Teams;
 use App\Models\Task;
 use App\Models\Team;
 use App\Models\User;
+use App\Services\ProjectStatistics;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -27,10 +28,16 @@ class RemoveTeamMember
         DB::transaction(function () use ($team, $member): void {
             $team->members()->detach($member->id);
 
-            Task::query()
+            $tasks = Task::query()
                 ->whereBelongsTo($member, 'assignee')
-                ->whereIn('project_id', $team->projects()->select('id'))
-                ->update(['assignee_id' => null]);
+                ->whereIn('project_id', $team->projects()->select('id'));
+
+            // Массовый update идёт в обход TaskObserver — статистику проектов сбрасываем сами.
+            $affectedProjects = (clone $tasks)->distinct()->pluck('project_id');
+
+            $tasks->update(['assignee_id' => null]);
+
+            $affectedProjects->each(fn ($projectId) => ProjectStatistics::forget((int) $projectId));
         });
     }
 }

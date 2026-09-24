@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Task Manager API \u2014 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f",
-        "_postman_id": "ccead257-3527-4a0c-bd19-3d42214874f0",
+        "_postman_id": "4292474b-7093-4581-b9e9-f0916222b20e",
         "description": "REST API \u0434\u043b\u044f \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u0437\u0430\u0434\u0430\u0447: \u043a\u043e\u043c\u0430\u043d\u0434\u044b \u0441 \u0440\u043e\u043b\u044f\u043c\u0438, \u043f\u0440\u043e\u0435\u043a\u0442\u044b, \u0437\u0430\u0434\u0430\u0447\u0438, \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0438 \u0438 \u043c\u0435\u0442\u043a\u0438.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -178,7 +178,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":5,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":5,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"created_at\":\"2026-09-24T07:26:41.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -213,7 +213,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":5,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":5,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"created_at\":\"2026-09-24T07:26:41.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -909,6 +909,46 @@
             "description": "\u041f\u0440\u043e\u0435\u043a\u0442\u044b \u043a\u043e\u043c\u0430\u043d\u0434\u044b. \u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u043c\u043e\u0436\u0435\u0442 \u043b\u044e\u0431\u043e\u0439 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a, \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c, \u043c\u0435\u043d\u044f\u0442\u044c \u0438 \u0443\u0434\u0430\u043b\u044f\u0442\u044c \u2014 \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u0438 \u0430\u0434\u043c\u0438\u043d\u044b.",
             "item": [
                 {
+                    "name": "\u0421\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043a\u0430 \u043f\u0440\u043e\u0435\u043a\u0442\u0430",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/projects\/:project_id\/stats",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/projects\/:project_id\/stats",
+                            "variable": [
+                                {
+                                    "id": "project_id",
+                                    "key": "project_id",
+                                    "value": 1,
+                                    "description": "The ID of the project."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u0421\u0432\u043e\u0434\u043a\u0430 \u0434\u043b\u044f \u0434\u0430\u0448\u0431\u043e\u0440\u0434\u0430: \u0437\u0430\u0434\u0430\u0447\u0438 \u043f\u043e \u0441\u0442\u0430\u0442\u0443\u0441\u0430\u043c, \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0435 \u043f\u043e \u043f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442\u0430\u043c \u0438 \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044f\u043c, \u043f\u0440\u043e\u0441\u0440\u043e\u0447\u0435\u043d\u043d\u044b\u0435, \u0437\u0430\u043a\u0440\u044b\u0442\u044b\u0435 \u0437\u0430 7 \u0434\u043d\u0435\u0439. \u041e\u0442\u0432\u0435\u0442 \u043a\u044d\u0448\u0438\u0440\u0443\u0435\u0442\u0441\u044f \u0432 Redis \u0438 \u0441\u0431\u0440\u0430\u0441\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043f\u0440\u0438 \u043b\u044e\u0431\u043e\u043c \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0438 \u0437\u0430\u0434\u0430\u0447 \u043f\u0440\u043e\u0435\u043a\u0442\u0430; `generated_at` \u2014 \u0432\u0440\u0435\u043c\u044f \u0440\u0430\u0441\u0447\u0451\u0442\u0430."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"total\":8,\"open\":7,\"overdue\":2,\"completed_last_7_days\":1,\"by_status\":{\"todo\":4,\"in_progress\":2,\"review\":1,\"done\":1},\"open_by_priority\":{\"low\":2,\"medium\":2,\"high\":1,\"urgent\":2},\"open_by_assignee\":[{\"user_id\":1,\"name\":\"Demo User\",\"open\":2},{\"user_id\":3,\"name\":\"Maria Sokolova\",\"open\":2},{\"user_id\":null,\"name\":null,\"open\":1}],\"generated_at\":\"2026-09-24T10:00:00+00:00\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
                     "name": "\u041f\u0440\u043e\u0435\u043a\u0442\u044b \u043a\u043e\u043c\u0430\u043d\u0434\u044b",
                     "request": {
                         "url": {
@@ -956,7 +996,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":5,\"team_id\":4,\"name\":\"Nemo odit\",\"description\":null,\"status\":\"active\",\"created_by\":6,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":5,\"team_id\":4,\"name\":\"Nemo odit\",\"description\":null,\"status\":\"active\",\"created_by\":6,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -999,7 +1039,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1039,7 +1079,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         },
                         {
@@ -1088,7 +1128,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1233,7 +1273,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Vito Bradtke\",\"email\":\"skylar.kuvalis@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"laboriosam\",\"color\":\"#1f79c5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Odit doloribus repellat officiis\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Matt Boehm\",\"email\":\"carolina.balistreri@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"rem\",\"color\":\"#0f0867\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Vito Bradtke\",\"email\":\"skylar.kuvalis@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"laboriosam\",\"color\":\"#1f79c5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Odit doloribus repellat officiis\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Matt Boehm\",\"email\":\"carolina.balistreri@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"rem\",\"color\":\"#0f0867\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -1340,7 +1380,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Dr. Alan Green\",\"email\":\"herbert83@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"recusandae\",\"color\":\"#ba14a2\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Ratione iure impedit molestiae\",\"description\":\"Esse sint aut molestiae sunt suscipit doloribus fugiat. Aut deserunt et error neque recusandae et.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Prof. Juvenal O'Kon\",\"email\":\"herman.andrew@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"in\",\"color\":\"#1e7f9d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Dr. Alan Green\",\"email\":\"herbert83@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"recusandae\",\"color\":\"#ba14a2\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Ratione iure impedit molestiae\",\"description\":\"Esse sint aut molestiae sunt suscipit doloribus fugiat. Aut deserunt et error neque recusandae et.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Prof. Juvenal O'Kon\",\"email\":\"herman.andrew@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"in\",\"color\":\"#1e7f9d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         },
                         {
@@ -1389,7 +1429,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"balistreri.josiane@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"neque\",\"color\":\"#c420d2\"}],\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"balistreri.josiane@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"neque\",\"color\":\"#c420d2\"}],\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         },
                         {
@@ -1435,7 +1475,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Nelson Little\",\"email\":\"anderson.herbert@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"et\",\"color\":\"#3b76f5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Nelson Little\",\"email\":\"anderson.herbert@example.com\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"et\",\"color\":\"#3b76f5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1478,7 +1518,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Prof. Carson Emard\",\"email\":\"lward@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"excepturi\",\"color\":\"#c8ef42\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Prof. Carson Emard\",\"email\":\"lward@example.com\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"excepturi\",\"color\":\"#c8ef42\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1577,7 +1617,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":3,\"task_id\":14,\"body\":\"Adipisci quidem nostrum qui commodi incidunt iure.\",\"author\":{\"id\":6,\"name\":\"Kirstin Nitzsche V\",\"email\":\"torp.florence@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":4,\"task_id\":15,\"body\":\"Odio veritatis excepturi doloribus delectus fugit qui repudiandae.\",\"author\":{\"id\":8,\"name\":\"Kayden Robel\",\"email\":\"bcorwin@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":30,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":3,\"task_id\":14,\"body\":\"Adipisci quidem nostrum qui commodi incidunt iure.\",\"author\":{\"id\":6,\"name\":\"Kirstin Nitzsche V\",\"email\":\"torp.florence@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"},{\"id\":4,\"task_id\":15,\"body\":\"Odio veritatis excepturi doloribus delectus fugit qui repudiandae.\",\"author\":{\"id\":8,\"name\":\"Kayden Robel\",\"email\":\"bcorwin@example.net\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":30,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -1620,7 +1660,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Prof. Annabelle Kshlerin\",\"email\":\"micaela88@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Prof. Annabelle Kshlerin\",\"email\":\"micaela88@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1663,7 +1703,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"pagac.skylar@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"pagac.skylar@example.org\",\"created_at\":\"2026-09-24T07:26:42.000000Z\"},\"created_at\":\"2026-09-24T07:26:42.000000Z\",\"updated_at\":\"2026-09-24T07:26:42.000000Z\"}}",
                             "name": ""
                         },
                         {

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Sanctum\HasApiTokens;
 
 #[Fillable(['name', 'email', 'password'])]
@@ -61,10 +62,19 @@ class User extends Authenticatable
     {
         $teamId = $team instanceof Team ? $team->getKey() : $team;
 
-        return Membership::query()
-            ->where('team_id', $teamId)
-            ->where('user_id', $this->getKey())
-            ->first(['role'])
-            ?->role;
+        // Роль проверяется политиками на каждом запросе, поэтому держим её в кэше.
+        // Пустая строка — «не состоит»: её тоже кэшируем, чтобы чужие не били в базу.
+        // Сбрасывается событиями Membership при любом изменении состава команды.
+        $role = Cache::remember(
+            Membership::cacheKey($teamId, $this->getKey()),
+            config('api.cache_ttl.team_role'),
+            fn () => Membership::query()
+                ->where('team_id', $teamId)
+                ->where('user_id', $this->getKey())
+                ->first(['role'])
+                ?->role->value ?? '',
+        );
+
+        return TeamRole::tryFrom($role);
     }
 }
