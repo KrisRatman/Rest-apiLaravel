@@ -75,9 +75,14 @@ services:
     command: ["queue"]
     environment: *app-env
     volumes: *app-volumes
-    # Healthcheck базового образа стучится по HTTP, а воркер порт не слушает.
+    # Healthcheck базового образа стучится по HTTP, а воркер порт не слушает:
+    # проверяем, что на PID 1 работает именно queue:work (его запускает entrypoint через exec).
     healthcheck:
-      disable: true
+      test: ["CMD-SHELL", "grep -q 'queue:work' /proc/1/cmdline"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 120s
     depends_on:
       mysql:
         condition: service_healthy
@@ -93,8 +98,14 @@ services:
     command: ["schedule"]
     environment: *app-env
     volumes: *app-volumes
+    # Healthcheck базового образа стучится по HTTP, а воркер порт не слушает:
+    # проверяем, что на PID 1 работает именно schedule:work (его запускает entrypoint через exec).
     healthcheck:
-      disable: true
+      test: ["CMD-SHELL", "grep -q 'schedule:work' /proc/1/cmdline"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 120s
     depends_on:
       mysql:
         condition: service_healthy
