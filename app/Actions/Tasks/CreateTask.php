@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class CreateTask
 {
+    public function __construct(private NotifyNewAssignee $notifyAssignee) {}
+
     /**
      * @param  array<string, mixed>  $data  провалидированные поля задачи и необязательный label_ids
      */
@@ -22,6 +24,8 @@ class CreateTask
             $task->save();
 
             $task->labels()->sync($data['label_ids'] ?? []);
+
+            $this->notifyAssignee->handle($task, $creator);
 
             return $task;
         });

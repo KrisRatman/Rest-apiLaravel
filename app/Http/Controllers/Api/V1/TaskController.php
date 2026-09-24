@@ -73,7 +73,7 @@ class TaskController extends Controller
     #[ResponseFromApiResource(TaskResource::class, Task::class, with: ['assignee', 'labels'], withCount: ['comments'])]
     public function update(UpdateTaskRequest $request, Task $task, UpdateTask $updateTask): TaskResource
     {
-        $task = $updateTask->handle($task, $request->validated());
+        $task = $updateTask->handle($task, $request->user(), $request->validated());
 
         return TaskResource::make($this->withDetails($task));
     }

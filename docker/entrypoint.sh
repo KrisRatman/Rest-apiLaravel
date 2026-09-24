@@ -1,7 +1,8 @@
 #!/bin/sh
 # Стартовый скрипт контейнера. Первый аргумент выбирает роль:
-#   serve  — веб-сервер API (по умолчанию)
-#   queue  — воркер очереди
+#   serve     — веб-сервер API (по умолчанию)
+#   queue     — воркер очереди: письма и выгрузки CSV
+#   schedule  — планировщик: ежедневная очистка старых выгрузок и приглашений
 set -e
 
 cd /app
@@ -10,17 +11,24 @@ ROLE="${1:-serve}"
 
 mkdir -p \
     bootstrap/cache \
+    storage/app/private \
     storage/framework/cache/data \
     storage/framework/sessions \
     storage/framework/views \
     storage/logs
 
-# Ключ приложения обязателен: им шифруются куки и зашифрованные поля.
-# В compose он приходит из .env, на хостинге — из панели.
+# Ключ приложения обязателен: им шифруются задания очереди с кодом приглашения,
+# и у API и воркера он должен совпадать. Обычно приходит из .env или панели хостинга.
+# Если не задан — первый контейнер кладёт ключ в общий том, остальные читают его оттуда.
 if [ -z "${APP_KEY}" ]; then
-    echo "APP_KEY не задан — генерирую временный (не переживёт перезапуск)."
-    APP_KEY="$(php artisan key:generate --force --show)"
+    KEY_FILE=storage/app/private/.app_key
+    if [ ! -s "$KEY_FILE" ]; then
+        # noclobber: из двух одновременно стартующих контейнеров файл создаст только один.
+        (set -o noclobber; php artisan key:generate --force --show > "$KEY_FILE") 2>/dev/null || sleep 1
+    fi
+    APP_KEY="$(cat "$KEY_FILE")"
     export APP_KEY
+    echo "APP_KEY не задан — использую сгенерированный ключ из общего тома."
 fi
 
 # MySQL в соседнем контейнере поднимается дольше, чем приложение.
@@ -70,7 +78,11 @@ case "$ROLE" in
         exec frankenphp run --config /etc/caddy/Caddyfile
         ;;
     queue)
-        exec php artisan queue:work --tries=3 --sleep=1 --max-time=3600
+        # --timeout меньше retry_after (90 c) очереди, иначе задание успеют выдать второму воркеру.
+        exec php artisan queue:work --tries=3 --sleep=1 --timeout=80 --max-time=3600
+        ;;
+    schedule)
+        exec php artisan schedule:work
         ;;
     *)
         # Любая другая команда выполняется как есть: docker compose run app php artisan ...

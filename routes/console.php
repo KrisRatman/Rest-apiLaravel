@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use App\Models\Export;
+use App\Models\TeamInvitation;
+use Illuminate\Support\Facades\Schedule;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+// Раз в сутки удаляем выгрузки старше 7 дней (вместе с CSV-файлами)
+// и просроченные приглашения.
+Schedule::command('model:prune', ['--model' => [Export::class, TeamInvitation::class]])
+    ->daily()
+    ->onOneServer()
+    ->withoutOverlapping();

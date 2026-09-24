@@ -1,5 +1,5 @@
-# Локальный стек: API, воркер очереди, MySQL и Redis.
-# Запуск: docker compose up -d → http://localhost:8080/docs/
+# Локальный стек: API, воркер очереди, планировщик, MySQL, Redis и Mailpit.
+# Запуск: docker compose up -d → http://localhost:8080/docs/, письма — http://localhost:8025
 services:
   mysql:
     image: mysql:8.4
@@ -30,19 +30,34 @@ services:
       timeout: 3s
       retries: 10
 
+  # Ловушка для писем: всё, что отправляет API, видно в веб-интерфейсе на :8025.
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "127.0.0.1:8025:8025"
+
   app:
     build: .
     command: ["serve"]
     environment: &app-env
       APP_NAME: "Task Manager API"
-      # Пустой ключ допустим: entrypoint сгенерирует временный.
+      # Пустой ключ допустим: entrypoint сгенерирует временный. Но тогда у каждого
+      # контейнера он свой и воркер не расшифрует задания API — задайте APP_KEY в .env.
       APP_KEY: ${APP_KEY:-}
       APP_URL: http://localhost:8080
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
       DB_HOST: mysql
       DB_DATABASE: task_manager
       DB_USERNAME: task_manager
       DB_PASSWORD: ${DOCKER_DB_PASSWORD:-secret}
       REDIS_HOST: redis
+      MAIL_MAILER: smtp
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+      MAIL_FROM_ADDRESS: no-reply@task-manager.test
+    volumes: &app-volumes
+      # CSV-выгрузки пишет воркер, а скачивает API — нужен общий диск.
+      - app-files:/app/storage/app/private
     ports:
       - "127.0.0.1:8080:8080"
     depends_on:
@@ -56,7 +71,24 @@ services:
     build: .
     command: ["queue"]
     environment: *app-env
+    volumes: *app-volumes
     # Healthcheck базового образа стучится по HTTP, а воркер порт не слушает.
+    healthcheck:
+      disable: true
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      app:
+        condition: service_started
+    restart: unless-stopped
+
+  schedule:
+    build: .
+    command: ["schedule"]
+    environment: *app-env
+    volumes: *app-volumes
     healthcheck:
       disable: true
     depends_on:
@@ -71,3 +103,4 @@ services:
 volumes:
   mysql-data:
   redis-data:
+  app-files:

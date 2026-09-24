@@ -28,6 +28,9 @@ tags:
   -
     name: Метки
     description: 'Цветные метки команды для задач. Видят все участники, управляют владелец и админы.'
+  -
+    name: Экспорт
+    description: 'Выгрузка задач проекта в CSV. Файл собирается в фоне: запрос сразу отвечает 202, статус можно опрашивать, а по готовности приходит письмо. Выгрузка видна только автору и хранится 7 дней.'
 components:
   securitySchemes:
     default:
@@ -281,7 +284,7 @@ paths:
                     id: 5
                     name: 'Morgan Hirthe'
                     email: dare.emelie@example.com
-                    created_at: '2026-09-24T06:57:43.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -297,7 +300,7 @@ paths:
                         example: dare.emelie@example.com
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
       tags:
         - Профиль
     patch:
@@ -317,7 +320,7 @@ paths:
                     id: 5
                     name: 'Ms. Audra Crooks II'
                     email: gulgowski.asia@example.com
-                    created_at: '2026-09-24T06:57:43.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -333,7 +336,7 @@ paths:
                         example: gulgowski.asia@example.com
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
       tags:
         - Профиль
       requestBody:
@@ -1172,6 +1175,309 @@ paths:
         required: true
         schema:
           type: integer
+  '/api/v1/teams/{team_id}/invitations':
+    get:
+      summary: 'Приглашения команды'
+      operationId: ''
+      description: 'Все неиспользованные приглашения, включая просроченные (`is_expired`). Доступно владельцу и админам.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      team_id: 1
+                      email: new.colleague@example.com
+                      role: member
+                      invited_by: 1
+                      expires_at: '2026-10-01T10:00:00.000000Z'
+                      is_expired: false
+                      created_at: '2026-09-24T10:00:00.000000Z'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        team_id: 1
+                        email: new.colleague@example.com
+                        role: member
+                        invited_by: 1
+                        expires_at: '2026-10-01T10:00:00.000000Z'
+                        is_expired: false
+                        created_at: '2026-09-24T10:00:00.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        team_id:
+                          type: integer
+                          example: 1
+                        email:
+                          type: string
+                          example: new.colleague@example.com
+                        role:
+                          type: string
+                          example: member
+                        invited_by:
+                          type: integer
+                          example: 1
+                        expires_at:
+                          type: string
+                          example: '2026-10-01T10:00:00.000000Z'
+                        is_expired:
+                          type: boolean
+                          example: false
+                        created_at:
+                          type: string
+                          example: '2026-09-24T10:00:00.000000Z'
+      tags:
+        - Команды
+    post:
+      summary: 'Пригласить по email'
+      operationId: Email
+      description: 'Отправляет письмо с кодом приглашения. Просроченное приглашение на тот же адрес заменяется новым. Не больше 20 приглашений в минуту.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    team_id: 1
+                    email: new.colleague@example.com
+                    role: member
+                    invited_by: 1
+                    expires_at: '2026-10-01T10:00:00.000000Z'
+                    is_expired: false
+                    created_at: '2026-09-24T10:00:00.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      team_id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: new.colleague@example.com
+                      role:
+                        type: string
+                        example: member
+                      invited_by:
+                        type: integer
+                        example: 1
+                      expires_at:
+                        type: string
+                        example: '2026-10-01T10:00:00.000000Z'
+                      is_expired:
+                        type: boolean
+                        example: false
+                      created_at:
+                        type: string
+                        example: '2026-09-24T10:00:00.000000Z'
+        422:
+          description: 'Приглашение уже отправлено'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This email has already been invited.'
+                  errors:
+                    email:
+                      - 'This email has already been invited.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This email has already been invited.'
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        example:
+                          - 'This email has already been invited.'
+                        items:
+                          type: string
+      tags:
+        - Команды
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Email приглашённого. Аккаунт не обязателен — можно зарегистрироваться позже. Must be a valid email address. Must not be greater than 255 characters.'
+                  example: new.colleague@example.com
+                role:
+                  type: string
+                  description: 'Роль после принятия: `admin` или `member`.'
+                  example: member
+                  enum:
+                    - admin
+                    - member
+              required:
+                - email
+                - role
+    parameters:
+      -
+        in: path
+        name: team_id
+        description: 'The ID of the team.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/invitations/{id}':
+    delete:
+      summary: 'Отозвать приглашение'
+      operationId: ''
+      description: 'Код из письма перестаёт действовать.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                nullable: true
+      tags:
+        - Команды
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the invitation.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  /api/v1/invitations/accept:
+    post:
+      summary: 'Принять приглашение'
+      operationId: ''
+      description: 'Добавляет текущего пользователя в команду с ролью из приглашения. Email аккаунта должен совпадать с адресом, на который пришло письмо: сначала зарегистрируйтесь или войдите с ним.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    my_role: member
+                    id: 1
+                    name: 'Mobile Team'
+                    description: 'iOS and Android apps of the online store'
+                    owner_id: 1
+                    members_count: 3
+                    projects_count: 2
+                    created_at: '2026-09-24T10:00:00.000000Z'
+                    updated_at: '2026-09-24T10:00:00.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      my_role:
+                        type: string
+                        example: member
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Mobile Team'
+                      description:
+                        type: string
+                        example: 'iOS and Android apps of the online store'
+                      owner_id:
+                        type: integer
+                        example: 1
+                      members_count:
+                        type: integer
+                        example: 3
+                      projects_count:
+                        type: integer
+                        example: 2
+                      created_at:
+                        type: string
+                        example: '2026-09-24T10:00:00.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-09-24T10:00:00.000000Z'
+        403:
+          description: 'Приглашение на другой email'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This invitation was sent to another email address.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This invitation was sent to another email address.'
+        422:
+          description: 'Код неверный или просрочен'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The invitation is invalid or has expired.'
+                  errors:
+                    token:
+                      - 'The invitation is invalid or has expired.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The invitation is invalid or has expired.'
+                  errors:
+                    type: object
+                    properties:
+                      token:
+                        type: array
+                        example:
+                          - 'The invitation is invalid or has expired.'
+                        items:
+                          type: string
+      tags:
+        - Команды
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: 'Код приглашения из письма, 40 символов. Must be 40 characters.'
+                  example: Xk4Tz9bQe2LmR7sVw1YpN6cHa3JdF8gUo5KiE0tB
+              required:
+                - token
   '/api/v1/teams/{team_id}/projects':
     get:
       summary: 'Проекты команды'
@@ -1214,8 +1520,8 @@ paths:
                       description: 'Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.'
                       status: active
                       created_by: 5
-                      created_at: '2026-09-24T06:57:43.000000Z'
-                      updated_at: '2026-09-24T06:57:43.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                     -
                       id: 5
                       team_id: 4
@@ -1223,8 +1529,8 @@ paths:
                       description: null
                       status: active
                       created_by: 6
-                      created_at: '2026-09-24T06:57:43.000000Z'
-                      updated_at: '2026-09-24T06:57:43.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -1265,8 +1571,8 @@ paths:
                         description: 'Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.'
                         status: active
                         created_by: 5
-                        created_at: '2026-09-24T06:57:43.000000Z'
-                        updated_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                       -
                         id: 5
                         team_id: 4
@@ -1274,8 +1580,8 @@ paths:
                         description: null
                         status: active
                         created_by: 6
-                        created_at: '2026-09-24T06:57:43.000000Z'
-                        updated_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                     items:
                       type: object
                       properties:
@@ -1299,10 +1605,10 @@ paths:
                           example: 5
                         created_at:
                           type: string
-                          example: '2026-09-24T06:57:43.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T06:57:43.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                   links:
                     type: object
                     properties:
@@ -1401,8 +1707,8 @@ paths:
                     description: 'Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.'
                     status: active
                     created_by: 5
-                    created_at: '2026-09-24T06:57:43.000000Z'
-                    updated_at: '2026-09-24T06:57:43.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -1427,10 +1733,10 @@ paths:
                         example: 5
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
       tags:
         - Проекты
       requestBody:
@@ -1481,8 +1787,8 @@ paths:
                     description: 'Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.'
                     status: active
                     created_by: 5
-                    created_at: '2026-09-24T06:57:43.000000Z'
-                    updated_at: '2026-09-24T06:57:43.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -1507,10 +1813,10 @@ paths:
                         example: 5
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
         404:
           description: 'Проекта нет или он в чужой команде'
           content:
@@ -1545,8 +1851,8 @@ paths:
                     description: 'Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.'
                     status: active
                     created_by: 5
-                    created_at: '2026-09-24T06:57:43.000000Z'
-                    updated_at: '2026-09-24T06:57:43.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -1571,10 +1877,10 @@ paths:
                         example: 5
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:43.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
       tags:
         - Проекты
       requestBody:
@@ -1763,7 +2069,7 @@ paths:
                         id: 6
                         name: 'Vito Bradtke'
                         email: skylar.kuvalis@example.net
-                        created_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -1772,8 +2078,8 @@ paths:
                           name: laboriosam
                           color: '#1f79c5'
                       comments_count: 1
-                      created_at: '2026-09-24T06:57:43.000000Z'
-                      updated_at: '2026-09-24T06:57:43.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                     -
                       id: 15
                       project_id: 5
@@ -1788,7 +2094,7 @@ paths:
                         id: 10
                         name: 'Matt Boehm'
                         email: carolina.balistreri@example.net
-                        created_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -1797,8 +2103,8 @@ paths:
                           name: rem
                           color: '#0f0867'
                       comments_count: 1
-                      created_at: '2026-09-24T06:57:43.000000Z'
-                      updated_at: '2026-09-24T06:57:43.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -1846,7 +2152,7 @@ paths:
                           id: 6
                           name: 'Vito Bradtke'
                           email: skylar.kuvalis@example.net
-                          created_at: '2026-09-24T06:57:43.000000Z'
+                          created_at: '2026-09-24T07:10:18.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -1855,8 +2161,8 @@ paths:
                             name: laboriosam
                             color: '#1f79c5'
                         comments_count: 1
-                        created_at: '2026-09-24T06:57:43.000000Z'
-                        updated_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                       -
                         id: 15
                         project_id: 5
@@ -1871,7 +2177,7 @@ paths:
                           id: 10
                           name: 'Matt Boehm'
                           email: carolina.balistreri@example.net
-                          created_at: '2026-09-24T06:57:43.000000Z'
+                          created_at: '2026-09-24T07:10:18.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -1880,8 +2186,8 @@ paths:
                             name: rem
                             color: '#0f0867'
                         comments_count: 1
-                        created_at: '2026-09-24T06:57:43.000000Z'
-                        updated_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                     items:
                       type: object
                       properties:
@@ -1928,7 +2234,7 @@ paths:
                               example: skylar.kuvalis@example.net
                             created_at:
                               type: string
-                              example: '2026-09-24T06:57:43.000000Z'
+                              example: '2026-09-24T07:10:18.000000Z'
                         creator_id:
                           type: string
                           example: null
@@ -1961,10 +2267,10 @@ paths:
                           example: 1
                         created_at:
                           type: string
-                          example: '2026-09-24T06:57:43.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T06:57:43.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                   links:
                     type: object
                     properties:
@@ -2182,7 +2488,7 @@ paths:
                         id: 6
                         name: 'Dr. Alan Green'
                         email: herbert83@example.org
-                        created_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -2191,8 +2497,8 @@ paths:
                           name: recusandae
                           color: '#ba14a2'
                       comments_count: 1
-                      created_at: '2026-09-24T06:57:43.000000Z'
-                      updated_at: '2026-09-24T06:57:43.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                     -
                       id: 15
                       project_id: 5
@@ -2207,7 +2513,7 @@ paths:
                         id: 10
                         name: "Prof. Juvenal O'Kon"
                         email: herman.andrew@example.net
-                        created_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
                       creator_id: null
                       labels:
                         -
@@ -2216,8 +2522,8 @@ paths:
                           name: in
                           color: '#1e7f9d'
                       comments_count: 1
-                      created_at: '2026-09-24T06:57:43.000000Z'
-                      updated_at: '2026-09-24T06:57:43.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -2265,7 +2571,7 @@ paths:
                           id: 6
                           name: 'Dr. Alan Green'
                           email: herbert83@example.org
-                          created_at: '2026-09-24T06:57:43.000000Z'
+                          created_at: '2026-09-24T07:10:18.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -2274,8 +2580,8 @@ paths:
                             name: recusandae
                             color: '#ba14a2'
                         comments_count: 1
-                        created_at: '2026-09-24T06:57:43.000000Z'
-                        updated_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                       -
                         id: 15
                         project_id: 5
@@ -2290,7 +2596,7 @@ paths:
                           id: 10
                           name: "Prof. Juvenal O'Kon"
                           email: herman.andrew@example.net
-                          created_at: '2026-09-24T06:57:43.000000Z'
+                          created_at: '2026-09-24T07:10:18.000000Z'
                         creator_id: null
                         labels:
                           -
@@ -2299,8 +2605,8 @@ paths:
                             name: in
                             color: '#1e7f9d'
                         comments_count: 1
-                        created_at: '2026-09-24T06:57:43.000000Z'
-                        updated_at: '2026-09-24T06:57:43.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                     items:
                       type: object
                       properties:
@@ -2347,7 +2653,7 @@ paths:
                               example: herbert83@example.org
                             created_at:
                               type: string
-                              example: '2026-09-24T06:57:43.000000Z'
+                              example: '2026-09-24T07:10:18.000000Z'
                         creator_id:
                           type: string
                           example: null
@@ -2380,10 +2686,10 @@ paths:
                           example: 1
                         created_at:
                           type: string
-                          example: '2026-09-24T06:57:43.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T06:57:43.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                   links:
                     type: object
                     properties:
@@ -2501,7 +2807,7 @@ paths:
                       id: 6
                       name: 'Cynthia Fahey'
                       email: balistreri.josiane@example.net
-                      created_at: '2026-09-24T06:57:44.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
                     creator_id: null
                     labels:
                       -
@@ -2509,8 +2815,8 @@ paths:
                         team_id: 4
                         name: neque
                         color: '#c420d2'
-                    created_at: '2026-09-24T06:57:44.000000Z'
-                    updated_at: '2026-09-24T06:57:44.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -2558,7 +2864,7 @@ paths:
                             example: balistreri.josiane@example.net
                           created_at:
                             type: string
-                            example: '2026-09-24T06:57:44.000000Z'
+                            example: '2026-09-24T07:10:18.000000Z'
                       creator_id:
                         type: string
                         example: null
@@ -2588,10 +2894,10 @@ paths:
                               example: '#c420d2'
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
         422:
           description: 'Исполнитель не из команды'
           content:
@@ -2708,7 +3014,7 @@ paths:
                       id: 6
                       name: 'Nelson Little'
                       email: anderson.herbert@example.com
-                      created_at: '2026-09-24T06:57:44.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
                     creator_id: null
                     labels:
                       -
@@ -2717,8 +3023,8 @@ paths:
                         name: et
                         color: '#3b76f5'
                     comments_count: 1
-                    created_at: '2026-09-24T06:57:44.000000Z'
-                    updated_at: '2026-09-24T06:57:44.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -2766,7 +3072,7 @@ paths:
                             example: anderson.herbert@example.com
                           created_at:
                             type: string
-                            example: '2026-09-24T06:57:44.000000Z'
+                            example: '2026-09-24T07:10:18.000000Z'
                       creator_id:
                         type: string
                         example: null
@@ -2799,10 +3105,10 @@ paths:
                         example: 1
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
       tags:
         - Задачи
     put:
@@ -2832,7 +3138,7 @@ paths:
                       id: 6
                       name: 'Prof. Carson Emard'
                       email: lward@example.com
-                      created_at: '2026-09-24T06:57:44.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
                     creator_id: null
                     labels:
                       -
@@ -2841,8 +3147,8 @@ paths:
                         name: excepturi
                         color: '#c8ef42'
                     comments_count: 1
-                    created_at: '2026-09-24T06:57:44.000000Z'
-                    updated_at: '2026-09-24T06:57:44.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -2890,7 +3196,7 @@ paths:
                             example: lward@example.com
                           created_at:
                             type: string
-                            example: '2026-09-24T06:57:44.000000Z'
+                            example: '2026-09-24T07:10:18.000000Z'
                       creator_id:
                         type: string
                         example: null
@@ -2923,10 +3229,10 @@ paths:
                         example: 1
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
       tags:
         - Задачи
       requestBody:
@@ -3049,9 +3355,9 @@ paths:
                         id: 6
                         name: 'Kirstin Nitzsche V'
                         email: torp.florence@example.org
-                        created_at: '2026-09-24T06:57:44.000000Z'
-                      created_at: '2026-09-24T06:57:44.000000Z'
-                      updated_at: '2026-09-24T06:57:44.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                     -
                       id: 4
                       task_id: 15
@@ -3060,9 +3366,9 @@ paths:
                         id: 8
                         name: 'Kayden Robel'
                         email: bcorwin@example.net
-                        created_at: '2026-09-24T06:57:44.000000Z'
-                      created_at: '2026-09-24T06:57:44.000000Z'
-                      updated_at: '2026-09-24T06:57:44.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                      updated_at: '2026-09-24T07:10:18.000000Z'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -3104,9 +3410,9 @@ paths:
                           id: 6
                           name: 'Kirstin Nitzsche V'
                           email: torp.florence@example.org
-                          created_at: '2026-09-24T06:57:44.000000Z'
-                        created_at: '2026-09-24T06:57:44.000000Z'
-                        updated_at: '2026-09-24T06:57:44.000000Z'
+                          created_at: '2026-09-24T07:10:18.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                       -
                         id: 4
                         task_id: 15
@@ -3115,9 +3421,9 @@ paths:
                           id: 8
                           name: 'Kayden Robel'
                           email: bcorwin@example.net
-                          created_at: '2026-09-24T06:57:44.000000Z'
-                        created_at: '2026-09-24T06:57:44.000000Z'
-                        updated_at: '2026-09-24T06:57:44.000000Z'
+                          created_at: '2026-09-24T07:10:18.000000Z'
+                        created_at: '2026-09-24T07:10:18.000000Z'
+                        updated_at: '2026-09-24T07:10:18.000000Z'
                     items:
                       type: object
                       properties:
@@ -3144,13 +3450,13 @@ paths:
                               example: torp.florence@example.org
                             created_at:
                               type: string
-                              example: '2026-09-24T06:57:44.000000Z'
+                              example: '2026-09-24T07:10:18.000000Z'
                         created_at:
                           type: string
-                          example: '2026-09-24T06:57:44.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                         updated_at:
                           type: string
-                          example: '2026-09-24T06:57:44.000000Z'
+                          example: '2026-09-24T07:10:18.000000Z'
                   links:
                     type: object
                     properties:
@@ -3250,9 +3556,9 @@ paths:
                       id: 6
                       name: 'Prof. Annabelle Kshlerin'
                       email: micaela88@example.org
-                      created_at: '2026-09-24T06:57:44.000000Z'
-                    created_at: '2026-09-24T06:57:44.000000Z'
-                    updated_at: '2026-09-24T06:57:44.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -3280,13 +3586,13 @@ paths:
                             example: micaela88@example.org
                           created_at:
                             type: string
-                            example: '2026-09-24T06:57:44.000000Z'
+                            example: '2026-09-24T07:10:18.000000Z'
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
       tags:
         - Комментарии
       requestBody:
@@ -3333,9 +3639,9 @@ paths:
                       id: 6
                       name: 'Cynthia Fahey'
                       email: pagac.skylar@example.org
-                      created_at: '2026-09-24T06:57:44.000000Z'
-                    created_at: '2026-09-24T06:57:44.000000Z'
-                    updated_at: '2026-09-24T06:57:44.000000Z'
+                      created_at: '2026-09-24T07:10:18.000000Z'
+                    created_at: '2026-09-24T07:10:18.000000Z'
+                    updated_at: '2026-09-24T07:10:18.000000Z'
                 properties:
                   data:
                     type: object
@@ -3363,13 +3669,13 @@ paths:
                             example: pagac.skylar@example.org
                           created_at:
                             type: string
-                            example: '2026-09-24T06:57:44.000000Z'
+                            example: '2026-09-24T07:10:18.000000Z'
                       created_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
                       updated_at:
                         type: string
-                        example: '2026-09-24T06:57:44.000000Z'
+                        example: '2026-09-24T07:10:18.000000Z'
         403:
           description: 'Чужой комментарий'
           content:
@@ -3493,8 +3799,8 @@ paths:
                   data:
                     id: 5
                     team_id: 3
-                    name: nostrum
-                    color: '#a5ed75'
+                    name: architecto
+                    color: '#66e353'
                 properties:
                   data:
                     type: object
@@ -3507,10 +3813,10 @@ paths:
                         example: 3
                       name:
                         type: string
-                        example: nostrum
+                        example: architecto
                       color:
                         type: string
-                        example: '#a5ed75'
+                        example: '#66e353'
       tags:
         - Метки
       requestBody:
@@ -3557,8 +3863,8 @@ paths:
                   data:
                     id: 5
                     team_id: 3
-                    name: architecto
-                    color: '#66e353'
+                    name: eius
+                    color: '#4285c6'
                 properties:
                   data:
                     type: object
@@ -3571,10 +3877,10 @@ paths:
                         example: 3
                       name:
                         type: string
-                        example: architecto
+                        example: eius
                       color:
                         type: string
-                        example: '#66e353'
+                        example: '#4285c6'
       tags:
         - Метки
       requestBody:
@@ -3613,6 +3919,380 @@ paths:
         name: id
         description: 'The ID of the label.'
         example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/me/exports:
+    get:
+      summary: 'Мои выгрузки'
+      operationId: ''
+      description: 'Новые сверху.'
+      parameters:
+        -
+          in: query
+          name: per_page
+          description: 'Размер страницы, 1–100.'
+          example: 15
+          required: false
+          schema:
+            type: integer
+            description: 'Размер страницы, 1–100.'
+            example: 15
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      project_id: 1
+                      status: completed
+                      filters:
+                        filter:
+                          status: 'todo,in_progress'
+                      rows_count: 42
+                      error: null
+                      download_url: 'http://localhost:8080/api/v1/exports/1/download'
+                      created_at: '2026-09-24T10:00:00.000000Z'
+                      finished_at: '2026-09-24T10:00:03.000000Z'
+                  links:
+                    first: …
+                    last: …
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    last_page: 1
+                    per_page: 15
+                    total: 1
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        project_id: 1
+                        status: completed
+                        filters:
+                          filter:
+                            status: 'todo,in_progress'
+                        rows_count: 42
+                        error: null
+                        download_url: 'http://localhost:8080/api/v1/exports/1/download'
+                        created_at: '2026-09-24T10:00:00.000000Z'
+                        finished_at: '2026-09-24T10:00:03.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        project_id:
+                          type: integer
+                          example: 1
+                        status:
+                          type: string
+                          example: completed
+                        filters:
+                          type: object
+                          properties:
+                            filter:
+                              type: object
+                              properties:
+                                status:
+                                  type: string
+                                  example: 'todo,in_progress'
+                        rows_count:
+                          type: integer
+                          example: 42
+                        error:
+                          type: string
+                          example: null
+                          nullable: true
+                        download_url:
+                          type: string
+                          example: 'http://localhost:8080/api/v1/exports/1/download'
+                        created_at:
+                          type: string
+                          example: '2026-09-24T10:00:00.000000Z'
+                        finished_at:
+                          type: string
+                          example: '2026-09-24T10:00:03.000000Z'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: …
+                      last:
+                        type: string
+                        example: …
+                      prev:
+                        type: string
+                        example: null
+                        nullable: true
+                      next:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 15
+                      total:
+                        type: integer
+                        example: 1
+      tags:
+        - Экспорт
+  '/api/v1/projects/{project_id}/exports':
+    post:
+      summary: 'Запустить выгрузку'
+      operationId: ''
+      description: 'Ставит сборку CSV в очередь и сразу возвращает выгрузку со статусом `pending`. Неизвестный фильтр или сортировка → 400 ещё до постановки в очередь.'
+      parameters: []
+      responses:
+        202:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    status: pending
+                    rows_count: null
+                    download_url: null
+                    finished_at: null
+                    id: 1
+                    project_id: 1
+                    filters:
+                      filter:
+                        status: 'todo,in_progress'
+                    error: null
+                    created_at: '2026-09-24T10:00:00.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: pending
+                      rows_count:
+                        type: string
+                        example: null
+                        nullable: true
+                      download_url:
+                        type: string
+                        example: null
+                        nullable: true
+                      finished_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      id:
+                        type: integer
+                        example: 1
+                      project_id:
+                        type: integer
+                        example: 1
+                      filters:
+                        type: object
+                        properties:
+                          filter:
+                            type: object
+                            properties:
+                              status:
+                                type: string
+                                example: 'todo,in_progress'
+                      error:
+                        type: string
+                        example: null
+                        nullable: true
+                      created_at:
+                        type: string
+                        example: '2026-09-24T10:00:00.000000Z'
+      tags:
+        - Экспорт
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  description: 'Фильтры как у списка задач: `status`, `priority`, `assignee_id`, `label`, `overdue`, `due_from`, `due_to`, `search`. Пусто — все задачи проекта.'
+                  example:
+                    status: 'todo,in_progress'
+                    overdue: '1'
+                  properties:
+                    status:
+                      type: string
+                      description: 'Статус или несколько через запятую.'
+                      example: null
+                    priority:
+                      type: string
+                      description: 'Приоритет или несколько через запятую.'
+                      example: null
+                    assignee_id:
+                      type: string
+                      description: 'ID исполнителя.'
+                      example: null
+                    label:
+                      type: string
+                      description: 'ID метки или несколько через запятую.'
+                      example: null
+                    overdue:
+                      type: boolean
+                      description: '`1` — только просроченные.'
+                      example: null
+                    due_from:
+                      type: string
+                      description: 'Срок не раньше даты, `Y-m-d`. Must be a valid date in the format <code>Y-m-d</code>.'
+                      example: null
+                    due_to:
+                      type: string
+                      description: 'Срок не позже даты, `Y-m-d`. Must be a valid date in the format <code>Y-m-d</code>.'
+                      example: null
+                    search:
+                      type: string
+                      description: 'Поиск по заголовку и описанию. Must not be greater than 100 characters.'
+                      example: null
+                sort:
+                  type: string
+                  description: 'Порядок строк в файле, как у списка задач. Must not be greater than 100 characters.'
+                  example: '-priority,due_date'
+    parameters:
+      -
+        in: path
+        name: project_id
+        description: 'The ID of the project.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/exports/{id}':
+    get:
+      summary: 'Статус выгрузки'
+      operationId: ''
+      description: '`pending` → `processing` → `completed` или `failed`. Когда готово, появляется `download_url`.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    project_id: 1
+                    status: completed
+                    filters:
+                      filter:
+                        status: 'todo,in_progress'
+                    rows_count: 42
+                    error: null
+                    download_url: 'http://localhost:8080/api/v1/exports/1/download'
+                    created_at: '2026-09-24T10:00:00.000000Z'
+                    finished_at: '2026-09-24T10:00:03.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      project_id:
+                        type: integer
+                        example: 1
+                      status:
+                        type: string
+                        example: completed
+                      filters:
+                        type: object
+                        properties:
+                          filter:
+                            type: object
+                            properties:
+                              status:
+                                type: string
+                                example: 'todo,in_progress'
+                      rows_count:
+                        type: integer
+                        example: 42
+                      error:
+                        type: string
+                        example: null
+                        nullable: true
+                      download_url:
+                        type: string
+                        example: 'http://localhost:8080/api/v1/exports/1/download'
+                      created_at:
+                        type: string
+                        example: '2026-09-24T10:00:00.000000Z'
+                      finished_at:
+                        type: string
+                        example: '2026-09-24T10:00:03.000000Z'
+      tags:
+        - Экспорт
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the export.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/exports/{export_id}/download':
+    get:
+      summary: 'Скачать CSV'
+      operationId: CSV
+      description: 'UTF-8 с BOM, открывается в Excel. Пока файл не готов — 409.'
+      parameters: []
+      responses:
+        200:
+          description: CSV-файл
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "ID,Title,Status,Priority,Assignee,Assignee email,Due date,Labels,Comments,Created at,Completed at\n7,Apple Pay integration,in_progress,urgent,Demo User,demo@example.com,2026-09-29,\"feature, backend\",2,2026-09-24 10:00:00,"
+        409:
+          description: 'Файл ещё собирается'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The export is not ready yet.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The export is not ready yet.'
+      tags:
+        - Экспорт
+    parameters:
+      -
+        in: path
+        name: export_id
+        description: 'The ID of the export.'
+        example: 16
         required: true
         schema:
           type: integer

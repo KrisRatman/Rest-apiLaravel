@@ -138,6 +138,23 @@
                                             <a href="#komandy-POSTapi-v1-teams--team_id--ownership">Передать владение</a>
                                         </li>
                                                                     </ul>
+                                                                                <li class="tocify-item level-2" data-unique="komandy-priglaseniia">
+                                <a href="#komandy-priglaseniia">Приглашения</a>
+                            </li>
+                                                            <ul id="tocify-subheader-komandy-priglaseniia" class="tocify-subheader">
+                                                                            <li class="tocify-item level-3" data-unique="komandy-GETapi-v1-teams--team_id--invitations">
+                                            <a href="#komandy-GETapi-v1-teams--team_id--invitations">Приглашения команды</a>
+                                        </li>
+                                                                            <li class="tocify-item level-3" data-unique="komandy-POSTapi-v1-teams--team_id--invitations">
+                                            <a href="#komandy-POSTapi-v1-teams--team_id--invitations">Пригласить по email</a>
+                                        </li>
+                                                                            <li class="tocify-item level-3" data-unique="komandy-DELETEapi-v1-invitations--id-">
+                                            <a href="#komandy-DELETEapi-v1-invitations--id-">Отозвать приглашение</a>
+                                        </li>
+                                                                            <li class="tocify-item level-3" data-unique="komandy-POSTapi-v1-invitations-accept">
+                                            <a href="#komandy-POSTapi-v1-invitations-accept">Принять приглашение</a>
+                                        </li>
+                                                                    </ul>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-proekty" class="tocify-header">
@@ -225,6 +242,25 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-eksport" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="eksport">
+                    <a href="#eksport">Экспорт</a>
+                </li>
+                                    <ul id="tocify-subheader-eksport" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="eksport-GETapi-v1-me-exports">
+                                <a href="#eksport-GETapi-v1-me-exports">Мои выгрузки</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="eksport-POSTapi-v1-projects--project_id--exports">
+                                <a href="#eksport-POSTapi-v1-projects--project_id--exports">Запустить выгрузку</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="eksport-GETapi-v1-exports--id-">
+                                <a href="#eksport-GETapi-v1-exports--id-">Статус выгрузки</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="eksport-GETapi-v1-exports--export_id--download">
+                                <a href="#eksport-GETapi-v1-exports--export_id--download">Скачать CSV</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
             </div>
 
     <ul class="toc-footer" id="toc-footer">
@@ -260,10 +296,12 @@
 
 | Код | Когда |
 |---|---|
+| 202 | Задача принята в фоновую обработку (выгрузка CSV) |
 | 400 | Неизвестный фильтр или поле сортировки |
 | 401 | Нет токена или он отозван |
 | 403 | Вы в команде, но вашей роли не хватает прав |
 | 404 | Ресурса нет **или он принадлежит команде, в которой вы не состоите** |
+| 409 | Файл выгрузки ещё не готов |
 | 422 | Ошибка валидации, поле `errors` содержит детали |
 | 429 | Превышен лимит запросов |
 
@@ -881,7 +919,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Morgan Hirthe&quot;,
         &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1031,7 +1069,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
         &quot;email&quot;: &quot;gulgowski.asia@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3140,6 +3178,711 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                                <h2 id="komandy-priglaseniia">Приглашения</h2>
+                                        <p>
+                    <p>Приглашение по email, в том числе человека без аккаунта. Письмо с кодом уходит через очередь, приглашение действует 7 дней.</p>
+                </p>
+                                        <h2 id="komandy-GETapi-v1-teams--team_id--invitations">Приглашения команды</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Все неиспользованные приглашения, включая просроченные (<code>is_expired</code>). Доступно владельцу и админам.</p>
+
+<span id="example-requests-GETapi-v1-teams--team_id--invitations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/teams/1/invitations" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/teams/1/invitations"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-teams--team_id--invitations">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;team_id&quot;: 1,
+            &quot;email&quot;: &quot;new.colleague@example.com&quot;,
+            &quot;role&quot;: &quot;member&quot;,
+            &quot;invited_by&quot;: 1,
+            &quot;expires_at&quot;: &quot;2026-10-01T10:00:00.000000Z&quot;,
+            &quot;is_expired&quot;: false,
+            &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-teams--team_id--invitations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-teams--team_id--invitations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-teams--team_id--invitations"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-teams--team_id--invitations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-teams--team_id--invitations">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-teams--team_id--invitations" data-method="GET"
+      data-path="api/v1/teams/{team_id}/invitations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-teams--team_id--invitations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-teams--team_id--invitations"
+                    onclick="tryItOut('GETapi-v1-teams--team_id--invitations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-teams--team_id--invitations"
+                    onclick="cancelTryOut('GETapi-v1-teams--team_id--invitations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-teams--team_id--invitations"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/teams/{team_id}/invitations</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-teams--team_id--invitations"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-teams--team_id--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-teams--team_id--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>team_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="team_id"                data-endpoint="GETapi-v1-teams--team_id--invitations"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the team. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="komandy-POSTapi-v1-teams--team_id--invitations">Пригласить по email</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Отправляет письмо с кодом приглашения. Просроченное приглашение на тот же адрес заменяется новым. Не больше 20 приглашений в минуту.</p>
+
+<span id="example-requests-POSTapi-v1-teams--team_id--invitations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/teams/1/invitations" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"new.colleague@example.com\",
+    \"role\": \"member\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/teams/1/invitations"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "new.colleague@example.com",
+    "role": "member"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-teams--team_id--invitations">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;team_id&quot;: 1,
+        &quot;email&quot;: &quot;new.colleague@example.com&quot;,
+        &quot;role&quot;: &quot;member&quot;,
+        &quot;invited_by&quot;: 1,
+        &quot;expires_at&quot;: &quot;2026-10-01T10:00:00.000000Z&quot;,
+        &quot;is_expired&quot;: false,
+        &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Приглашение уже отправлено):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;This email has already been invited.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;This email has already been invited.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-teams--team_id--invitations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-teams--team_id--invitations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-teams--team_id--invitations"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-teams--team_id--invitations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-teams--team_id--invitations">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-teams--team_id--invitations" data-method="POST"
+      data-path="api/v1/teams/{team_id}/invitations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-teams--team_id--invitations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-teams--team_id--invitations"
+                    onclick="tryItOut('POSTapi-v1-teams--team_id--invitations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-teams--team_id--invitations"
+                    onclick="cancelTryOut('POSTapi-v1-teams--team_id--invitations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-teams--team_id--invitations"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/teams/{team_id}/invitations</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-teams--team_id--invitations"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-teams--team_id--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-teams--team_id--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>team_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="team_id"                data-endpoint="POSTapi-v1-teams--team_id--invitations"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the team. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-v1-teams--team_id--invitations"
+               value="new.colleague@example.com"
+               data-component="body">
+    <br>
+<p>Email приглашённого. Аккаунт не обязателен — можно зарегистрироваться позже. Must be a valid email address. Must not be greater than 255 characters. Example: <code>new.colleague@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="role"                data-endpoint="POSTapi-v1-teams--team_id--invitations"
+               value="member"
+               data-component="body">
+    <br>
+<p>Роль после принятия: <code>admin</code> или <code>member</code>. Example: <code>member</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>member</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="komandy-DELETEapi-v1-invitations--id-">Отозвать приглашение</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Код из письма перестаёт действовать.</p>
+
+<span id="example-requests-DELETEapi-v1-invitations--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/v1/invitations/16" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/invitations/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-invitations--id-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <pre>
+<code>Empty response</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-invitations--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-invitations--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-invitations--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-invitations--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-invitations--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-invitations--id-" data-method="DELETE"
+      data-path="api/v1/invitations/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-invitations--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-invitations--id-"
+                    onclick="tryItOut('DELETEapi-v1-invitations--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-invitations--id-"
+                    onclick="cancelTryOut('DELETEapi-v1-invitations--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-invitations--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/invitations/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-invitations--id-"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-invitations--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-invitations--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-v1-invitations--id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the invitation. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="komandy-POSTapi-v1-invitations-accept">Принять приглашение</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Добавляет текущего пользователя в команду с ролью из приглашения. Email аккаунта должен совпадать с адресом, на который пришло письмо: сначала зарегистрируйтесь или войдите с ним.</p>
+
+<span id="example-requests-POSTapi-v1-invitations-accept">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/invitations/accept" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"token\": \"Xk4Tz9bQe2LmR7sVw1YpN6cHa3JdF8gUo5KiE0tB\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/invitations/accept"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "token": "Xk4Tz9bQe2LmR7sVw1YpN6cHa3JdF8gUo5KiE0tB"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-invitations-accept">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;my_role&quot;: &quot;member&quot;,
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Mobile Team&quot;,
+        &quot;description&quot;: &quot;iOS and Android apps of the online store&quot;,
+        &quot;owner_id&quot;: 1,
+        &quot;members_count&quot;: 3,
+        &quot;projects_count&quot;: 2,
+        &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Приглашение на другой email):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;This invitation was sent to another email address.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Код неверный или просрочен):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The invitation is invalid or has expired.&quot;,
+    &quot;errors&quot;: {
+        &quot;token&quot;: [
+            &quot;The invitation is invalid or has expired.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-invitations-accept" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-invitations-accept"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-invitations-accept"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-invitations-accept" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-invitations-accept">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-invitations-accept" data-method="POST"
+      data-path="api/v1/invitations/accept"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-invitations-accept', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-invitations-accept"
+                    onclick="tryItOut('POSTapi-v1-invitations-accept');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-invitations-accept"
+                    onclick="cancelTryOut('POSTapi-v1-invitations-accept');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-invitations-accept"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/invitations/accept</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-invitations-accept"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-invitations-accept"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-invitations-accept"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="POSTapi-v1-invitations-accept"
+               value="Xk4Tz9bQe2LmR7sVw1YpN6cHa3JdF8gUo5KiE0tB"
+               data-component="body">
+    <br>
+<p>Код приглашения из письма, 40 символов. Must be 40 characters. Example: <code>Xk4Tz9bQe2LmR7sVw1YpN6cHa3JdF8gUo5KiE0tB</code></p>
+        </div>
+        </form>
+
                 <h1 id="proekty">Проекты</h1>
 
     <p>Проекты команды. Смотреть может любой участник, создавать, менять и удалять — владелец и админы.</p>
@@ -3205,8 +3948,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 5,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
         {
             &quot;id&quot;: 5,
@@ -3215,8 +3958,8 @@ fetch(url, {
             &quot;description&quot;: null,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 6,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -3443,8 +4186,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3625,8 +4368,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3801,8 +4544,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4167,7 +4910,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Vito Bradtke&quot;,
                 &quot;email&quot;: &quot;skylar.kuvalis@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -4179,8 +4922,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -4196,7 +4939,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Matt Boehm&quot;,
                 &quot;email&quot;: &quot;carolina.balistreri@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -4208,8 +4951,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -4549,7 +5292,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Dr. Alan Green&quot;,
                 &quot;email&quot;: &quot;herbert83@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -4561,8 +5304,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -4578,7 +5321,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Prof. Juvenal O&#039;Kon&quot;,
                 &quot;email&quot;: &quot;herman.andrew@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -4590,8 +5333,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:43.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -4966,7 +5709,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;balistreri.josiane@example.net&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -4977,8 +5720,8 @@ fetch(url, {
                 &quot;color&quot;: &quot;#c420d2&quot;
             }
         ],
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5246,7 +5989,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Nelson Little&quot;,
             &quot;email&quot;: &quot;anderson.herbert@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -5258,8 +6001,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5446,7 +6189,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Carson Emard&quot;,
             &quot;email&quot;: &quot;lward@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -5458,8 +6201,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5876,10 +6619,10 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Kirstin Nitzsche V&quot;,
                 &quot;email&quot;: &quot;torp.florence@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
         {
             &quot;id&quot;: 4,
@@ -5889,10 +6632,10 @@ fetch(url, {
                 &quot;id&quot;: 8,
                 &quot;name&quot;: &quot;Kayden Robel&quot;,
                 &quot;email&quot;: &quot;bcorwin@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -6106,10 +6849,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Annabelle Kshlerin&quot;,
             &quot;email&quot;: &quot;micaela88@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6287,10 +7030,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;pagac.skylar@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T06:57:44.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T07:10:18.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6788,8 +7531,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 5,
         &quot;team_id&quot;: 3,
-        &quot;name&quot;: &quot;nostrum&quot;,
-        &quot;color&quot;: &quot;#a5ed75&quot;
+        &quot;name&quot;: &quot;architecto&quot;,
+        &quot;color&quot;: &quot;#66e353&quot;
     }
 }</code>
  </pre>
@@ -6976,8 +7719,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 5,
         &quot;team_id&quot;: 3,
-        &quot;name&quot;: &quot;architecto&quot;,
-        &quot;color&quot;: &quot;#66e353&quot;
+        &quot;name&quot;: &quot;eius&quot;,
+        &quot;color&quot;: &quot;#4285c6&quot;
     }
 }</code>
  </pre>
@@ -7251,6 +7994,819 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="url">
     <br>
 <p>The ID of the label. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                <h1 id="eksport">Экспорт</h1>
+
+    <p>Выгрузка задач проекта в CSV. Файл собирается в фоне: запрос сразу отвечает 202, статус можно опрашивать, а по готовности приходит письмо. Выгрузка видна только автору и хранится 7 дней.</p>
+
+                                <h2 id="eksport-GETapi-v1-me-exports">Мои выгрузки</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Новые сверху.</p>
+
+<span id="example-requests-GETapi-v1-me-exports">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/me/exports?per_page=15" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/me/exports"
+);
+
+const params = {
+    "per_page": "15",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-me-exports">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;project_id&quot;: 1,
+            &quot;status&quot;: &quot;completed&quot;,
+            &quot;filters&quot;: {
+                &quot;filter&quot;: {
+                    &quot;status&quot;: &quot;todo,in_progress&quot;
+                }
+            },
+            &quot;rows_count&quot;: 42,
+            &quot;error&quot;: null,
+            &quot;download_url&quot;: &quot;http://localhost:8080/api/v1/exports/1/download&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;,
+            &quot;finished_at&quot;: &quot;2026-09-24T10:00:03.000000Z&quot;
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;&hellip;&quot;,
+        &quot;last&quot;: &quot;&hellip;&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;per_page&quot;: 15,
+        &quot;total&quot;: 1
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-me-exports" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-me-exports"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-me-exports"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-me-exports" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-me-exports">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-me-exports" data-method="GET"
+      data-path="api/v1/me/exports"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-me-exports', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-me-exports"
+                    onclick="tryItOut('GETapi-v1-me-exports');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-me-exports"
+                    onclick="cancelTryOut('GETapi-v1-me-exports');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-me-exports"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/me/exports</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-me-exports"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-me-exports"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-me-exports"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-v1-me-exports"
+               value="15"
+               data-component="query">
+    <br>
+<p>Размер страницы, 1–100. Example: <code>15</code></p>
+            </div>
+                </form>
+
+                    <h2 id="eksport-POSTapi-v1-projects--project_id--exports">Запустить выгрузку</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Ставит сборку CSV в очередь и сразу возвращает выгрузку со статусом <code>pending</code>. Неизвестный фильтр или сортировка → 400 ещё до постановки в очередь.</p>
+
+<span id="example-requests-POSTapi-v1-projects--project_id--exports">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/projects/1/exports" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"filter\": {
+        \"status\": \"todo,in_progress\",
+        \"overdue\": \"1\"
+    },
+    \"sort\": \"-priority,due_date\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/projects/1/exports"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "filter": {
+        "status": "todo,in_progress",
+        "overdue": "1"
+    },
+    "sort": "-priority,due_date"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-projects--project_id--exports">
+            <blockquote>
+            <p>Example response (202):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;status&quot;: &quot;pending&quot;,
+        &quot;rows_count&quot;: null,
+        &quot;download_url&quot;: null,
+        &quot;finished_at&quot;: null,
+        &quot;id&quot;: 1,
+        &quot;project_id&quot;: 1,
+        &quot;filters&quot;: {
+            &quot;filter&quot;: {
+                &quot;status&quot;: &quot;todo,in_progress&quot;
+            }
+        },
+        &quot;error&quot;: null,
+        &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-projects--project_id--exports" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-projects--project_id--exports"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-projects--project_id--exports"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-projects--project_id--exports" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-projects--project_id--exports">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-projects--project_id--exports" data-method="POST"
+      data-path="api/v1/projects/{project_id}/exports"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-projects--project_id--exports', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-projects--project_id--exports"
+                    onclick="tryItOut('POSTapi-v1-projects--project_id--exports');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-projects--project_id--exports"
+                    onclick="cancelTryOut('POSTapi-v1-projects--project_id--exports');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-projects--project_id--exports"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/projects/{project_id}/exports</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>project_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="project_id"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the project. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>filter</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+<p>Фильтры как у списка задач: <code>status</code>, <code>priority</code>, <code>assignee_id</code>, <code>label</code>, <code>overdue</code>, <code>due_from</code>, <code>due_to</code>, <code>search</code>. Пусто — все задачи проекта.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter.status"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value=""
+               data-component="body">
+    <br>
+<p>Статус или несколько через запятую.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>priority</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter.priority"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value=""
+               data-component="body">
+    <br>
+<p>Приоритет или несколько через запятую.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>assignee_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter.assignee_id"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value=""
+               data-component="body">
+    <br>
+<p>ID исполнителя.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter.label"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value=""
+               data-component="body">
+    <br>
+<p>ID метки или несколько через запятую.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>overdue</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-projects--project_id--exports" style="display: none">
+            <input type="radio" name="filter.overdue"
+                   value="true"
+                   data-endpoint="POSTapi-v1-projects--project_id--exports"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-projects--project_id--exports" style="display: none">
+            <input type="radio" name="filter.overdue"
+                   value="false"
+                   data-endpoint="POSTapi-v1-projects--project_id--exports"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p><code>1</code> — только просроченные.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>due_from</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter.due_from"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value=""
+               data-component="body">
+    <br>
+<p>Срок не раньше даты, <code>Y-m-d</code>. Must be a valid date in the format <code>Y-m-d</code>.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>due_to</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter.due_to"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value=""
+               data-component="body">
+    <br>
+<p>Срок не позже даты, <code>Y-m-d</code>. Must be a valid date in the format <code>Y-m-d</code>.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>search</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filter.search"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value=""
+               data-component="body">
+    <br>
+<p>Поиск по заголовку и описанию. Must not be greater than 100 characters.</p>
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sort</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sort"                data-endpoint="POSTapi-v1-projects--project_id--exports"
+               value="-priority,due_date"
+               data-component="body">
+    <br>
+<p>Порядок строк в файле, как у списка задач. Must not be greater than 100 characters. Example: <code>-priority,due_date</code></p>
+        </div>
+        </form>
+
+                    <h2 id="eksport-GETapi-v1-exports--id-">Статус выгрузки</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p><code>pending</code> → <code>processing</code> → <code>completed</code> или <code>failed</code>. Когда готово, появляется <code>download_url</code>.</p>
+
+<span id="example-requests-GETapi-v1-exports--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/exports/16" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/exports/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exports--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;project_id&quot;: 1,
+        &quot;status&quot;: &quot;completed&quot;,
+        &quot;filters&quot;: {
+            &quot;filter&quot;: {
+                &quot;status&quot;: &quot;todo,in_progress&quot;
+            }
+        },
+        &quot;rows_count&quot;: 42,
+        &quot;error&quot;: null,
+        &quot;download_url&quot;: &quot;http://localhost:8080/api/v1/exports/1/download&quot;,
+        &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;,
+        &quot;finished_at&quot;: &quot;2026-09-24T10:00:03.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exports--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exports--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exports--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exports--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exports--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exports--id-" data-method="GET"
+      data-path="api/v1/exports/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exports--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-exports--id-"
+                    onclick="tryItOut('GETapi-v1-exports--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-exports--id-"
+                    onclick="cancelTryOut('GETapi-v1-exports--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-exports--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exports/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exports--id-"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exports--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exports--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-v1-exports--id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the export. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="eksport-GETapi-v1-exports--export_id--download">Скачать CSV</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>UTF-8 с BOM, открывается в Excel. Пока файл не готов — 409.</p>
+
+<span id="example-requests-GETapi-v1-exports--export_id--download">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/exports/16/download" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/exports/16/download"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exports--export_id--download">
+            <blockquote>
+            <p>Example response (200, CSV-файл):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">ID,Title,Status,Priority,Assignee,Assignee email,Due date,Labels,Comments,Created at,Completed at
+7,Apple Pay integration,in_progress,urgent,Demo User,demo@example.com,2026-09-29,&quot;feature, backend&quot;,2,2026-09-24 10:00:00,</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Файл ещё собирается):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The export is not ready yet.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exports--export_id--download" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exports--export_id--download"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exports--export_id--download"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exports--export_id--download" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exports--export_id--download">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exports--export_id--download" data-method="GET"
+      data-path="api/v1/exports/{export_id}/download"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exports--export_id--download', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-exports--export_id--download"
+                    onclick="tryItOut('GETapi-v1-exports--export_id--download');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-exports--export_id--download"
+                    onclick="cancelTryOut('GETapi-v1-exports--export_id--download');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-exports--export_id--download"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exports/{export_id}/download</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exports--export_id--download"
+               value="Bearer {YOUR_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exports--export_id--download"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exports--export_id--download"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>export_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="export_id"                data-endpoint="GETapi-v1-exports--export_id--download"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the export. Example: <code>16</code></p>
             </div>
                     </form>
 

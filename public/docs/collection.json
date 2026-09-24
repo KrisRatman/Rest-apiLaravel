@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Task Manager API \u2014 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f",
-        "_postman_id": "a2e5b9f6-6d6b-414f-998a-9907c50e5c81",
+        "_postman_id": "ccead257-3527-4a0c-bd19-3d42214874f0",
         "description": "REST API \u0434\u043b\u044f \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u0437\u0430\u0434\u0430\u0447: \u043a\u043e\u043c\u0430\u043d\u0434\u044b \u0441 \u0440\u043e\u043b\u044f\u043c\u0438, \u043f\u0440\u043e\u0435\u043a\u0442\u044b, \u0437\u0430\u0434\u0430\u0447\u0438, \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0438 \u0438 \u043c\u0435\u0442\u043a\u0438.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -178,7 +178,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":5,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"created_at\":\"2026-09-24T06:57:43.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":5,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -213,7 +213,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":5,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"created_at\":\"2026-09-24T06:57:43.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":5,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -719,6 +719,188 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "name": "\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u044f",
+                    "description": "\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435 \u043f\u043e email, \u0432 \u0442\u043e\u043c \u0447\u0438\u0441\u043b\u0435 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430 \u0431\u0435\u0437 \u0430\u043a\u043a\u0430\u0443\u043d\u0442\u0430. \u041f\u0438\u0441\u044c\u043c\u043e \u0441 \u043a\u043e\u0434\u043e\u043c \u0443\u0445\u043e\u0434\u0438\u0442 \u0447\u0435\u0440\u0435\u0437 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u0435\u0442 7 \u0434\u043d\u0435\u0439.",
+                    "item": [
+                        {
+                            "name": "\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u044f \u043a\u043e\u043c\u0430\u043d\u0434\u044b",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/teams\/:team_id\/invitations",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/v1\/teams\/:team_id\/invitations",
+                                    "variable": [
+                                        {
+                                            "id": "team_id",
+                                            "key": "team_id",
+                                            "value": 1,
+                                            "description": "The ID of the team."
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "\u0412\u0441\u0435 \u043d\u0435\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u044f, \u0432\u043a\u043b\u044e\u0447\u0430\u044f \u043f\u0440\u043e\u0441\u0440\u043e\u0447\u0435\u043d\u043d\u044b\u0435 (`is_expired`). \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0443 \u0438 \u0430\u0434\u043c\u0438\u043d\u0430\u043c."
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\"data\":[{\"id\":1,\"team_id\":1,\"email\":\"new.colleague@example.com\",\"role\":\"member\",\"invited_by\":1,\"expires_at\":\"2026-10-01T10:00:00.000000Z\",\"is_expired\":false,\"created_at\":\"2026-09-24T10:00:00.000000Z\"}]}",
+                                    "name": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "\u041f\u0440\u0438\u0433\u043b\u0430\u0441\u0438\u0442\u044c \u043f\u043e email",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/teams\/:team_id\/invitations",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/v1\/teams\/:team_id\/invitations",
+                                    "variable": [
+                                        {
+                                            "id": "team_id",
+                                            "key": "team_id",
+                                            "value": 1,
+                                            "description": "The ID of the team."
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"email\":\"new.colleague@example.com\",\"role\":\"member\"}"
+                                },
+                                "description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 \u043f\u0438\u0441\u044c\u043c\u043e \u0441 \u043a\u043e\u0434\u043e\u043c \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u044f. \u041f\u0440\u043e\u0441\u0440\u043e\u0447\u0435\u043d\u043d\u043e\u0435 \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435 \u043d\u0430 \u0442\u043e\u0442 \u0436\u0435 \u0430\u0434\u0440\u0435\u0441 \u0437\u0430\u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f \u043d\u043e\u0432\u044b\u043c. \u041d\u0435 \u0431\u043e\u043b\u044c\u0448\u0435 20 \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0439 \u0432 \u043c\u0438\u043d\u0443\u0442\u0443."
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 201,
+                                    "body": "{\"data\":{\"id\":1,\"team_id\":1,\"email\":\"new.colleague@example.com\",\"role\":\"member\",\"invited_by\":1,\"expires_at\":\"2026-10-01T10:00:00.000000Z\",\"is_expired\":false,\"created_at\":\"2026-09-24T10:00:00.000000Z\"}}",
+                                    "name": ""
+                                },
+                                {
+                                    "header": [],
+                                    "code": 422,
+                                    "body": "{\"message\":\"This email has already been invited.\",\"errors\":{\"email\":[\"This email has already been invited.\"]}}",
+                                    "name": "\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435 \u0443\u0436\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "\u041e\u0442\u043e\u0437\u0432\u0430\u0442\u044c \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/invitations\/:id",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/v1\/invitations\/:id",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": 16,
+                                            "description": "The ID of the invitation."
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "\u041a\u043e\u0434 \u0438\u0437 \u043f\u0438\u0441\u044c\u043c\u0430 \u043f\u0435\u0440\u0435\u0441\u0442\u0430\u0451\u0442 \u0434\u0435\u0439\u0441\u0442\u0432\u043e\u0432\u0430\u0442\u044c."
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 204,
+                                    "body": null,
+                                    "name": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "\u041f\u0440\u0438\u043d\u044f\u0442\u044c \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/invitations\/accept",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/v1\/invitations\/accept"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"token\":\"Xk4Tz9bQe2LmR7sVw1YpN6cHa3JdF8gUo5KiE0tB\"}"
+                                },
+                                "description": "\u0414\u043e\u0431\u0430\u0432\u043b\u044f\u0435\u0442 \u0442\u0435\u043a\u0443\u0449\u0435\u0433\u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0432 \u043a\u043e\u043c\u0430\u043d\u0434\u0443 \u0441 \u0440\u043e\u043b\u044c\u044e \u0438\u0437 \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u044f. Email \u0430\u043a\u043a\u0430\u0443\u043d\u0442\u0430 \u0434\u043e\u043b\u0436\u0435\u043d \u0441\u043e\u0432\u043f\u0430\u0434\u0430\u0442\u044c \u0441 \u0430\u0434\u0440\u0435\u0441\u043e\u043c, \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043f\u0440\u0438\u0448\u043b\u043e \u043f\u0438\u0441\u044c\u043c\u043e: \u0441\u043d\u0430\u0447\u0430\u043b\u0430 \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u0443\u0439\u0442\u0435\u0441\u044c \u0438\u043b\u0438 \u0432\u043e\u0439\u0434\u0438\u0442\u0435 \u0441 \u043d\u0438\u043c."
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\"data\":{\"my_role\":\"member\",\"id\":1,\"name\":\"Mobile Team\",\"description\":\"iOS and Android apps of the online store\",\"owner_id\":1,\"members_count\":3,\"projects_count\":2,\"created_at\":\"2026-09-24T10:00:00.000000Z\",\"updated_at\":\"2026-09-24T10:00:00.000000Z\"}}",
+                                    "name": ""
+                                },
+                                {
+                                    "header": [],
+                                    "code": 403,
+                                    "body": "{\"message\":\"This invitation was sent to another email address.\"}",
+                                    "name": "\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435 \u043d\u0430 \u0434\u0440\u0443\u0433\u043e\u0439 email"
+                                },
+                                {
+                                    "header": [],
+                                    "code": 422,
+                                    "body": "{\"message\":\"The invitation is invalid or has expired.\",\"errors\":{\"token\":[\"The invitation is invalid or has expired.\"]}}",
+                                    "name": "\u041a\u043e\u0434 \u043d\u0435\u0432\u0435\u0440\u043d\u044b\u0439 \u0438\u043b\u0438 \u043f\u0440\u043e\u0441\u0440\u043e\u0447\u0435\u043d"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -774,7 +956,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"},{\"id\":5,\"team_id\":4,\"name\":\"Nemo odit\",\"description\":null,\"status\":\"active\",\"created_by\":6,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":5,\"team_id\":4,\"name\":\"Nemo odit\",\"description\":null,\"status\":\"active\",\"created_by\":6,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -817,7 +999,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -857,7 +1039,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Aut adipisci\",\"description\":\"Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         },
                         {
@@ -906,7 +1088,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":4,\"team_id\":3,\"name\":\"Architecto eius\",\"description\":\"Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.\",\"status\":\"active\",\"created_by\":5,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1051,7 +1233,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Vito Bradtke\",\"email\":\"skylar.kuvalis@example.net\",\"created_at\":\"2026-09-24T06:57:43.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"laboriosam\",\"color\":\"#1f79c5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Odit doloribus repellat officiis\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Matt Boehm\",\"email\":\"carolina.balistreri@example.net\",\"created_at\":\"2026-09-24T06:57:43.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"rem\",\"color\":\"#0f0867\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Vito Bradtke\",\"email\":\"skylar.kuvalis@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"laboriosam\",\"color\":\"#1f79c5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Odit doloribus repellat officiis\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Matt Boehm\",\"email\":\"carolina.balistreri@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"rem\",\"color\":\"#0f0867\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -1158,7 +1340,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Dr. Alan Green\",\"email\":\"herbert83@example.org\",\"created_at\":\"2026-09-24T06:57:43.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"recusandae\",\"color\":\"#ba14a2\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Ratione iure impedit molestiae\",\"description\":\"Esse sint aut molestiae sunt suscipit doloribus fugiat. Aut deserunt et error neque recusandae et.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Prof. Juvenal O'Kon\",\"email\":\"herman.andrew@example.net\",\"created_at\":\"2026-09-24T06:57:43.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"in\",\"color\":\"#1e7f9d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T06:57:43.000000Z\",\"updated_at\":\"2026-09-24T06:57:43.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Dr. Alan Green\",\"email\":\"herbert83@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"recusandae\",\"color\":\"#ba14a2\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":15,\"project_id\":5,\"title\":\"Ratione iure impedit molestiae\",\"description\":\"Esse sint aut molestiae sunt suscipit doloribus fugiat. Aut deserunt et error neque recusandae et.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":10,\"name\":\"Prof. Juvenal O'Kon\",\"email\":\"herman.andrew@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":6,\"team_id\":6,\"name\":\"in\",\"color\":\"#1e7f9d\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":15,\"to\":2,\"total\":2}}",
                             "name": ""
                         },
                         {
@@ -1207,7 +1389,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"balistreri.josiane@example.net\",\"created_at\":\"2026-09-24T06:57:44.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"neque\",\"color\":\"#c420d2\"}],\"created_at\":\"2026-09-24T06:57:44.000000Z\",\"updated_at\":\"2026-09-24T06:57:44.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"balistreri.josiane@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"neque\",\"color\":\"#c420d2\"}],\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         },
                         {
@@ -1253,7 +1435,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Nelson Little\",\"email\":\"anderson.herbert@example.com\",\"created_at\":\"2026-09-24T06:57:44.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"et\",\"color\":\"#3b76f5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T06:57:44.000000Z\",\"updated_at\":\"2026-09-24T06:57:44.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Aut adipisci quidem nostrum\",\"description\":null,\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":\"2026-10-09\",\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Nelson Little\",\"email\":\"anderson.herbert@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"et\",\"color\":\"#3b76f5\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1296,7 +1478,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Prof. Carson Emard\",\"email\":\"lward@example.com\",\"created_at\":\"2026-09-24T06:57:44.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"excepturi\",\"color\":\"#c8ef42\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T06:57:44.000000Z\",\"updated_at\":\"2026-09-24T06:57:44.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":14,\"project_id\":4,\"title\":\"Architecto eius et animi\",\"description\":\"Fugiat sunt nihil accusantium harum mollitia. Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure.\",\"status\":\"todo\",\"priority\":\"medium\",\"due_date\":null,\"is_overdue\":false,\"completed_at\":null,\"assignee\":{\"id\":6,\"name\":\"Prof. Carson Emard\",\"email\":\"lward@example.com\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"creator_id\":null,\"labels\":[{\"id\":5,\"team_id\":4,\"name\":\"excepturi\",\"color\":\"#c8ef42\"}],\"comments_count\":1,\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1395,7 +1577,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":3,\"task_id\":14,\"body\":\"Adipisci quidem nostrum qui commodi incidunt iure.\",\"author\":{\"id\":6,\"name\":\"Kirstin Nitzsche V\",\"email\":\"torp.florence@example.org\",\"created_at\":\"2026-09-24T06:57:44.000000Z\"},\"created_at\":\"2026-09-24T06:57:44.000000Z\",\"updated_at\":\"2026-09-24T06:57:44.000000Z\"},{\"id\":4,\"task_id\":15,\"body\":\"Odio veritatis excepturi doloribus delectus fugit qui repudiandae.\",\"author\":{\"id\":8,\"name\":\"Kayden Robel\",\"email\":\"bcorwin@example.net\",\"created_at\":\"2026-09-24T06:57:44.000000Z\"},\"created_at\":\"2026-09-24T06:57:44.000000Z\",\"updated_at\":\"2026-09-24T06:57:44.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":30,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":3,\"task_id\":14,\"body\":\"Adipisci quidem nostrum qui commodi incidunt iure.\",\"author\":{\"id\":6,\"name\":\"Kirstin Nitzsche V\",\"email\":\"torp.florence@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"},{\"id\":4,\"task_id\":15,\"body\":\"Odio veritatis excepturi doloribus delectus fugit qui repudiandae.\",\"author\":{\"id\":8,\"name\":\"Kayden Robel\",\"email\":\"bcorwin@example.net\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"\\\/\",\"per_page\":30,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -1438,7 +1620,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Prof. Annabelle Kshlerin\",\"email\":\"micaela88@example.org\",\"created_at\":\"2026-09-24T06:57:44.000000Z\"},\"created_at\":\"2026-09-24T06:57:44.000000Z\",\"updated_at\":\"2026-09-24T06:57:44.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Prof. Annabelle Kshlerin\",\"email\":\"micaela88@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         }
                     ]
@@ -1481,7 +1663,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"pagac.skylar@example.org\",\"created_at\":\"2026-09-24T06:57:44.000000Z\"},\"created_at\":\"2026-09-24T06:57:44.000000Z\",\"updated_at\":\"2026-09-24T06:57:44.000000Z\"}}",
+                            "body": "{\"data\":{\"id\":3,\"task_id\":14,\"body\":\"Eius et animi quos velit et.\",\"author\":{\"id\":6,\"name\":\"Cynthia Fahey\",\"email\":\"pagac.skylar@example.org\",\"created_at\":\"2026-09-24T07:10:18.000000Z\"},\"created_at\":\"2026-09-24T07:10:18.000000Z\",\"updated_at\":\"2026-09-24T07:10:18.000000Z\"}}",
                             "name": ""
                         },
                         {
@@ -1616,7 +1798,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":5,\"team_id\":3,\"name\":\"nostrum\",\"color\":\"#a5ed75\"}}",
+                            "body": "{\"data\":{\"id\":5,\"team_id\":3,\"name\":\"architecto\",\"color\":\"#66e353\"}}",
                             "name": ""
                         }
                     ]
@@ -1659,7 +1841,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":5,\"team_id\":3,\"name\":\"architecto\",\"color\":\"#66e353\"}}",
+                            "body": "{\"data\":{\"id\":5,\"team_id\":3,\"name\":\"eius\",\"color\":\"#4285c6\"}}",
                             "name": ""
                         }
                     ]
@@ -1701,6 +1883,180 @@
                             "code": 204,
                             "body": null,
                             "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "\u042d\u043a\u0441\u043f\u043e\u0440\u0442",
+            "description": "\u0412\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u0437\u0430\u0434\u0430\u0447 \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u0432 CSV. \u0424\u0430\u0439\u043b \u0441\u043e\u0431\u0438\u0440\u0430\u0435\u0442\u0441\u044f \u0432 \u0444\u043e\u043d\u0435: \u0437\u0430\u043f\u0440\u043e\u0441 \u0441\u0440\u0430\u0437\u0443 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u0442 202, \u0441\u0442\u0430\u0442\u0443\u0441 \u043c\u043e\u0436\u043d\u043e \u043e\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u0442\u044c, \u0430 \u043f\u043e \u0433\u043e\u0442\u043e\u0432\u043d\u043e\u0441\u0442\u0438 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 \u043f\u0438\u0441\u044c\u043c\u043e. \u0412\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u0432\u0438\u0434\u043d\u0430 \u0442\u043e\u043b\u044c\u043a\u043e \u0430\u0432\u0442\u043e\u0440\u0443 \u0438 \u0445\u0440\u0430\u043d\u0438\u0442\u0441\u044f 7 \u0434\u043d\u0435\u0439.",
+            "item": [
+                {
+                    "name": "\u041c\u043e\u0438 \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0438",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/me\/exports",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "15",
+                                    "description": "\u0420\u0430\u0437\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b, 1\u2013100.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/me\/exports?per_page=15"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u041d\u043e\u0432\u044b\u0435 \u0441\u0432\u0435\u0440\u0445\u0443."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"project_id\":1,\"status\":\"completed\",\"filters\":{\"filter\":{\"status\":\"todo,in_progress\"}},\"rows_count\":42,\"error\":null,\"download_url\":\"http:\\\/\\\/localhost:8080\\\/api\\\/v1\\\/exports\\\/1\\\/download\",\"created_at\":\"2026-09-24T10:00:00.000000Z\",\"finished_at\":\"2026-09-24T10:00:03.000000Z\"}],\"links\":{\"first\":\"\\u2026\",\"last\":\"\\u2026\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"last_page\":1,\"per_page\":15,\"total\":1}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0443",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/projects\/:project_id\/exports",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/projects\/:project_id\/exports",
+                            "variable": [
+                                {
+                                    "id": "project_id",
+                                    "key": "project_id",
+                                    "value": 1,
+                                    "description": "The ID of the project."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"filter\":{\"status\":\"todo,in_progress\",\"overdue\":\"1\"},\"sort\":\"-priority,due_date\"}"
+                        },
+                        "description": "\u0421\u0442\u0430\u0432\u0438\u0442 \u0441\u0431\u043e\u0440\u043a\u0443 CSV \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c \u0438 \u0441\u0440\u0430\u0437\u0443 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0443 \u0441\u043e \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u043c `pending`. \u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u0439 \u0444\u0438\u043b\u044c\u0442\u0440 \u0438\u043b\u0438 \u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0430 \u2192 400 \u0435\u0449\u0451 \u0434\u043e \u043f\u043e\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 202,
+                            "body": "{\"data\":{\"status\":\"pending\",\"rows_count\":null,\"download_url\":null,\"finished_at\":null,\"id\":1,\"project_id\":1,\"filters\":{\"filter\":{\"status\":\"todo,in_progress\"}},\"error\":null,\"created_at\":\"2026-09-24T10:00:00.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0438",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/exports\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/exports\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 16,
+                                    "description": "The ID of the export."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "`pending` \u2192 `processing` \u2192 `completed` \u0438\u043b\u0438 `failed`. \u041a\u043e\u0433\u0434\u0430 \u0433\u043e\u0442\u043e\u0432\u043e, \u043f\u043e\u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f `download_url`."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"project_id\":1,\"status\":\"completed\",\"filters\":{\"filter\":{\"status\":\"todo,in_progress\"}},\"rows_count\":42,\"error\":null,\"download_url\":\"http:\\\/\\\/localhost:8080\\\/api\\\/v1\\\/exports\\\/1\\\/download\",\"created_at\":\"2026-09-24T10:00:00.000000Z\",\"finished_at\":\"2026-09-24T10:00:03.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0421\u043a\u0430\u0447\u0430\u0442\u044c CSV",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/exports\/:export_id\/download",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/exports\/:export_id\/download",
+                            "variable": [
+                                {
+                                    "id": "export_id",
+                                    "key": "export_id",
+                                    "value": 16,
+                                    "description": "The ID of the export."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "UTF-8 \u0441 BOM, \u043e\u0442\u043a\u0440\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0432 Excel. \u041f\u043e\u043a\u0430 \u0444\u0430\u0439\u043b \u043d\u0435 \u0433\u043e\u0442\u043e\u0432 \u2014 409."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "ID,Title,Status,Priority,Assignee,Assignee email,Due date,Labels,Comments,Created at,Completed at\n7,Apple Pay integration,in_progress,urgent,Demo User,demo@example.com,2026-09-29,\"feature, backend\",2,2026-09-24 10:00:00,",
+                            "name": "CSV-\u0444\u0430\u0439\u043b"
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"message\":\"The export is not ready yet.\"}",
+                            "name": "\u0424\u0430\u0439\u043b \u0435\u0449\u0451 \u0441\u043e\u0431\u0438\u0440\u0430\u0435\u0442\u0441\u044f"
                         }
                     ]
                 }

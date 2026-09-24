@@ -3,11 +3,14 @@
 use App\Http\Controllers\Api\V1\AssignedTaskController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CommentController;
+use App\Http\Controllers\Api\V1\ExportController;
+use App\Http\Controllers\Api\V1\InvitationAcceptanceController;
 use App\Http\Controllers\Api\V1\LabelController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\ProjectController;
 use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\Api\V1\TeamController;
+use App\Http\Controllers\Api\V1\TeamInvitationController;
 use App\Http\Controllers\Api\V1\TeamMemberController;
 use App\Http\Controllers\Api\V1\TeamOwnershipController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +41,18 @@ Route::prefix('v1')->name('v1.')->group(function () {
         Route::patch('teams/{team}/members/{user}', [TeamMemberController::class, 'update'])->name('teams.members.update');
         Route::delete('teams/{team}/members/{user}', [TeamMemberController::class, 'destroy'])->name('teams.members.destroy');
         Route::post('teams/{team}/ownership', [TeamOwnershipController::class, 'store'])->name('teams.ownership.store');
+
+        Route::get('teams/{team}/invitations', [TeamInvitationController::class, 'index'])->name('teams.invitations.index');
+        Route::post('teams/{team}/invitations', [TeamInvitationController::class, 'store'])
+            ->middleware('throttle:invitations')
+            ->name('teams.invitations.store');
+        Route::delete('invitations/{invitation}', [TeamInvitationController::class, 'destroy'])->name('invitations.destroy');
+        Route::post('invitations/accept', [InvitationAcceptanceController::class, 'store'])->name('invitations.accept');
+
+        Route::get('me/exports', [ExportController::class, 'index'])->name('me.exports');
+        Route::post('projects/{project}/exports', [ExportController::class, 'store'])->name('projects.exports.store');
+        Route::get('exports/{export}', [ExportController::class, 'show'])->name('exports.show');
+        Route::get('exports/{export}/download', [ExportController::class, 'download'])->name('exports.download');
 
         Route::apiResource('teams.projects', ProjectController::class)->shallow();
         Route::apiResource('teams.labels', LabelController::class)->shallow()->except('show');

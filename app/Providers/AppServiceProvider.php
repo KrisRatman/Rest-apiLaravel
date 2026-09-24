@@ -37,5 +37,8 @@ class AppServiceProvider extends ServiceProvider
         ));
 
         RateLimiter::for('register', fn (Request $request) => Limit::perMinute(10)->by($request->ip()));
+
+        // Каждое приглашение — письмо на произвольный адрес, поэтому ограничиваем рассылку.
+        RateLimiter::for('invitations', fn (Request $request) => Limit::perMinute(20)->by($request->user()?->id ?: $request->ip()));
     }
 }
