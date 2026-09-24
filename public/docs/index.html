@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost:8000";
+        var tryItOutBaseUrl = "https://damp-violet-4757.mkeyboard138.workers.dev";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -308,7 +308,7 @@
         <h1 id="introduction">Introduction</h1>
 <p>REST API для приложения задач: команды с ролями, проекты, задачи, комментарии и метки.</p>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost:8000</code>
+    <strong>Base URL</strong>: <code>https://damp-violet-4757.mkeyboard138.workers.dev</code>
 </aside>
 <pre><code>Бэкенд для мобильного или веб-клиента таск-менеджера. Все ответы — JSON.
 
@@ -403,7 +403,7 @@ v2 содержит только ресурсы с несовместимыми 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/register" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/auth/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -417,7 +417,7 @@ v2 содержит только ресурсы с несовместимыми 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/register"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/auth/register"
 );
 
 const headers = {
@@ -609,7 +609,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/login" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -622,7 +622,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/login"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/auth/login"
 );
 
 const headers = {
@@ -811,7 +811,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/logout" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/auth/logout" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -819,7 +819,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/logout"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/auth/logout"
 );
 
 const headers = {
@@ -947,7 +947,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/me" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -955,7 +955,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/me"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me"
 );
 
 const headers = {
@@ -983,7 +983,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Morgan Hirthe&quot;,
         &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1087,7 +1087,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost:8000/api/v1/me" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1100,7 +1100,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/me"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me"
 );
 
 const headers = {
@@ -1133,7 +1133,7 @@ fetch(url, {
         &quot;id&quot;: 5,
         &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
         &quot;email&quot;: &quot;gulgowski.asia@example.com&quot;,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1262,7 +1262,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/me/password" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me/password" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1275,7 +1275,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/me/password"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me/password"
 );
 
 const headers = {
@@ -1447,7 +1447,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/teams?per_page=15" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams?per_page=15" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1455,7 +1455,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams"
 );
 
 const params = {
@@ -1625,7 +1625,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/teams" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1638,7 +1638,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams"
 );
 
 const headers = {
@@ -1805,7 +1805,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/teams/1" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1813,7 +1813,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1"
 );
 
 const headers = {
@@ -1972,7 +1972,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/teams/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1984,7 +1984,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1"
 );
 
 const headers = {
@@ -2176,7 +2176,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/teams/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2184,7 +2184,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1"
 );
 
 const headers = {
@@ -2325,7 +2325,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/teams/1/members?per_page=50" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members?per_page=50" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2333,7 +2333,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/members"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members"
 );
 
 const params = {
@@ -2512,7 +2512,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/teams/1/members" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2525,7 +2525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/members"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members"
 );
 
 const headers = {
@@ -2717,7 +2717,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost:8000/api/v1/teams/1/members/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2729,7 +2729,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/members/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members/1"
 );
 
 const headers = {
@@ -2906,7 +2906,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/teams/1/members/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2914,7 +2914,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/members/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/members/1"
 );
 
 const headers = {
@@ -3077,7 +3077,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/teams/1/ownership" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/ownership" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3089,7 +3089,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/ownership"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/ownership"
 );
 
 const headers = {
@@ -3260,7 +3260,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/teams/1/invitations" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/invitations" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3268,7 +3268,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/invitations"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/invitations"
 );
 
 const headers = {
@@ -3419,7 +3419,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/teams/1/invitations" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/invitations" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3432,7 +3432,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/invitations"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/invitations"
 );
 
 const headers = {
@@ -3627,7 +3627,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/invitations/16" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/invitations/16" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3635,7 +3635,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/invitations/16"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/invitations/16"
 );
 
 const headers = {
@@ -3772,7 +3772,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/invitations/accept" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/invitations/accept" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3784,7 +3784,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/invitations/accept"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/invitations/accept"
 );
 
 const headers = {
@@ -3965,7 +3965,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/projects/1/stats" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/stats" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3973,7 +3973,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/projects/1/stats"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/stats"
 );
 
 const headers = {
@@ -4148,7 +4148,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/teams/1/projects?status=active&amp;per_page=15" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/projects?status=active&amp;per_page=15" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4156,7 +4156,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/projects"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/projects"
 );
 
 const params = {
@@ -4195,8 +4195,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 5,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
         },
         {
             &quot;id&quot;: 5,
@@ -4205,8 +4205,8 @@ fetch(url, {
             &quot;description&quot;: null,
             &quot;status&quot;: &quot;active&quot;,
             &quot;created_by&quot;: 6,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -4384,7 +4384,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/teams/1/projects" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/projects" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4397,7 +4397,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/projects"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/projects"
 );
 
 const headers = {
@@ -4433,8 +4433,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4576,7 +4576,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/projects/1" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4584,7 +4584,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/projects/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1"
 );
 
 const headers = {
@@ -4615,8 +4615,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Commodi incidunt iure odit. Et modi ipsum nostrum omnis autem et consequatur. Dolores enim non facere tempora.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4742,7 +4742,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/projects/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4755,7 +4755,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/projects/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1"
 );
 
 const headers = {
@@ -4791,8 +4791,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Velit et fugiat sunt nihil accusantium. Mollitia modi deserunt aut ab provident perspiciatis quo. Nostrum aut adipisci quidem nostrum. Commodi incidunt iure odit.&quot;,
         &quot;status&quot;: &quot;active&quot;,
         &quot;created_by&quot;: 5,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4952,7 +4952,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/projects/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4960,7 +4960,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/projects/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1"
 );
 
 const headers = {
@@ -5102,7 +5102,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/me/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=due_date&amp;per_page=15&amp;page=1" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=due_date&amp;per_page=15&amp;page=1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5110,7 +5110,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/me/tasks"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me/tasks"
 );
 
 const params = {
@@ -5158,7 +5158,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Vito Bradtke&quot;,
                 &quot;email&quot;: &quot;skylar.kuvalis@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5170,8 +5170,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -5187,7 +5187,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Matt Boehm&quot;,
                 &quot;email&quot;: &quot;carolina.balistreri@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5199,8 +5199,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:34.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5483,7 +5483,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/projects/1/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;filter%5Bpriority%5D=high%2Curgent&amp;sort=-priority%2Cdue_date&amp;per_page=15&amp;page=1" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;filter%5Bpriority%5D=high%2Curgent&amp;sort=-priority%2Cdue_date&amp;per_page=15&amp;page=1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5491,7 +5491,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/projects/1/tasks"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/tasks"
 );
 
 const params = {
@@ -5540,7 +5540,7 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Dr. Alan Green&quot;,
                 &quot;email&quot;: &quot;herbert83@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5552,8 +5552,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -5569,7 +5569,7 @@ fetch(url, {
                 &quot;id&quot;: 10,
                 &quot;name&quot;: &quot;Prof. Juvenal O&#039;Kon&quot;,
                 &quot;email&quot;: &quot;herman.andrew@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;creator_id&quot;: null,
             &quot;labels&quot;: [
@@ -5581,8 +5581,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5887,7 +5887,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/projects/1/tasks" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/tasks" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5907,7 +5907,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/projects/1/tasks"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/tasks"
 );
 
 const headers = {
@@ -5957,7 +5957,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;balistreri.josiane@example.net&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -5968,8 +5968,8 @@ fetch(url, {
                 &quot;color&quot;: &quot;#c420d2&quot;
             }
         ],
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6191,7 +6191,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/tasks/1" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6199,7 +6199,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/tasks/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1"
 );
 
 const headers = {
@@ -6237,7 +6237,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Nelson Little&quot;,
             &quot;email&quot;: &quot;anderson.herbert@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -6249,8 +6249,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6367,7 +6367,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/tasks/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6387,7 +6387,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/tasks/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1"
 );
 
 const headers = {
@@ -6437,7 +6437,7 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Carson Emard&quot;,
             &quot;email&quot;: &quot;lward@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;creator_id&quot;: null,
         &quot;labels&quot;: [
@@ -6449,8 +6449,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6662,7 +6662,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/tasks/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6670,7 +6670,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/tasks/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1"
 );
 
 const headers = {
@@ -6820,7 +6820,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v2/me/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=due_date&amp;per_page=15" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/me/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=due_date&amp;per_page=15" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6828,7 +6828,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v2/me/tasks"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/me/tasks"
 );
 
 const params = {
@@ -6881,13 +6881,13 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Mr. Murl Cruickshank Jr.&quot;,
                 &quot;email&quot;: &quot;zachery.fadel@example.com&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;creator&quot;: {
                 &quot;id&quot;: 7,
                 &quot;name&quot;: &quot;Mona Lemke&quot;,
                 &quot;email&quot;: &quot;tobin24@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;labels&quot;: [
                 {
@@ -6898,8 +6898,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -6921,13 +6921,13 @@ fetch(url, {
                 &quot;id&quot;: 11,
                 &quot;name&quot;: &quot;Mateo Wilderman&quot;,
                 &quot;email&quot;: &quot;skyla.fahey@example.com&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;creator&quot;: {
                 &quot;id&quot;: 12,
                 &quot;name&quot;: &quot;Prof. Loyce Waelchi Jr.&quot;,
                 &quot;email&quot;: &quot;dorris.klocko@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;labels&quot;: [
                 {
@@ -6938,8 +6938,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -7199,7 +7199,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v2/projects/1/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=-priority%2Cdue_date&amp;per_page=15" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/projects/1/tasks?filter%5Bstatus%5D=todo%2Cin_progress&amp;sort=-priority%2Cdue_date&amp;per_page=15" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7207,7 +7207,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v2/projects/1/tasks"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/projects/1/tasks"
 );
 
 const params = {
@@ -7260,13 +7260,13 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Alexa Hamill DDS&quot;,
                 &quot;email&quot;: &quot;walker26@example.com&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;creator&quot;: {
                 &quot;id&quot;: 7,
                 &quot;name&quot;: &quot;Noemy Klocko&quot;,
                 &quot;email&quot;: &quot;tressa41@example.com&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;labels&quot;: [
                 {
@@ -7277,8 +7277,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         {
             &quot;id&quot;: 15,
@@ -7300,13 +7300,13 @@ fetch(url, {
                 &quot;id&quot;: 11,
                 &quot;name&quot;: &quot;Eugene Huels&quot;,
                 &quot;email&quot;: &quot;kenna.ortiz@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;creator&quot;: {
                 &quot;id&quot;: 12,
                 &quot;name&quot;: &quot;Antoinette Farrell II&quot;,
                 &quot;email&quot;: &quot;lelah01@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
             &quot;labels&quot;: [
                 {
@@ -7317,8 +7317,8 @@ fetch(url, {
                 }
             ],
             &quot;comments_count&quot;: 1,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -7614,7 +7614,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v2/projects/1/tasks" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/projects/1/tasks" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7634,7 +7634,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v2/projects/1/tasks"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/projects/1/tasks"
 );
 
 const headers = {
@@ -7673,8 +7673,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 14,
         &quot;project_id&quot;: 4,
-        &quot;title&quot;: &quot;Sint velit suscipit id&quot;,
-        &quot;description&quot;: null,
+        &quot;title&quot;: &quot;Dolor et voluptatem necessitatibus&quot;,
+        &quot;description&quot;: &quot;Enim omnis alias delectus vero repellat quia ipsam. Mollitia magnam deserunt nemo molestiae soluta illo. Provident et vel incidunt delectus ipsa odio iste. Cupiditate animi ut sunt provident rerum sequi magni nobis.&quot;,
         &quot;status&quot;: {
             &quot;value&quot;: &quot;todo&quot;,
             &quot;label&quot;: &quot;To do&quot;
@@ -7688,26 +7688,26 @@ fetch(url, {
         &quot;completed_at&quot;: null,
         &quot;assignee&quot;: {
             &quot;id&quot;: 6,
-            &quot;name&quot;: &quot;Sigmund Rowe&quot;,
-            &quot;email&quot;: &quot;igaylord@example.net&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;name&quot;: &quot;Mr. Gregory Wolff III&quot;,
+            &quot;email&quot;: &quot;gianni20@example.com&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;creator&quot;: {
             &quot;id&quot;: 7,
-            &quot;name&quot;: &quot;Miss Aniya Mante&quot;,
-            &quot;email&quot;: &quot;grant80@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;name&quot;: &quot;Moshe Kirlin DDS&quot;,
+            &quot;email&quot;: &quot;littel.cleveland@example.net&quot;,
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;labels&quot;: [
             {
                 &quot;id&quot;: 5,
                 &quot;team_id&quot;: 4,
-                &quot;name&quot;: &quot;voluptatum&quot;,
-                &quot;color&quot;: &quot;#bb5911&quot;
+                &quot;name&quot;: &quot;placeat&quot;,
+                &quot;color&quot;: &quot;#b6ee5c&quot;
             }
         ],
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -7929,7 +7929,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v2/tasks/1" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/tasks/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7937,7 +7937,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v2/tasks/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/tasks/1"
 );
 
 const headers = {
@@ -7981,13 +7981,13 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Fae Bernhard Sr.&quot;,
             &quot;email&quot;: &quot;fae.corwin@example.net&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;creator&quot;: {
             &quot;id&quot;: 7,
             &quot;name&quot;: &quot;Mr. Thaddeus Glover IV&quot;,
             &quot;email&quot;: &quot;simeon.willms@example.net&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;labels&quot;: [
             {
@@ -7998,8 +7998,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -8116,7 +8116,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v2/tasks/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/tasks/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8136,7 +8136,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v2/tasks/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/tasks/1"
 );
 
 const headers = {
@@ -8192,13 +8192,13 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Dr. Alan Green&quot;,
             &quot;email&quot;: &quot;michelle.cassin@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;creator&quot;: {
             &quot;id&quot;: 7,
             &quot;name&quot;: &quot;Dr. Mona Lemke&quot;,
             &quot;email&quot;: &quot;nkreiger@example.com&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         &quot;labels&quot;: [
             {
@@ -8209,8 +8209,8 @@ fetch(url, {
             }
         ],
         &quot;comments_count&quot;: 1,
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -8422,7 +8422,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v2/tasks/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/tasks/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8430,7 +8430,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v2/tasks/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v2/tasks/1"
 );
 
 const headers = {
@@ -8580,7 +8580,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/tasks/1/comments?per_page=30" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1/comments?per_page=30" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8588,7 +8588,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/tasks/1/comments"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1/comments"
 );
 
 const params = {
@@ -8627,10 +8627,10 @@ fetch(url, {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Kirstin Nitzsche V&quot;,
                 &quot;email&quot;: &quot;torp.florence@example.org&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
         {
             &quot;id&quot;: 4,
@@ -8640,10 +8640,10 @@ fetch(url, {
                 &quot;id&quot;: 8,
                 &quot;name&quot;: &quot;Kayden Robel&quot;,
                 &quot;email&quot;: &quot;bcorwin@example.net&quot;,
-                &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+                &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
             },
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -8809,7 +8809,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/tasks/1/comments" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1/comments" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8821,7 +8821,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/tasks/1/comments"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/tasks/1/comments"
 );
 
 const headers = {
@@ -8857,10 +8857,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Prof. Annabelle Kshlerin&quot;,
             &quot;email&quot;: &quot;micaela88@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -8990,7 +8990,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/comments/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/comments/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9002,7 +9002,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/comments/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/comments/1"
 );
 
 const headers = {
@@ -9038,10 +9038,10 @@ fetch(url, {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Cynthia Fahey&quot;,
             &quot;email&quot;: &quot;pagac.skylar@example.org&quot;,
-            &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
         },
-        &quot;created_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2026-09-24T11:44:08.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2026-09-24T12:28:35.000000Z&quot;
     }
 }</code>
  </pre>
@@ -9184,7 +9184,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/comments/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/comments/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9192,7 +9192,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/comments/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/comments/1"
 );
 
 const headers = {
@@ -9333,7 +9333,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/teams/1/labels" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/labels" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9341,7 +9341,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/labels"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/labels"
 );
 
 const headers = {
@@ -9494,7 +9494,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/teams/1/labels" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/labels" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9507,7 +9507,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/teams/1/labels"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/teams/1/labels"
 );
 
 const headers = {
@@ -9682,7 +9682,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/labels/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/labels/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9695,7 +9695,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/labels/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/labels/1"
 );
 
 const headers = {
@@ -9874,7 +9874,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/labels/1" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/labels/1" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9882,7 +9882,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/labels/1"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/labels/1"
 );
 
 const headers = {
@@ -10023,7 +10023,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/me/exports?per_page=15" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me/exports?per_page=15" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10031,7 +10031,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/me/exports"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/me/exports"
 );
 
 const params = {
@@ -10073,7 +10073,7 @@ fetch(url, {
             },
             &quot;rows_count&quot;: 42,
             &quot;error&quot;: null,
-            &quot;download_url&quot;: &quot;http://localhost:8080/api/v1/exports/1/download&quot;,
+            &quot;download_url&quot;: &quot;https://api.example.com/api/v1/exports/1/download&quot;,
             &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;,
             &quot;finished_at&quot;: &quot;2026-09-24T10:00:03.000000Z&quot;
         }
@@ -10205,7 +10205,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/projects/1/exports" \
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/exports" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10221,7 +10221,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/projects/1/exports"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/projects/1/exports"
 );
 
 const headers = {
@@ -10514,7 +10514,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/exports/16" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/exports/16" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10522,7 +10522,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/exports/16"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/exports/16"
 );
 
 const headers = {
@@ -10557,7 +10557,7 @@ fetch(url, {
         },
         &quot;rows_count&quot;: 42,
         &quot;error&quot;: null,
-        &quot;download_url&quot;: &quot;http://localhost:8080/api/v1/exports/1/download&quot;,
+        &quot;download_url&quot;: &quot;https://api.example.com/api/v1/exports/1/download&quot;,
         &quot;created_at&quot;: &quot;2026-09-24T10:00:00.000000Z&quot;,
         &quot;finished_at&quot;: &quot;2026-09-24T10:00:03.000000Z&quot;
     }
@@ -10676,7 +10676,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/exports/16/download" \
+    --get "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/exports/16/download" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10684,7 +10684,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/exports/16/download"
+    "https://damp-violet-4757.mkeyboard138.workers.dev/api/v1/exports/16/download"
 );
 
 const headers = {

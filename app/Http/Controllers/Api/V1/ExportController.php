@@ -31,7 +31,7 @@ class ExportController extends Controller
         'filters' => ['filter' => ['status' => 'todo,in_progress']],
         'rows_count' => 42,
         'error' => null,
-        'download_url' => 'http://localhost:8080/api/v1/exports/1/download',
+        'download_url' => 'https://api.example.com/api/v1/exports/1/download',
         'created_at' => '2026-09-24T10:00:00.000000Z',
         'finished_at' => '2026-09-24T10:00:03.000000Z',
     ];
