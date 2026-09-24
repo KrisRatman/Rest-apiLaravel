@@ -37,6 +37,8 @@ services:
       - "127.0.0.1:8025:8025"
 
   app:
+    # Один образ на три роли. CI собирает его заранее и поднимает стек с --no-build.
+    image: ${APP_IMAGE:-task-manager-api:local}
     build: .
     command: ["serve"]
     environment: &app-env
@@ -68,6 +70,7 @@ services:
     restart: unless-stopped
 
   queue:
+    image: ${APP_IMAGE:-task-manager-api:local}
     build: .
     command: ["queue"]
     environment: *app-env
@@ -85,6 +88,7 @@ services:
     restart: unless-stopped
 
   schedule:
+    image: ${APP_IMAGE:-task-manager-api:local}
     build: .
     command: ["schedule"]
     environment: *app-env

@@ -25,7 +25,7 @@ describe('store', function () {
 
         $export = Export::findOrFail($response->json('data.id'));
         expect($export->user_id)->toBe($member->id)
-            ->and($export->filters)->toBe(['filter' => ['status' => 'todo,in_progress'], 'sort' => '-priority']);
+            ->and($export->filters)->toEqual(['filter' => ['status' => 'todo,in_progress'], 'sort' => '-priority']);
         Queue::assertPushed(ExportProjectTasks::class, fn (ExportProjectTasks $job) => $job->export->is($export));
     });
 

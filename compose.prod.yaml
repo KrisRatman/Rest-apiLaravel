@@ -1,0 +1,74 @@
+# Продакшен-стек для VPS: готовый образ из GitHub Container Registry, без сборки на сервере.
+# Настройки — в .env рядом с этим файлом (пример — .env.production.example).
+#
+#   docker compose -f compose.prod.yaml pull
+#   docker compose -f compose.prod.yaml up -d
+#
+# CI обновляет стек этими же командами по SSH после каждого пуша в main.
+# TLS терминирует обратный прокси (Caddy, nginx, Cloudflare) перед портом APP_PORT.
+x-app: &app
+  image: ${APP_IMAGE:-ghcr.io/krisratman/rest-apilaravel:latest}
+  env_file: .env
+  environment:
+    DB_HOST: mysql
+    REDIS_HOST: redis
+  volumes:
+    - app-files:/app/storage/app/private
+  depends_on:
+    mysql:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+  restart: unless-stopped
+
+services:
+  app:
+    <<: *app
+    command: ["serve"]
+    ports:
+      - "${APP_BIND:-127.0.0.1}:${APP_PORT:-8080}:8080"
+
+  queue:
+    <<: *app
+    command: ["queue"]
+    healthcheck:
+      disable: true
+
+  schedule:
+    <<: *app
+    command: ["schedule"]
+    healthcheck:
+      disable: true
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-task_manager}
+      MYSQL_USER: ${DB_USERNAME:-task_manager}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Задайте DB_PASSWORD в .env}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Задайте DB_ROOT_PASSWORD в .env}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  redis-data:
+  app-files:

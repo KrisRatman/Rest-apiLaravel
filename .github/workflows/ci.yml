@@ -1,0 +1,189 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Стиль кода (Pint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+
+      - name: Кэш Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Pint (PSR-12, пресет Laravel)
+        run: vendor/bin/pint --test
+
+  tests:
+    name: Тесты (${{ matrix.database }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # SQLite — быстрый прогон, MySQL — та же база, что в продакшене:
+        # виртуальные колонки, JSON, каскады.
+        database: [sqlite, mysql]
+
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: testing
+          MYSQL_ROOT_PASSWORD: secret
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -psecret"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, pdo_sqlite, pdo_mysql, bcmath, zip
+          coverage: none
+
+      - name: Кэш Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Окружение
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Настройки MySQL
+        if: matrix.database == 'mysql'
+        run: |
+          {
+            echo "DB_CONNECTION=mysql"
+            echo "DB_HOST=127.0.0.1"
+            echo "DB_PORT=3306"
+            echo "DB_DATABASE=testing"
+            echo "DB_USERNAME=root"
+            echo "DB_PASSWORD=secret"
+          } >> "$GITHUB_ENV"
+
+      - name: Тесты
+        run: php artisan test --compact
+
+  docker:
+    name: Docker-образ и smoke-тест
+    runs-on: ubuntu-latest
+    needs: [lint, tests]
+    permissions:
+      contents: read
+      packages: write
+    env:
+      APP_IMAGE: task-manager-api:ci
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Сборка образа
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: ${{ env.APP_IMAGE }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Запуск стека (API, воркер, планировщик, MySQL, Redis, Mailpit)
+        run: |
+          echo "APP_KEY=base64:$(openssl rand -base64 32)" > .env
+          docker compose up -d --no-build --wait --wait-timeout 180
+
+      - name: Smoke-тест
+        run: sh docker/smoke-test.sh http://localhost:8080
+
+      - name: Логи контейнеров
+        if: failure()
+        run: docker compose logs --no-color --tail 200
+
+      - name: Метаданные образа
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=latest
+            type=sha,format=short
+
+      - name: Вход в GitHub Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Публикация образа
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+
+  deploy:
+    name: Деплой на сервер
+    runs-on: ubuntu-latest
+    needs: docker
+    # Включается, когда в настройках репозитория заданы переменная DEPLOY_HOST
+    # и секреты DEPLOY_USER, DEPLOY_SSH_KEY. До этого job пропускается.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_HOST != ''
+    environment: production
+    concurrency: deploy-production
+
+    steps:
+      - name: Обновление контейнеров по SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ vars.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            cd "${{ vars.DEPLOY_PATH || '~/task-manager-api' }}"
+            docker compose -f compose.prod.yaml pull
+            docker compose -f compose.prod.yaml up -d --remove-orphans
+            docker image prune -f

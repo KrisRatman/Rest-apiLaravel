@@ -1,5 +1,7 @@
 # Task Manager API
 
+[![CI](https://github.com/KrisRatman/Rest-apiLaravel/actions/workflows/ci.yml/badge.svg)](https://github.com/KrisRatman/Rest-apiLaravel/actions/workflows/ci.yml)
+
 REST API для приложения задач с командами и правами: бэкенд для мобильного или веб-клиента в духе Trello или Todoist.
 
 Пользователь состоит в нескольких командах и в каждой имеет свою роль. В команде есть проекты, в проектах задачи с исполнителями, сроками, приоритетами, метками и комментариями.
@@ -99,6 +101,43 @@ php artisan schedule:work   # по желанию: ежедневная очис
 | `API_V1_DEPRECATED_AT`, `API_V1_SUNSET_AT` | Даты для заголовков `Deprecation` и `Sunset` у устаревших эндпоинтов v1 |
 | `CACHE_STORE`, `QUEUE_CONNECTION`, `REDIS_HOST` | Redis для кэша и очередей |
 | `MAIL_MAILER`, `MAIL_HOST`, `MAIL_FROM_ADDRESS` | Отправка писем |
+
+## CI и деплой
+
+Каждый пуш и pull request проходит [GitHub Actions](.github/workflows/ci.yml):
+
+| Job | Что проверяет |
+|---|---|
+| Стиль кода | `pint --test`: PSR-12, пресет Laravel |
+| Тесты (sqlite) | Весь набор Pest на SQLite в памяти, быстрый прогон |
+| Тесты (mysql) | Тот же набор на MySQL 8.4, как в продакшене: виртуальные колонки, JSON, каскады |
+| Docker-образ и smoke-тест | Собирает образ, поднимает весь стек через `docker compose` и проверяет его HTTP-запросами ([`docker/smoke-test.sh`](docker/smoke-test.sh)): вход, v2 с курсором, заголовки устаревания и лимитов, выгрузку CSV через Redis и воркер, документацию |
+| Деплой | Только после зелёных тестов и smoke-теста в `main`: публикует образ в GitHub Container Registry (`latest` и короткий SHA) и обновляет контейнеры на сервере по SSH |
+
+Dependabot раз в неделю открывает PR с обновлениями Composer, Docker-образа и actions, и CI прогоняет их так же.
+
+### Деплой на VPS
+
+На сервере нужен только Docker. Образ собирается в CI, на сервере ничего не компилируется.
+
+```bash
+mkdir ~/task-manager-api && cd ~/task-manager-api
+# скопировать compose.prod.yaml и .env.production.example из репозитория
+cp .env.production.example .env   # заполнить APP_KEY, APP_URL, пароли БД, SMTP
+docker compose -f compose.prod.yaml up -d
+```
+
+[`compose.prod.yaml`](compose.prod.yaml) поднимает API, воркер очереди, планировщик, MySQL и Redis. База и Redis наружу не открыты, API слушает `127.0.0.1:8080`, а TLS выдаёт обратный прокси (Caddy, nginx или Cloudflare). Миграции накатываются при старте контейнера API.
+
+Автодеплой из CI включается в настройках репозитория (Settings → Secrets and variables → Actions):
+
+| Где | Имя | Значение |
+|---|---|---|
+| Variables | `DEPLOY_HOST` | Адрес сервера |
+| Variables | `DEPLOY_PATH` | Папка с `compose.prod.yaml`, по умолчанию `~/task-manager-api` |
+| Secrets | `DEPLOY_USER`, `DEPLOY_SSH_KEY` | Пользователь и приватный SSH-ключ |
+
+Пока `DEPLOY_HOST` не задан, job деплоя пропускается, а остальной CI работает как обычно.
 
 ## Документация API
 
@@ -228,6 +267,10 @@ config/api.php          лимиты запросов, TTL кэша и даты 
 routes/api.php          подключает версии: routes/api/v1.php и routes/api/v2.php
 routes/console.php      расписание: ежедневный model:prune
 docker/entrypoint.sh    роли контейнера: serve, queue, schedule
+docker/smoke-test.sh    проверка поднятого стека HTTP-запросами, запускается в CI
+compose.yaml            локальный стек со сборкой образа и Mailpit
+compose.prod.yaml       продакшен-стек из готового образа GHCR
+.github/workflows/      CI: Pint, тесты на SQLite и MySQL, образ, smoke-тест, деплой
 ```
 
 Решения, которые стоит отметить:
@@ -274,7 +317,7 @@ php artisan test
 - **Версии API:** формат задач v2, проход всех страниц по курсору при каждой сортировке, возврат по `prev_cursor`, 422 вместо 500 на курсор от другой сортировки, заголовки устаревания у v1 (в том числе в ответах с ошибкой) и их отсутствие у актуальных эндпоинтов.
 - **Кэш и лимиты:** повторное чтение роли без запросов к базе, сброс кэша при каждом виде изменения, устаревший ответ при изменении в обход моделей (доказательство, что кэш реально используется), заголовки `X-RateLimit-*`, 429 с `Retry-After`, раздельные счётчики пользователей.
 
-Тесты идут на SQLite в памяти с `APP_DEBUG=false`, то есть проверяют ровно тот формат ошибок, который увидит клиент в продакшене.
+Локально тесты идут на SQLite в памяти, в CI дополнительно на MySQL 8.4. Везде `APP_DEBUG=false`, поэтому тесты проверяют ровно тот формат ошибок, который увидит клиент в продакшене.
 
 ### Команды для разработки
 
