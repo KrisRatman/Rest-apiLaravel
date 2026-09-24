@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -24,6 +26,26 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureRateLimiting();
+        $this->configureUrlsBehindProxy();
+    }
+
+    /**
+     * На хостинге без своего SSL API открывают через https-прокси (Cloudflare Worker),
+     * а до сервера запрос доходит по http. Ссылки в ответах (пагинация, скачивание
+     * выгрузки) строим от APP_URL, а не от заголовков запроса: сайт доступен
+     * и напрямую, поэтому X-Forwarded-* может подделать кто угодно.
+     */
+    private function configureUrlsBehindProxy(): void
+    {
+        $appUrl = (string) config('app.url');
+
+        if (str_starts_with($appUrl, 'https://')) {
+            URL::forceRootUrl($appUrl);
+            URL::forceScheme('https');
+
+            // Пагинатор берёт адрес из самого запроса, а не из генератора URL.
+            Paginator::currentPathResolver(fn (): string => url($this->app['request']->path()));
+        }
     }
 
     /**

@@ -170,12 +170,15 @@ jobs:
     needs: docker
     # Включается, когда в настройках репозитория заданы переменная DEPLOY_HOST
     # и секреты DEPLOY_USER, DEPLOY_SSH_KEY. До этого job пропускается.
+    # DEPLOY_TARGET: docker — VPS с compose.prod.yaml (по умолчанию),
+    # shared — виртуальный хостинг без Docker (Beget и т.п.): git pull + composer + artisan.
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_HOST != ''
     environment: production
     concurrency: deploy-production
 
     steps:
       - name: Обновление контейнеров по SSH
+        if: vars.DEPLOY_TARGET != 'shared'
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ vars.DEPLOY_HOST }}
@@ -183,7 +186,25 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
             set -e
-            cd "${{ vars.DEPLOY_PATH || '~/task-manager-api' }}"
+            cd "$HOME/${{ vars.DEPLOY_PATH || 'task-manager-api' }}"
             docker compose -f compose.prod.yaml pull
             docker compose -f compose.prod.yaml up -d --remove-orphans
             docker image prune -f
+
+      - name: Обновление на виртуальном хостинге по SSH
+        if: vars.DEPLOY_TARGET == 'shared'
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ vars.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            PHP="${{ vars.DEPLOY_PHP || 'php8.4' }}"
+            cd "$HOME/${{ vars.DEPLOY_PATH || 'task-manager-api' }}"
+            git pull --ff-only
+            "$PHP" "$HOME/bin/composer.phar" install --no-dev --optimize-autoloader --no-interaction --no-progress
+            "$PHP" artisan migrate --force
+            "$PHP" artisan db:seed --force
+            "$PHP" artisan optimize
+            "$PHP" artisan queue:restart

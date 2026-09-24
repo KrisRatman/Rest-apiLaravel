@@ -134,10 +134,38 @@ docker compose -f compose.prod.yaml up -d
 | Где | Имя | Значение |
 |---|---|---|
 | Variables | `DEPLOY_HOST` | Адрес сервера |
-| Variables | `DEPLOY_PATH` | Папка с `compose.prod.yaml`, по умолчанию `~/task-manager-api` |
+| Variables | `DEPLOY_PATH` | Папка проекта от домашней папки, по умолчанию `task-manager-api` |
+| Variables | `DEPLOY_TARGET` | `docker` (по умолчанию) или `shared` для виртуального хостинга |
 | Secrets | `DEPLOY_USER`, `DEPLOY_SSH_KEY` | Пользователь и приватный SSH-ключ |
 
 Пока `DEPLOY_HOST` не задан, job деплоя пропускается, а остальной CI работает как обычно.
+
+### Установка на виртуальный хостинг (Beget и аналоги)
+
+API работает и на обычном хостинге с SSH, без Docker и VPS. Redis там нет, поэтому кэш, очередь и счётчики лимитов хранятся в MySQL. Постоянного воркера тоже нет: очередь разбирает `queue:work --stop-when-empty`, который раз в минуту запускает cron через планировщик.
+
+1. **Панель хостинга:** создайте сайт и базу MySQL, у сайта выберите PHP 8.4, включите SSH.
+2. **Код:** клонируйте репозиторий в папку сайта и направьте корень сайта в `public/` (на Beget — симлинк `public_html` → `laravel/public`). Composer нужен версии 2.
+   ```bash
+   php8.4 ~/bin/composer.phar install --no-dev --optimize-autoloader
+   cp .env.example .env && chmod 600 .env
+   ```
+3. **`.env`:** `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL`, доступы к MySQL, а также
+   ```
+   CACHE_STORE=database
+   QUEUE_CONNECTION=database
+   API_SCHEDULED_QUEUE_WORKER=true
+   ```
+4. **База и кэши:**
+   ```bash
+   php8.4 artisan key:generate --force
+   php8.4 artisan migrate --force && php8.4 artisan db:seed --force
+   php8.4 artisan optimize
+   ```
+5. **Cron** раз в минуту: `php8.4 /путь/к/проекту/artisan schedule:run`. Он запускает очередь (письма, выгрузки CSV) и ежедневную очистку.
+6. **HTTPS.** Если у сайта нет своего сертификата, подойдёт прокси, например Cloudflare Worker. В `APP_URL` укажите https-адрес прокси: все ссылки в ответах, включая пагинацию, API строит от него, а не от заголовков запроса.
+
+Автодеплой из CI в этом режиме: переменная `DEPLOY_TARGET=shared` и `DEPLOY_PATH` — путь к проекту от домашней папки. После каждого пуша в `main` CI выполнит `git pull`, `composer install`, миграции и `optimize`.
 
 ## Документация API
 
@@ -308,7 +336,7 @@ users ─┬─< team_user >─── teams ─┬─< projects ──< tasks �
 php artisan test
 ```
 
-255 тестов на Pest:
+259 тестов на Pest:
 
 - **Feature-тесты на каждый эндпоинт:** 401 без токена, 404 для чужой команды, 403 для недостаточной роли, 422 на валидацию, успешный сценарий с проверкой состояния базы.
 - **Матрица прав по политикам:** каждое действие проверено для каждой роли.
