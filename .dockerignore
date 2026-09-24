@@ -1,0 +1,21 @@
+.git
+.github
+.osp
+.scribe
+.claude
+.env
+.env.backup
+.env.production
+node_modules
+vendor
+storage/logs/*.log
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+database/database.sqlite
+tests
+README.md
+CLAUDE.md
+AGENTS.md
+# Конфиг генератора документации: Scribe — dev-зависимость, готовые docs уже в public/docs
+config/scribe.php
