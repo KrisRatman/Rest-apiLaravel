@@ -27,7 +27,7 @@ jobs:
           coverage: none
 
       - name: Кэш Composer
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
@@ -72,7 +72,7 @@ jobs:
           coverage: none
 
       - name: Кэш Composer
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
